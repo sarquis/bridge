@@ -1,0 +1,17 @@
+
+!!! Atenção !!! PENSAR SEMPRE EM MVP, NADA DE COMPLICAR FAZER RODAR DEPOIS IR MELHORANDO.
+
+A FAZER:
+
+	- Montar as entidades do security.
+	
+	https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
+	
+	https://spring.io/guides/gs/accessing-data-mysql/
+	
+	- Descobrir como fazer o hibernate gerar o arquivo das mudanças do banco.
+	- Descobrir as diferenças nos 4 tipos de log do hibernate.
+	
+
+FEITO:
+

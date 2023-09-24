@@ -1,0 +1,29 @@
+
+# 橋 bridge properties
+
+spring:
+  datasource: # JDBC connection properties:
+    url: jdbc:mysql://localhost:3306/db_bridge
+    username: bridgeuser
+    password: H*wF1=53szsMCBd?.FC&
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true  # Log JDBC SQL statements.
+  main: 
+    banner-mode: 'off' # Turn off the Spring Boot banner.
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug # Log JDBC SQL statements.
+        orm:
+          jdbc:
+            bind: trace # Log JDBC SQL statements.
+      springframework:
+        jdbc:
+          core: trace # Log JDBC SQL statements.
+#        security: debug # Spring Security bebug (very usefull);
+#    root: warn # Reduce logging level.
+
