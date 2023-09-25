@@ -1,12 +1,22 @@
 package br.com.sqs.bridge.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
@@ -14,14 +24,26 @@ public class Usuario {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "login", nullable = false, length = 50)
-    private String login;
+    @Column(name = "email", nullable = false, length = 100)
+    private String email;
 
     @Column(name = "senha", nullable = false, length = 68)
     private String senha;
 
     @Column(name = "ativo", nullable = false, columnDefinition = "BOOLEAN")
     private Boolean ativo;
+
+    @ManyToMany(fetch = FetchType.EAGER,
+		cascade = { CascadeType.PERSIST,
+			    CascadeType.MERGE,
+			    CascadeType.DETACH,
+			    CascadeType.REFRESH })
+    @JoinTable(name = "usuario_funcao",
+	       joinColumns = @JoinColumn(name = "usuario_id",
+					 foreignKey = @ForeignKey(name = "fk_usuario_funcao")),
+	       inverseJoinColumns = @JoinColumn(name = "funcao_id",
+						foreignKey = @ForeignKey(name = "fk_funcao_usuario")))
+    private List<Funcao> funcoes;
 
     public Integer getId() {
 	return id;
@@ -31,12 +53,12 @@ public class Usuario {
 	this.id = id;
     }
 
-    public String getLogin() {
-	return login;
+    public String getEmail() {
+	return email;
     }
 
-    public void setLogin(String login) {
-	this.login = login;
+    public void setEmail(String email) {
+	this.email = email;
     }
 
     public String getSenha() {
@@ -55,9 +77,17 @@ public class Usuario {
 	this.ativo = ativo;
     }
 
+    public List<Funcao> getFuncoes() {
+	return funcoes;
+    }
+
+    public void setFuncoes(List<Funcao> funcoes) {
+	this.funcoes = funcoes;
+    }
+
     @Override
     public String toString() {
-	return "Usuario [id=" + id + ", login=" + login + ", ativo=" + ativo + "]";
+	return "Usuario [id=" + id + ", email=" + email + ", ativo=" + ativo + ", funcoes=" + funcoes + "]";
     }
 
 }

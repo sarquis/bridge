@@ -2,28 +2,51 @@
 # 橋 bridge properties
 
 spring:
-  datasource: # JDBC connection properties:
+  
+  # Turn off the Spring Boot banner.
+  main: 
+    banner-mode: 'off' 
+
+  datasource: 
+    #
+    # JDBC connection properties:
+    #
     url: jdbc:mysql://localhost:3306/db_bridge
     username: bridgeuser
     password: H*wF1=53szsMCBd?.FC&
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true  # Log JDBC SQL statements.
-  main: 
-    banner-mode: 'off' # Turn off the Spring Boot banner.
 
+  jpa:
+    properties:
+      hibernate:
+        '[format_sql]': true
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              #
+              # Denerate the database schema:
+              # 
+              # https://www.baeldung.com/spring-data-jpa-generate-db-schema
+              # 
+              action: update # [create][update]
+              create-target: db_scripts/update.sql # [create][update]
+       
 logging:
   level:
     org:
       hibernate:
-        SQL: debug # Log JDBC SQL statements.
+        SQL: trace # Log JDBC SQL statements. debug or trace
         orm:
           jdbc:
             bind: trace # Log JDBC SQL statements.
       springframework:
         jdbc:
           core: trace # Log JDBC SQL statements.
-#        security: debug # Spring Security bebug (very usefull);
-#    root: warn # Reduce logging level.
+          
+# Spring Security bebug (very usefull):          
+#        security: debug
+
+# Reduce logging level:
+#    root: warn 
 
