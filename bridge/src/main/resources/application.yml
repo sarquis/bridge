@@ -22,7 +22,7 @@ spring:
     open-in-view: false 
     properties:
       hibernate:
-        '[format_sql]': true
+        '[format_sql]': true # Maior legibilidade para o script de schema gerado.
       jakarta:
         persistence:
           schema-generation:
@@ -39,17 +39,12 @@ spring:
 logging:
   level:
     org:
-      hibernate:
-        SQL: trace # Log JDBC SQL statements. debug or trace
-        orm:
-          jdbc:
-            bind: trace # Log JDBC SQL statements.
       springframework:
         jdbc:
-          core: trace # Log JDBC SQL statements.
+          core: trace # Log JDBC SQL statements with bind values.
           
 # Spring Security bebug (very usefull):          
-        security: debug
+#        security: debug
 
 # Reduce logging level:
 #    root: warn 

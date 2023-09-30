@@ -33,7 +33,7 @@ public class Usuario {
     @Column(name = "ativo", nullable = false, columnDefinition = "BOOLEAN")
     private Boolean ativo;
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(fetch = FetchType.LAZY,
 		cascade = { CascadeType.PERSIST,
 			    CascadeType.MERGE,
 			    CascadeType.DETACH,

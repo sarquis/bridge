@@ -3,11 +3,11 @@
 
 A FAZER:
 	
-	Testar login...
-	
-	- Descobrir as diferenças nos 4 tipos de log do hibernate.
-	
-	- tela de login customizada
+	- colocar logo do sistema etc.
+	- criar nova tela de login customizada
+	- ajeitar a homepage colocar menu
+	- criar crud dos usuarios
+	- colunas de auditoria
 
 FEITO:
 
@@ -17,6 +17,8 @@ FEITO:
 	- Configurar o spring security para olhar para as tabelas customizadas.
 	- https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
 	- https://spring.io/guides/gs/accessing-data-mysql/
+	- Descobrir as diferenças nos 4 tipos de log do hibernate.
+	- Testar login...
 	
 BACKLOG:
 	- crud usuarios (somente adm)
