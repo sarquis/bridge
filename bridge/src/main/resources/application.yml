@@ -25,12 +25,12 @@ spring:
             create-source: metadata
             scripts:
               #
-              # Denerate the database schema:
+              # Generate the database schema:
               # 
               # https://www.baeldung.com/spring-data-jpa-generate-db-schema
               # 
-              action: update # [create][update]
-              create-target: db_scripts/update.sql # [create][update]
+              action: update # [create] or [update]
+              create-target: db_scripts/update.sql # [create] or [update]
        
 logging:
   level:

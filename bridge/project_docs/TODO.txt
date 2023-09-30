@@ -3,6 +3,8 @@
 
 A FAZER:
 	
+	- ADICIONAR NO ADMIN O PERFIL 'COMUM'
+	
 	- Configurar o spring security para olhar para as tabelas customizadas.
 	
 	https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
@@ -11,8 +13,17 @@ A FAZER:
 	
 	- Descobrir as diferenças nos 4 tipos de log do hibernate.
 	
+	- tela de login customizada
 
 FEITO:
 
 	- Montar as entidades do security.
 	- Fazer o hibernate gerar o arquivo de schema.
+	
+	
+BACKLOG:
+	- crud usuarios (somente adm)
+	- colunas de auditoria
+	- bloqueio de usuario por tentativas
+	- all logging to a table 
+	
