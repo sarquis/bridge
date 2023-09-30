@@ -16,10 +16,14 @@ spring:
     password: H*wF1=53szsMCBd?.FC&
 
   jpa:
+    # spring.jpa.open-in-view
+    # https://backendhance.com/en/blog/2023/open-session-in-view/
+    # https://www.youtube.com/watch?v=g9yspLxwEH4 
+    open-in-view: false 
     properties:
       hibernate:
         '[format_sql]': true
-      javax:
+      jakarta:
         persistence:
           schema-generation:
             create-source: metadata
@@ -29,8 +33,8 @@ spring:
               # 
               # https://www.baeldung.com/spring-data-jpa-generate-db-schema
               # 
-              action: update # [create] or [update]
-              create-target: db_scripts/update.sql # [create] or [update]
+              # action: update # [create] or [update]
+              # create-target: db_scripts/update.sql # [create] or [update]
        
 logging:
   level:
@@ -45,7 +49,7 @@ logging:
           core: trace # Log JDBC SQL statements.
           
 # Spring Security bebug (very usefull):          
-#        security: debug
+        security: debug
 
 # Reduce logging level:
 #    root: warn 

@@ -3,13 +3,7 @@
 
 A FAZER:
 	
-	- ADICIONAR NO ADMIN O PERFIL 'COMUM'
-	
-	- Configurar o spring security para olhar para as tabelas customizadas.
-	
-	https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
-	
-	https://spring.io/guides/gs/accessing-data-mysql/
+	Testar login...
 	
 	- Descobrir as diferenças nos 4 tipos de log do hibernate.
 	
@@ -19,7 +13,10 @@ FEITO:
 
 	- Montar as entidades do security.
 	- Fazer o hibernate gerar o arquivo de schema.
-	
+	- ADICIONAR NO ADMIN O PERFIL 'COMUM'
+	- Configurar o spring security para olhar para as tabelas customizadas.
+	- https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
+	- https://spring.io/guides/gs/accessing-data-mysql/
 	
 BACKLOG:
 	- crud usuarios (somente adm)

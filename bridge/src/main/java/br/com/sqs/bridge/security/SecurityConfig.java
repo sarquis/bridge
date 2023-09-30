@@ -15,27 +15,33 @@ public class SecurityConfig {
     @Bean
     UserDetailsManager userDetailsManager(DataSource dataSource) {
 	JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-	jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT user_id, pw, active FROM members WHERE user_id=?");
-	jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT user_id, role FROM roles WHERE user_id=?");
+	final String sqlUser = " SELECT email, senha, ativo FROM usuario WHERE email = ? ";
+	jdbcUserDetailsManager.setUsersByUsernameQuery(sqlUser);
+	final String sqlRole = "        SELECT u.email, f.nome 		"
+			       + "        FROM funcao f 		"
+			       + "  INNER JOIN usuario_funcao uf 	"
+			       + "          ON uf.funcao_id = f.id 	"
+			       + "  INNER JOIN usuario u 		"
+			       + "          ON u.id = uf.usuario_id 	"
+			       + "         AND u.email = ? 		";
+	jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(sqlRole);
 	return jdbcUserDetailsManager;
     }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
 	http.authorizeHttpRequests(configurer -> configurer
-		.requestMatchers("/").hasRole("EMPLOYEE")
-		.requestMatchers("/leaders/**").hasRole("MANAGER")
+		.requestMatchers("/").hasRole("USUARIO")
+		.requestMatchers("/leaders/**").hasRole("USUARIO")
 		.requestMatchers("/systems/**").hasRole("ADMIN")
 		.anyRequest().authenticated())
 		.formLogin(form -> form
-			.loginPage("/showMyLoginPage")
-			.loginProcessingUrl("/authenticateTheUser")
+			.loginPage("/showLoginPage")
+			.loginProcessingUrl("/authenticateTheUser") // action : form : login page
 			.permitAll())
 		.logout(logout -> logout.permitAll())
 		.exceptionHandling(configurer -> configurer
-			.accessDeniedPage("/access-denied"));
-
+			.accessDeniedPage("/accessDenied"));
 	return http.build();
     }
 
