@@ -2,72 +2,88 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-	<title>Login Page</title>
+	<title>橋 Bridge - 2Receive - entre ou cadastra-se</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Bootstrap demo</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
 </head>
 
-<body>
-	<div class="container">
-		<div id="loginbox" style="margin-top: 50px;" class="col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
-			<div class="card border-info">
-				<div class="card-header bg-info">
-					Sign In
-				</div>
+<body style="background-color: hsl(0, 0%, 96%)">
 
-				<div class="card-body">
-					<div class="card-text">
+	<!-- Section: Design Block -->
+	<section class="">
+		<!-- Jumbotron -->
+		<div class="px-z4 py-5 px-md-5 text-center text-lg-start">
+			<div class="container">
+				<div class="row gx-lg-5 align-items-center">
+					<div class="col-lg-6 mb-5 mb-lg-0">
+						<h1 class="my-5 display-3 fw-bold ls-tight">
+							橋 2Receive <br />
+						</h1>
+						<p style="color: hsl(217, 10%, 50.8%)">
+							A sua ajuda no controle de contas a receber.
+						</p>
+					</div>
+					<div class="col-lg-6 mb-5 mb-lg-0">
+						<div class="card">
+							<div class="card-body py-4 px-md-5">
 
-						<!-- Login Form -->
-						<form action="#" th:action="@{/authenticateTheUser}" method="post" class="form-horizontal">
+								<!-- Login Form -->
+								<form action="#" th:action="@{/authenticateTheUser}" method="post">
 
-							<!-- Place for messages: error, alert etc ... -->
-							<div class="form-group">
-								<div class="col-xs-15">
-									<div>
-										<!-- Check for login error -->
-										<div th:if="${param.error}">
-											<div class="alert alert-danger col-xs-offset-1 col-xs-10">
-												Invalid username and password.
-											</div>
-										</div>
-										<!-- Check for logout -->
-										<div th:if="${param.logout}">
-											<div class="alert alert-success col-xs-offset-1 col-xs-10">
-												You have been logged out.
+									<!-- Place for messages: error, alert etc ... -->
+									<div class="form-group">
+										<div class="col-xs-15">
+											<div>
+												<!-- Check for login error -->
+												<div th:if="${param.error}">
+													<div class="alert alert-danger col-xs-offset-1 col-xs-10">
+														E-mail e/ou senha inválidos.
+													</div>
+												</div>
+												<!-- Check for logout -->
+												<div th:if="${param.logout}">
+													<div class="alert alert-success col-xs-offset-1 col-xs-10">
+														Você foi desconectado, até breve.
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+
+									<!-- E-mail input -->
+									<div class="form-floating mb-4">
+										<input type="text" id="emailInput" name="username" class="form-control"
+											placeholder="nome@exemplo.com" />
+										<label class="text-secondary" for="emailInput">E-mail</label>
+									</div>
+
+									<!-- Senha input -->
+									<div class="form-floating mb-4">
+										<input type="password" id="senhaInput" name="password" class="form-control"
+											placeholder="senha" />
+										<label class="text-secondary" for="form3Example4">Senha</label>
+									</div>
+
+									<!-- Submit button -->
+									<button type="submit" class="btn btn-primary btn-lg col-12">Entrar</button>
+
+								</form>
+
 							</div>
-
-							<!-- User name -->
-							<div style="margin-bottom: 25px;" class="input-group">
-								<input type="text" name="username" placeholder="username" class="form-control" />
-							</div>
-
-							<!-- Password -->
-							<div style="margin-bottom: 25px;" class="input-group">
-								<input type="password" name="password" placeholder="password" class="form-control" />
-							</div>
-
-							<!-- Login/Submit Button -->
-							<div style="margin-top: 10px;" class="form-group">
-								<div class="col-sm-6 controls">
-									<button type="submit" class="btn btn-success">Login</button>
-								</div>
-							</div>
-
-						</form>
-
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<!-- Jumbotron -->
+	</section>
+	<!-- Section: Design Block -->
+
 </body>
 
 </html>

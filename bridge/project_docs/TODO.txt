@@ -1,16 +1,16 @@
 
+橋 Bridge
+
 !!! Atenção !!! PENSAR SEMPRE EM MVP, NADA DE COMPLICAR FAZER RODAR DEPOIS IR MELHORANDO.
 
 A FAZER:
-	
-	- colocar logo do sistema etc.
-	- criar nova tela de login customizada
+		 
 	- ajeitar a homepage colocar menu
 	- criar crud dos usuarios
 	- colunas de auditoria
 
 FEITO:
-
+	
 	- Montar as entidades do security.
 	- Fazer o hibernate gerar o arquivo de schema.
 	- ADICIONAR NO ADMIN O PERFIL 'COMUM'
@@ -19,10 +19,17 @@ FEITO:
 	- https://spring.io/guides/gs/accessing-data-mysql/
 	- Descobrir as diferenças nos 4 tipos de log do hibernate.
 	- Testar login...
+	- colocar logo do sistema etc.
+	- criar nova tela de login customizada: com form de login e botão de registro (sem funcionar por enquanto)
+	
 	
 BACKLOG:
+	
+	- criar botão de "registro de novo usuario" "Criar uma conta"
+	- criar esqueci minha senha.
 	- crud usuarios (somente adm)
 	- colunas de auditoria
 	- bloqueio de usuario por tentativas
 	- all logging to a table 
-	
+	- fazer funcionalidade do registro com envio para e-mail de senha
+	- colocar questão da senha segura nao permitir senhas fáceis
