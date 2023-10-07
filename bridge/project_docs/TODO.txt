@@ -3,6 +3,11 @@
 
 !!! Atenção !!! PENSAR SEMPRE EM MVP, NADA DE COMPLICAR FAZER RODAR DEPOIS IR MELHORANDO.
 
+FAZENDO:
+	
+	- Vendo uma forma de usar o mesmo conteudo da <head> em multiplas paginas.
+	- Depois disso seguir logo para menu.
+
 A FAZER:
 		 
 	- ajeitar a homepage colocar menu
