@@ -6,6 +6,9 @@
 FAZENDO:
 	
 	- fazer o menu.
+		- colocar o botão de log off
+		- colocar o nome do usuario e os roles dele
+		
 
 A FAZER:
 		 

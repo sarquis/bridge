@@ -8,6 +8,8 @@
 		<div class="px-z4 py-5 px-md-5 text-center text-lg-start">
 			<div class="container">
 				<div class="row gx-lg-5 align-items-center">
+
+					<!-- Logo Panel -->
 					<div class="col-lg-6 mb-5 mb-lg-0">
 						<h1 class="my-5 display-3 fw-bold ls-tight">
 							橋 2Receive <br />
@@ -16,14 +18,16 @@
 							A sua ajuda no controle de contas a receber.
 						</p>
 					</div>
+
+					<!-- Login Panel -->
 					<div class="col-lg-6 mb-5 mb-lg-0">
 						<div class="card">
 							<div class="card-body py-4 px-md-5">
 
-								<!-- Login Form -->
+								<!-- Form -->
 								<form action="#" th:action="@{/authenticateTheUser}" method="post">
 
-									<!-- Place for messages: error, alert etc ... -->
+									<!-- Place for messages: logout, error, etc... -->
 									<div class="form-group">
 										<div class="col-xs-15">
 											<div>
@@ -56,20 +60,22 @@
 									<div class="form-floating mb-4">
 										<input type="password" id="senhaInput" name="password" class="form-control"
 											placeholder="senha" />
-										<label class="text-secondary" for="form3Example4"><span
+										<label class="text-secondary" for="form3Example4"> <span
 												class="bi bi-lock"></span> Senha</label>
 									</div>
 
 									<!-- Submit button -->
-									<button type="submit" class="btn btn-primary btn-lg col-12"><span
+									<button type="submit" class="btn btn-primary btn-lg col-12"> <span
 											class="bi bi-door-open"></span> Entrar</button>
 
 								</form>
-								<!-- Login Form -->
+								<!-- Form -->
 
 							</div>
 						</div>
 					</div>
+					<!-- Login Panel -->
+
 				</div>
 			</div>
 		</div>
