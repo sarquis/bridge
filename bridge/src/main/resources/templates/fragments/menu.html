@@ -1,6 +1,6 @@
 <div th:fragment="menu">
 	<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">-->
-	<nav class="navbar navbar-expand-lg" style="background-color:lightgray;">
+	<nav class="navbar navbar-expand-lg" style=" background: rgb(214,214,214); background: linear-gradient(180deg, rgba(214,214,214,1) 0%, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 96%, rgba(214,214,214,1) 100%); ">
 		<div class="container-fluid">
 			<a class="navbar-brand">橋 2Receive</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -34,9 +34,9 @@
 						<a class="nav-link disabled" aria-disabled="true">Disabled</a>
 					</li>
 				</ul>
-				<form class="d-flex" role="search">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
+				<form class="d-flex" action="#" th:action="@{/logout}" method="post">
+					<button class="btn btn-light" type="submit">
+						Sair <span class="bi bi-box-arrow-right"></span></button>
 				</form>
 			</div>
 		</div>

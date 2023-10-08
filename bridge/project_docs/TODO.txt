@@ -5,22 +5,23 @@
 
 FAZENDO:
 	
-	- fazer o menu.
-		- colocar o botão de log off
-		- colocar o nome do usuario e os roles dele
-		
+	- criar crud dos usuarios
+	
 
 A FAZER:
-		 
-	- ajeitar a homepage colocar menu
-	- criar crud dos usuarios
+
+	- acho que ficaria bom colocar um plano de fundo nas paginas, daria um upgrade na cada do sistema, sem duvida.
+	-- background-image: url("/css/a.jpg");
+	- encontrar um lugar para colocar o nome do usuario e os roles dele	 
+	- ajeitar a homepage
 	- colunas de auditoria
 	- novo botão: criar uma conta
 	- criar o esqueceu sua senha
-	- tirar como base o site do facebook
 
 FEITO:
 	
+	- fazer o menu.
+	- colocar o botão de log off
 	- Vendo uma forma de usar o mesmo conteudo da <head> em multiplas paginas.
 	- Montar as entidades do security.
 	- Fazer o hibernate gerar o arquivo de schema.
