@@ -5,17 +5,20 @@
 
 FAZENDO:
 	
-	- Vendo uma forma de usar o mesmo conteudo da <head> em multiplas paginas.
-	- Depois disso seguir logo para menu.
+	- fazer o menu.
 
 A FAZER:
 		 
 	- ajeitar a homepage colocar menu
 	- criar crud dos usuarios
 	- colunas de auditoria
+	- novo botão: criar uma conta
+	- criar o esqueceu sua senha
+	- tirar como base o site do facebook
 
 FEITO:
 	
+	- Vendo uma forma de usar o mesmo conteudo da <head> em multiplas paginas.
 	- Montar as entidades do security.
 	- Fazer o hibernate gerar o arquivo de schema.
 	- ADICIONAR NO ADMIN O PERFIL 'COMUM'
