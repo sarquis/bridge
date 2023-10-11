@@ -1,4 +1,5 @@
 body {
 	background-color: hsl(0, 0%, 96%);
+	background-image: url("../img/bg_texture.png");
+	background-repeat: repeat;
 }
-

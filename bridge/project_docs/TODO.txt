@@ -6,11 +6,14 @@
 FAZENDO:
 	
 	- criar crud dos usuarios
+		- fiz o list, agora vamos exibir na tela.
+		- alterar o menu apra chamar o list, somente admin
+		- testar com usuario comum, nao pe ára conseguir chmar
+		- nao é para exibir no menu
 	
 
 A FAZER:
-
-	- acho que ficaria bom colocar um plano de fundo nas paginas, daria um upgrade na cada do sistema, sem duvida.
+	
 	-- background-image: url("/css/a.jpg");
 	- encontrar um lugar para colocar o nome do usuario e os roles dele	 
 	- ajeitar a homepage
@@ -20,6 +23,7 @@ A FAZER:
 
 FEITO:
 	
+	- acho que ficaria bom colocar um plano de fundo nas paginas, daria um upgrade na cada do sistema, sem duvida.
 	- fazer o menu.
 	- colocar o botão de log off
 	- Vendo uma forma de usar o mesmo conteudo da <head> em multiplas paginas.
