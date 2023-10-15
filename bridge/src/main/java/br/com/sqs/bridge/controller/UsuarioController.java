@@ -20,7 +20,7 @@ public class UsuarioController {
     @GetMapping("/list")
     public String listEmployees(Model model) {
 	model.addAttribute("usuarios", repository.findAll());
-	return "usuarios/list";
+	return "usuarios/usuarios-list";
     }
 
 }
