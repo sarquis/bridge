@@ -8,15 +8,40 @@
 
 		<div th:replace="~{fragments/menu :: menu}"></div>
 
-		<!-- container -->
 		<div class="container mt-3">
 
 			<h2>Usuários</h2>
 			<hr>
 
+			<div class="card">
+
+				<div class="table-responsive m-3">
+					<table class="table table-striped">
+						<thead class="table-success">
+							<tr>
+								<th>#</th>
+								<th></th>
+								<th>E-mail</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="usuario : ${usuarios}">
+								<td th:text="${usuario.id}" />
+								<span th:if="${usuario.ativo}">
+									<td><i class="bi bi-toggle-on"></i></td>
+								</span>
+								<span th:unless="${usuario.ativo}">
+									<td><i class="bi bi-toggle-off"></i></td>
+								</span>
+								<td th:text="${usuario.email}" />
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
 
 		</div>
-		<!-- container -->
 
 	</section>
 </body>

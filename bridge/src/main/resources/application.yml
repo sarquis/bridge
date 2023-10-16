@@ -35,17 +35,22 @@ spring:
               # 
               # action: update # [create] or [update]
               # create-target: db_scripts/update.sql # [create] or [update]
-       
+      
+# Log JDBC SQL statements with bind values.
+# Se tirar o do 'springframework' perde o log do String Security.
+# Se tirar o do 'hibernate' perde o log do JpaRepository.       
 logging:
   level:
     org:
       springframework:
         jdbc:
-          core: trace # Log JDBC SQL statements with bind values.
+          core: TRACE
+      hibernate:
+        SQL: DEBUG
           
 # Spring Security bebug (very usefull):          
 #        security: debug
 
 # Reduce logging level:
-#    root: warn 
+    root: warn 
 

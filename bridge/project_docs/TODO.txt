@@ -5,23 +5,37 @@
 
 FAZENDO:
 		
+	- cad_user
+		1. colocar botao de add
+		2. fazer delete
+		3. fazer o update
+		4. colocar botão para exibir os inativos.
+			ocultar os inativos normalmente.
+		5. ver como usar a strategia do infinite-scrolling...
+		acho que não é uma boa nao, colocar paginação é melhor... nao sei... 
+		acho que como é light, o infite -scrolling pode ser uma boa.. testar...	  	
+	
+	
+A FAZER:
+
+	- colunas de auditoria
+	
+	-- infinite-scrolling : https://www.uxmatters.com/mt/archives/2020/07/designing-mobile-tables.php
+	-- https://medium.com/appnroll-publication/5-practical-solutions-to-make-responsive-data-tables-ff031c48b122
+	-- Collapsed
+
+	- novo botão: criar uma conta
+	- criar o esqueceu sua senha
+
+FEITO:
+
+	- ajeitar a homepage	
 	- criar crud dos usuarios
 		- fiz o list, agora vamos exibir na tela.
 		- alterar o menu apra chamar o list, somente admin
 		- testar com usuario comum, nao pe ára conseguir chmar
 		- nao é para exibir no menu
-	
-A FAZER:
-	
-	-- background-image: url("/css/a.jpg");
-	- encontrar um lugar para colocar o nome do usuario e os roles dele	 
-	- ajeitar a homepage
-	- colunas de auditoria
-	- novo botão: criar uma conta
-	- criar o esqueceu sua senha
-
-FEITO:
-	
+		
 	- e estar acessar direto com usuario comum para ver	se cai na pagina de acesso negado.
 	- testar usuario comum para ver se link sumiu
 	- mostrar o link de menu usuario só para admin
@@ -46,8 +60,7 @@ BACKLOG:
 	
 	- criar botão de "registro de novo usuario" "Criar uma conta"
 	- criar esqueci minha senha.
-	- crud usuarios (somente adm)
-	- colunas de auditoria
+	
 	- bloqueio de usuario por tentativas
 	- all logging to a table 
 	- fazer funcionalidade do registro com envio para e-mail de senha

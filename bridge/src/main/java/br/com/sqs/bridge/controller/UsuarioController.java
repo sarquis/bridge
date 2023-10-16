@@ -19,7 +19,7 @@ public class UsuarioController {
 
     @GetMapping("/list")
     public String listEmployees(Model model) {
-	model.addAttribute("usuarios", repository.findAll());
+	model.addAttribute("usuarios", repository.findAllByOrderByIdAsc());
 	return "usuarios/usuarios-list";
     }
 
