@@ -18,6 +18,9 @@
         usuario_id integer not null
     ) engine=InnoDB;
 
+    alter table usuario 
+       add constraint unique_usuario_email unique (email);
+
     alter table usuario_funcao 
        add constraint fk_funcao_usuario 
        foreign key (funcao_id) 

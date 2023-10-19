@@ -3,3 +3,7 @@ body {
 	background-image: url("../img/bg_texture.png");
 	background-repeat: repeat;
 }
+
+.btn-light {
+	--bs-btn-border-color: #ebeff2;
+}

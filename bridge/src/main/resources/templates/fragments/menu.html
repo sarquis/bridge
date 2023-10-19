@@ -2,7 +2,7 @@
 	<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">-->
 	<nav class="navbar navbar-expand-lg"
 		style=" background: rgb(214,214,214); background: linear-gradient(180deg, rgba(214,214,214,1) 0%, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 96%, rgba(214,214,214,1) 100%); ">
-		<div class="container-fluid">
+		<div class="container-fluid mb-1">
 			<a class="navbar-brand">橋 2Receive</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -12,7 +12,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{/}">Home</a>
+						<a class="nav-link" th:href="@{/}"><i class="bi bi-house"></i> Home</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -30,7 +30,7 @@
 					</li>
 					<div sec:authorize="hasRole('ADMIN')">
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{/usuarios/list}">Usuários</a>
+							<a class="nav-link" th:href="@{/usuarios/list}"><i class="bi bi-people"></i> Usuários</a>
 						</li>
 					</div>
 					<li class="nav-item">

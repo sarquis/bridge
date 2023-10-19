@@ -14,9 +14,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuario",
+       uniqueConstraints = @UniqueConstraint(name = "unique_usuario_email", columnNames = { "email" }))
 public class Usuario {
 
     @Id
