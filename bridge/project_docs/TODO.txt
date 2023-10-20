@@ -7,6 +7,16 @@ FAZENDO:
 		
 	- cad_user
 		1. colocar botao de add
+		- Colocar o campo de senha no cadastro do usuario
+		- Salvar ele com funcao 'usuario'
+		- ver como guardar campos de auditoria se vou controlar manualmente
+			- data do cadastro é importante ver.
+			- quem cadastrou tambem, se foi admin ou se foi sozinho.
+		- colocar o tipo de cadastro admin/usuario
+			
+		
+		
+		
 		2. fazer delete
 		3. fazer o update
 		4. colocar botão para exibir os inativos.

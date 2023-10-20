@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.sqs.bridge.dao.UsuarioRepository;
+import br.com.sqs.bridge.entity.Usuario;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -21,6 +22,12 @@ public class UsuarioController {
     public String listEmployees(Model model) {
 	model.addAttribute("usuarios", repository.findAllByOrderByIdAsc());
 	return "usuarios/usuarios-list";
+    }
+
+    @GetMapping("/novo")
+    public String novo(Model model) {
+	model.addAttribute("usuario", new Usuario());
+	return "usuarios/usuario-form";
     }
 
 }
