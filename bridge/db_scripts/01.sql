@@ -14,8 +14,8 @@ grant select, insert, delete, update on db_example.* to 'bridgeuser'@'%';
 -- Controle de acesso inicial (admin/admin):
 INSERT INTO `funcao` (`nome`) VALUES ('ROLE_ADMIN');
 INSERT INTO `funcao` (`nome`) VALUES ('ROLE_USUARIO');
-INSERT INTO `usuario` (`ativo`, `senha`, `email`) VALUES (true, '{bcrypt}$2a$10$160JKWobNRJsP2/KSWNanOCErLZgv.pbTDlZaILW6Bne6LY4dzMUa', 'admin');
+INSERT INTO `usuario` (`ativo`, `senha`, `email`) VALUES (true, '$2a$10$160JKWobNRJsP2/KSWNanOCErLZgv.pbTDlZaILW6Bne6LY4dzMUa', 'admin');
 INSERT INTO `usuario_funcao` (`funcao_id`, `usuario_id`) VALUES (1, 1);
 INSERT INTO `usuario_funcao` (`funcao_id`, `usuario_id`) VALUES (2, 1);
-INSERT INTO `usuario` (`ativo`, `senha`, `email`) VALUES (true, '{bcrypt}$2a$10$o0db/SBvP8jC0kS6SoInH.jMC0tzD4PRfQnx9H.lL8BizcytlqGgS', 'user');
+INSERT INTO `usuario` (`ativo`, `senha`, `email`) VALUES (true, '$2a$10$o0db/SBvP8jC0kS6SoInH.jMC0tzD4PRfQnx9H.lL8BizcytlqGgS', 'user');
 INSERT INTO `usuario_funcao` (`funcao_id`, `usuario_id`) VALUES (2, 2);

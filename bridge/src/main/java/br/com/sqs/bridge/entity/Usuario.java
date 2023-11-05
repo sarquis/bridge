@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
@@ -47,6 +48,9 @@ public class Usuario {
 						foreignKey = @ForeignKey(name = "fk_funcao_usuario")))
     private List<Funcao> funcoes;
 
+    @Embedded
+    private AuditMetadata auditMetadata;
+
     public Integer getId() {
 	return id;
     }
@@ -87,9 +91,12 @@ public class Usuario {
 	this.funcoes = funcoes;
     }
 
-    @Override
-    public String toString() {
-	return "Usuario [id=" + id + ", email=" + email + ", ativo=" + ativo + ", funcoes=" + funcoes + "]";
+    public AuditMetadata getAuditMetadata() {
+	return auditMetadata;
+    }
+
+    public void setAuditMetadata(AuditMetadata auditMetadata) {
+	this.auditMetadata = auditMetadata;
     }
 
 }

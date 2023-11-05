@@ -6,9 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "funcao")
+@Table(name = "funcao",
+       uniqueConstraints = @UniqueConstraint(name = "unique_funcao_nome", columnNames = { "nome" }))
 public class Funcao {
 
     @Id
@@ -33,11 +35,6 @@ public class Funcao {
 
     public void setNome(String nome) {
 	this.nome = nome;
-    }
-
-    @Override
-    public String toString() {
-	return "Funcao [id=" + id + ", nome=" + nome + "]";
     }
 
 }

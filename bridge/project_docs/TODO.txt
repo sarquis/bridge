@@ -8,11 +8,21 @@ FAZENDO:
 	- cad_user
 	
 		1. colocar botao de add
-		- Colocar o campo de senha no cadastro do usuario
-		- Salvar ele com funcao 'usuario'
-		- ver como guardar campos de auditoria se vou controlar manualmente
-			- data do cadastro é importante ver.
-			- quem cadastrou tambem, se foi admin ou se foi sozinho.
+		
+			- colunas de auditoria
+			
+		
+			- tratar usuario duplicado
+			- colocar panel de mensagem de erro
+			- por exemplos senha em branco, nao pode.
+			- ver como fica no celular essas mensagens
+			
+			- fazer o alterar senha
+			
+			
+		
+		
+		- quem cadastrou tambem, se foi admin ou se foi sozinho.
 		- colocar o tipo de cadastro admin/usuario
 			
 		
@@ -27,6 +37,10 @@ FAZENDO:
 	
 A FAZER:
 
+	- ver como instalar no celular
+
+	- quando for fazer a funcao de registro do usuario ver como ficou o usuario de auditoria
+
 	- colunas de auditoria
 	
 	-- infinite-scrolling : https://www.uxmatters.com/mt/archives/2020/07/designing-mobile-tables.php
@@ -38,31 +52,6 @@ A FAZER:
 
 FEITO:
 
-	- ajeitar a homepage	
-	- criar crud dos usuarios
-		- fiz o list, agora vamos exibir na tela.
-		- alterar o menu apra chamar o list, somente admin
-		- testar com usuario comum, nao pe ára conseguir chmar
-		- nao é para exibir no menu
-		
-	- e estar acessar direto com usuario comum para ver	se cai na pagina de acesso negado.
-	- testar usuario comum para ver se link sumiu
-	- mostrar o link de menu usuario só para admin
-	- colocar o usuario e o role no menu
-	- acho que ficaria bom colocar um plano de fundo nas paginas, daria um upgrade na cada do sistema, sem duvida.
-	- fazer o menu.
-	- colocar o botão de log off
-	- Vendo uma forma de usar o mesmo conteudo da <head> em multiplas paginas.
-	- Montar as entidades do security.
-	- Fazer o hibernate gerar o arquivo de schema.
-	- ADICIONAR NO ADMIN O PERFIL 'COMUM'
-	- Configurar o spring security para olhar para as tabelas customizadas.
-	- https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
-	- https://spring.io/guides/gs/accessing-data-mysql/
-	- Descobrir as diferenças nos 4 tipos de log do hibernate.
-	- Testar login...
-	- colocar logo do sistema etc.
-	- criar nova tela de login customizada: com form de login e botão de registro (sem funcionar por enquanto)
 	
 	
 BACKLOG:

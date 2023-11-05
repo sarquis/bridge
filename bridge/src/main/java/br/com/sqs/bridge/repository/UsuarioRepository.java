@@ -1,4 +1,4 @@
-package br.com.sqs.bridge.dao;
+package br.com.sqs.bridge.repository;
 
 import java.util.List;
 
@@ -8,6 +8,6 @@ import br.com.sqs.bridge.entity.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-    List<Usuario> findAllByOrderByIdAsc();
+    List<Usuario> findAllByOrderByIdDesc();
 
 }
