@@ -9,7 +9,11 @@ FAZENDO:
 	
 		1. colocar botao de add
 		
-			- colunas de auditoria
+			ok - colunas de auditoria
+				
+				- colocar a auditoria para pegar o usuario do spring security
+				- ajustar a data e hora do banco ta completamente errada.
+			
 			
 		
 			- tratar usuario duplicado

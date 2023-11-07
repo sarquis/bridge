@@ -8,8 +8,12 @@
     create table usuario (
         ativo BOOLEAN not null,
         id integer not null auto_increment,
+        created_date datetime(6),
+        last_modified_date datetime(6),
         senha varchar(68) not null,
         email varchar(100) not null,
+        created_by varchar(255),
+        last_modified_by varchar(255),
         primary key (id)
     ) engine=InnoDB;
 
@@ -17,6 +21,9 @@
         funcao_id integer not null,
         usuario_id integer not null
     ) engine=InnoDB;
+
+    alter table funcao 
+       add constraint unique_funcao_nome unique (nome);
 
     alter table usuario 
        add constraint unique_usuario_email unique (email);
