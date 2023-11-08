@@ -33,8 +33,8 @@ spring:
               # 
               # https://www.baeldung.com/spring-data-jpa-generate-db-schema
               # 
-              # action: update # [create] or [update]
-              # create-target: db_scripts/update.sql # [create] or [update]
+              # action: create # [create] or [update]
+              # create-target: db_scripts/create.sql # [create] or [update]
       
 # Log JDBC SQL statements with bind values.
 # Se tirar o do 'springframework' perde o log do String Security.
@@ -54,3 +54,4 @@ logging:
 # Reduce logging level:
     root: warn 
 
+# --- FIM ---        

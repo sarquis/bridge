@@ -1,6 +1,6 @@
 package br.com.sqs.bridge.entity;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -26,7 +26,7 @@ public abstract class TableAuditable {
 
     @CreatedDate
     @Column(name = "created_date")
-    private Instant createdDate;
+    private LocalDateTime createdDate;
 
     @CreatedBy
     @Column(name = "created_by")
@@ -34,7 +34,7 @@ public abstract class TableAuditable {
 
     @LastModifiedDate
     @Column(name = "last_modified_date")
-    private Instant lastModifiedDate;
+    private LocalDateTime lastModifiedDate;
 
     @LastModifiedBy
     @Column(name = "last_modified_by")
@@ -56,11 +56,11 @@ public abstract class TableAuditable {
 	this.ativo = ativo;
     }
 
-    public Instant getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
 	return createdDate;
     }
 
-    public void setCreatedDate(Instant createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
 	this.createdDate = createdDate;
     }
 
@@ -72,11 +72,11 @@ public abstract class TableAuditable {
 	this.createdBy = createdBy;
     }
 
-    public Instant getLastModifiedDate() {
+    public LocalDateTime getLastModifiedDate() {
 	return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Instant lastModifiedDate) {
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
 	this.lastModifiedDate = lastModifiedDate;
     }
 
