@@ -21,7 +21,7 @@ import jakarta.persistence.UniqueConstraint;
 @Table(name = "usuario",
        uniqueConstraints = @UniqueConstraint(name = "unique_usuario_email",
 					     columnNames = { "email" }))
-public class Usuario extends TableAuditable {
+public class Usuario extends EntityAuditable {
 
     @Column(name = "email", nullable = false, length = 100)
     private String email;

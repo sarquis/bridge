@@ -14,7 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class TableAuditable {
+public abstract class EntityAuditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
