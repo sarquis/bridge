@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.sqs.bridge.entity.Usuario;
 import br.com.sqs.bridge.service.UsuarioService;
+import br.com.sqs.bridge.util.BridgeMessage;
+import br.com.sqs.bridge.util.BridgeMessage.Type;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -33,8 +35,14 @@ public class UsuarioController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute("usuario") Usuario usuario) {
-	service.save(usuario);
+    public String salvar(Model model, @ModelAttribute("usuario") Usuario usuario) {
+	try {
+	    service.save(usuario);
+	} catch (Exception e) {
+	    model.addAttribute("usuario", usuario);
+	    model.addAttribute("message", new BridgeMessage(Type.ERROR, e.getMessage()));
+	    return "usuarios/usuario-form";
+	}
 	return "redirect:../usuarios/list";
     }
 

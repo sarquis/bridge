@@ -19,6 +19,8 @@
 					<form action="#" th:action="@{/usuarios/salvar}" th:object="${usuario}" method="post">
 
 						<div class="container">
+							
+							<div th:replace="~{fragments/message :: message}"></div>
 
 							<div class="row align-items-center">
 
@@ -26,7 +28,7 @@
 									<div class="input-group">
 										<span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
 										<input type="text" th:field="*{email}" class="form-control"
-											placeholder="E-mail">
+											placeholder="E-mail" required>
 									</div>
 								</div>
 
@@ -34,7 +36,7 @@
 									<div class="input-group" id="show_hide_password">
 										<span class="input-group-text"><i class="bi bi-lock"></i></span>
 										<input type="password" th:field="*{senha}" class="form-control"
-											placeholder="Senha">
+											placeholder="Senha" required>
 										<span class="input-group-text">
 											<a href="" style="color:gray">
 												<i id="eye" class="bi bi-eye-slash"></i></a></span>
