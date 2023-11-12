@@ -1,43 +1,57 @@
 package br.com.sqs.bridge.util;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class BridgeMessage {
 
     public enum Type {
-	ERROR, ALERT, INFO
+	ERROR, NOT_ALLOWED
     }
 
     private Type type;
     private String msg;
-    private boolean show;
 
     public BridgeMessage() {
-	this.show = false;
     }
 
-    public BridgeMessage(Type type, String msg) {
+    private BridgeMessage(Type type, String msg) {
 	this.type = type;
 	this.msg = msg;
-	this.show = true;
+    }
+
+    public BridgeMessage handleExepection(Exception e) {
+	Type type;
+	String msg = e.getMessage();
+
+	final String SYSTEM_FAILURE_MESSAGE = "Ocorreu uma falha no sistema. Por favor, entre em contato com o suporte técnico.";
+	final String DUPLICATE_ENTRY_MESSAGE = "\"%s\" já existe.";
+
+	if (msg != null && msg.toUpperCase().contains("DUPLICATE ENTRY")) {
+	    type = Type.NOT_ALLOWED;
+	    msg = String.format(DUPLICATE_ENTRY_MESSAGE, extrairValorDuplicadoDaMensagem(msg));
+	} else {
+	    type = Type.ERROR;
+	    msg = SYSTEM_FAILURE_MESSAGE;
+	}
+
+	return new BridgeMessage(type, msg);
+    }
+
+    private String extrairValorDuplicadoDaMensagem(String msg) {
+	String valor = msg.substring(msg.indexOf("'") + 1);
+	return valor.substring(0, valor.indexOf("'"));
     }
 
     public String getMsg() {
 	return msg;
     }
 
-    public boolean isShow() {
-	return show;
-    }
-
     public boolean isError() {
 	return (type == Type.ERROR);
     }
 
-    public boolean isAlert() {
-	return (type == Type.ALERT);
+    public boolean isNotAllowed() {
+	return (type == Type.NOT_ALLOWED);
     }
-
-    public boolean isInfo() {
-	return (type == Type.INFO);
-    }
-
 }

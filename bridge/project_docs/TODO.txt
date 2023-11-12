@@ -7,25 +7,14 @@ FAZENDO:
 		
 	- cad_user
 	
-		1. colocar botao de add
-		
-			- fazer um handler para tratar os erros do controller
-				- passar ele por bean nada de fazer new jogar o messege para dentro dele.
-				- buscar deixar o menos acoplado possivel
-			
-			- tratar usuario duplicado
-				- colocar panel de mensagem de erro
-				- por exemplos senha em branco, nao pode.
-				- ver como fica no celular essas mensagens
-				
-		
 		2. fazer o update
-			- fazer a alteração de usuario permitindo inativar e trocar a senha.
-			- ver se a auditoria funcionou corretamente na "alteracao"
+			- mostrar dados de auditoria
+			- só permitir, ativar e inativar.
+			- ver se a auditoria funcionou corretamente na "alteracao"	
 			
+		3. fazer o alterar senha
 		
 		
-		- fazer o alterar senha
 		- quem cadastrou tambem, se foi admin ou se foi sozinho.
 		- colocar o tipo de cadastro admin/usuario
 		
@@ -37,6 +26,9 @@ FAZENDO:
 	
 	
 A FAZER:
+
+	- logar os erros do sistema em uma tabela, onde só o admin veja.
+	
 
 	- ver como instalar no celular
 
