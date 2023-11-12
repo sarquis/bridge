@@ -15,27 +15,26 @@
 
 			<div class="card">
 				<div class="card-body">
-				
-					<a th:href="@{/usuarios/novo}" class="btn btn-light" role="button"><i class="bi bi-person-add"></i> Novo</a>
-					
+
+					<a th:href="@{/usuarios/novo}" class="btn btn-light" role="button">
+						<i class="bi bi-person-add"></i> Novo</a>
+
 					<div class="table-responsive mt-3">
 						<table class="table table-striped">
-							
 							<tbody>
-								<tr th:each="usuario : ${usuarios}">
+								<tr th:each="usuario : ${usuarios}"
+									th:onclick="window.location=[[@{/usuarios/editar(usuarioId=${usuario.id})}]]">
 									<td th:text="${usuario.id}" />
-									<span th:if="${usuario.ativo}">
-										<td><i class="bi bi-toggle-on"></i></td>
-									</span>
-									<span th:unless="${usuario.ativo}">
-										<td><i class="bi bi-toggle-off"></i></td>
-									</span>
+									<td>
+										<span th:if="${usuario.ativo}"><i class="bi bi-toggle-on"></i></span>
+										<span th:unless="${usuario.ativo}"><i class="bi bi-toggle-off"></i></span>
+									</td>
 									<td th:text="${usuario.email}" />
 								</tr>
 							</tbody>
 						</table>
 					</div>
-					
+
 				</div> <!-- card-body -->
 			</div> <!-- card -->
 

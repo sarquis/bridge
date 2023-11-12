@@ -8,11 +8,15 @@ FAZENDO:
 	- cad_user
 	
 		2. fazer o update
+			- mostar id, e-mail, bloqueados, não mostrar o campo senha
 			- mostrar dados de auditoria
 			- só permitir, ativar e inativar.
-			- ver se a auditoria funcionou corretamente na "alteracao"	
+			- ver se a auditoria funcionou corretamente na "alteracao"
+				
+		3. fazer pesquisa por nome do usuario
 			
-		3. fazer o alterar senha
+		3. fazer o alterar senha (validar tamanho, letras e numeros)
+		- colocar javascript para mostrar se senha esta boa.
 		
 		
 		- quem cadastrou tambem, se foi admin ou se foi sozinho.
@@ -26,6 +30,11 @@ FAZENDO:
 	
 	
 A FAZER:
+
+	- quando for fazer a parte de registro do usuario
+	- validar e-mail (minimo, se tem @ já basta)
+	- validar senha (minimo 8, com letas e numeros)
+
 
 	- logar os erros do sistema em uma tabela, onde só o admin veja.
 	

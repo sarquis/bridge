@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.sqs.bridge.entity.Usuario;
 import br.com.sqs.bridge.service.UsuarioService;
@@ -32,7 +33,13 @@ public class UsuarioController {
     @GetMapping("/novo")
     public String novo(Model model) {
 	model.addAttribute("usuario", new Usuario());
-	return "usuarios/usuario-form";
+	return "usuarios/usuario-novo";
+    }
+
+    @GetMapping("/editar")
+    public String editar(Model model, @RequestParam("usuarioId") int id) {
+	model.addAttribute("usuario", service.findById(id));
+	return "usuarios/usuario-editar";
     }
 
     @PostMapping("/salvar")
@@ -42,7 +49,7 @@ public class UsuarioController {
 	} catch (Exception e) {
 	    model.addAttribute("usuario", usuario);
 	    model.addAttribute("message", message.handleExepection(e));
-	    return "usuarios/usuario-form";
+	    return "usuarios/usuario-novo";
 	}
 	return "redirect:../usuarios/list";
     }

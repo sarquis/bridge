@@ -1,6 +1,7 @@
 package br.com.sqs.bridge.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,10 @@ public class UsuarioService {
 
     public List<Usuario> findAll() {
 	return repository.findAllByOrderByIdDesc();
+    }
+
+    public Optional<Usuario> findById(Integer id) {
+	return repository.findById(id);
     }
 
     @Transactional
