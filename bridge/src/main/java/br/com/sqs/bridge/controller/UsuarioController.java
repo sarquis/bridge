@@ -38,7 +38,7 @@ public class UsuarioController {
 
     @GetMapping("/editar")
     public String editar(Model model, @RequestParam("usuarioId") int id) {
-	model.addAttribute("usuario", service.findById(id));
+	model.addAttribute("usuario", service.findById(id).get());
 	return "usuarios/usuario-editar";
     }
 
@@ -52,6 +52,14 @@ public class UsuarioController {
 	    return "usuarios/usuario-novo";
 	}
 	return "redirect:../usuarios/list";
+    }
+
+    @PostMapping("/ativarDesativar")
+    public String ativarDesativar(Model model, @ModelAttribute("usuario") Usuario usuario) {
+	Integer idUsuario = usuario.getId();
+	service.ativarDesativar(idUsuario);
+	model.addAttribute("usuario", service.findById(idUsuario).get());
+	return "usuarios/usuario-editar";
     }
 
 }

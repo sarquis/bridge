@@ -41,4 +41,11 @@ public class UsuarioService {
 	repository.save(usuario);
     }
 
+    @Transactional
+    public void ativarDesativar(Integer id) {
+	Usuario usuario = repository.findById(id).get();
+	usuario.setAtivo(!usuario.getAtivo());
+	repository.save(usuario);
+    }
+
 }

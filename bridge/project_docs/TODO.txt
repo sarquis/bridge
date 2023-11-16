@@ -6,12 +6,6 @@
 FAZENDO:
 		
 	- cad_user
-	
-		2. fazer o update
-			- mostar id, e-mail, bloqueados, não mostrar o campo senha
-			- mostrar dados de auditoria
-			- só permitir, ativar e inativar.
-			- ver se a auditoria funcionou corretamente na "alteracao"
 				
 		3. fazer pesquisa por nome do usuario
 			
@@ -30,6 +24,12 @@ FAZENDO:
 	
 	
 A FAZER:
+
+	***********
+	* ATENÇÃO * MUITO CUIDADO COM A QUESTÃO DO INPUT HIDDEN ID
+	*********** Necessário que o controller sempre valide a requisição, para saber o que 
+	esta sendo feito e por quem.
+	
 
 	- quando for fazer a parte de registro do usuario
 	- validar e-mail (minimo, se tem @ já basta)

@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import br.com.sqs.bridge.util.BridgeFormatter;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -60,6 +61,10 @@ public abstract class EntityAuditable {
 	return createdDate;
     }
 
+    public String getCreatedDateFormatted() {
+	return BridgeFormatter.format(createdDate);
+    }
+
     public void setCreatedDate(LocalDateTime createdDate) {
 	this.createdDate = createdDate;
     }
@@ -74,6 +79,10 @@ public abstract class EntityAuditable {
 
     public LocalDateTime getLastModifiedDate() {
 	return lastModifiedDate;
+    }
+
+    public String getLastModifiedDateFormatted() {
+	return BridgeFormatter.format(lastModifiedDate);
     }
 
     public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
