@@ -11,8 +11,9 @@ FAZENDO:
 			
 		3. fazer o alterar senha (validar tamanho, letras e numeros)
 		- colocar javascript para mostrar se senha esta boa.
-		
-		
+		- quando fizer, colocar no cadastro de usuario do admin tambem 
+				
+		4. senha por e-mail registro de usuario
 		- quem cadastrou tambem, se foi admin ou se foi sozinho.
 		- colocar o tipo de cadastro admin/usuario
 		
@@ -26,42 +27,32 @@ FAZENDO:
 A FAZER:
 
 	***********
-	* ATENÇÃO * MUITO CUIDADO COM A QUESTÃO DO INPUT HIDDEN ID
-	*********** Necessário que o controller sempre valide a requisição, para saber o que 
-	esta sendo feito e por quem.
-	
+	* ATENÇÃO ! MUITO CUIDADO COM A QUESTÃO DO INPUT HIDDEN ID
+	* Necessário que o controller sempre valide a requisição, para saber o que esta sendo feito e por quem.
+	***********
 
 	- quando for fazer a parte de registro do usuario
 	- validar e-mail (minimo, se tem @ já basta)
 	- validar senha (minimo 8, com letas e numeros)
-
-
-	- logar os erros do sistema em uma tabela, onde só o admin veja.
-	
-
-	- ver como instalar no celular
-
 	- quando for fazer a funcao de registro do usuario ver como ficou o usuario de auditoria
 
-	- colunas de auditoria
+	- novo botão: criar uma conta
+	- criar o esqueceu sua senha
 	
 	-- infinite-scrolling : https://www.uxmatters.com/mt/archives/2020/07/designing-mobile-tables.php
 	-- https://medium.com/appnroll-publication/5-practical-solutions-to-make-responsive-data-tables-ff031c48b122
 	-- Collapsed
-
-	- novo botão: criar uma conta
-	- criar o esqueceu sua senha
-
-FEITO:
-
-	
 	
 BACKLOG:
 	
 	- criar botão de "registro de novo usuario" "Criar uma conta"
 	- criar esqueci minha senha.
 	
+	- ver como instalar no celular
+	
 	- bloqueio de usuario por tentativas
 	- all logging to a table 
 	- fazer funcionalidade do registro com envio para e-mail de senha
 	- colocar questão da senha segura nao permitir senhas fáceis
+	
+	- logar os erros do sistema em uma tabela, onde só o admin veja.
