@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import br.com.sqs.bridge.entity.Funcao;
+import br.com.sqs.bridge.model.entity.Funcao;
 import br.com.sqs.bridge.repository.FuncaoRepository;
 
 @Service

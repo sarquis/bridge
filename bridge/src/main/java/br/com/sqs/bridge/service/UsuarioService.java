@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sqs.bridge.entity.Usuario;
+import br.com.sqs.bridge.model.entity.Usuario;
 import br.com.sqs.bridge.repository.UsuarioRepository;
 
 @Service

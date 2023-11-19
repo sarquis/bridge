@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.sqs.bridge.entity.Usuario;
+import br.com.sqs.bridge.model.entity.Usuario;
 import br.com.sqs.bridge.service.UsuarioService;
 import br.com.sqs.bridge.util.BridgeMessage;
 
@@ -52,6 +52,12 @@ public class UsuarioController {
 
     @PostMapping("/salvar")
     public String salvar(Model model, @ModelAttribute("usuario") Usuario usuario) {
+	/*
+	 * ATENÇÃO: Não usei DTO, pois aqui temos um novo registro. Esse métdodo não
+	 * deve ser utilizado para salvar alterações. É recomendado sempre usar DTO
+	 * quando transferir dados entre a camada de controle (Controller) e a camada de
+	 * visualização (View).
+	 */
 	try {
 	    service.save(usuario);
 	} catch (Exception e) {
@@ -64,7 +70,7 @@ public class UsuarioController {
 
     @PostMapping("/ativarDesativar")
     public String ativarDesativar(Model model, @ModelAttribute("usuario") Usuario usuario) {
-	Integer idUsuario = usuario.getId();
+	Integer idUsuario = usuario.getId(); // Proteção contra Over-Posting.
 	service.ativarDesativar(idUsuario);
 	model.addAttribute("usuario", service.findById(idUsuario).get());
 	return "usuarios/usuario-editar";

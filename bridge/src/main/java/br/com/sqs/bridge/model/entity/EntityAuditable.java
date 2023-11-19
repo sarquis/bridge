@@ -1,4 +1,4 @@
-package br.com.sqs.bridge.entity;
+package br.com.sqs.bridge.model.entity;
 
 import java.time.LocalDateTime;
 

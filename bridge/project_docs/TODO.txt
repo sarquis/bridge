@@ -5,9 +5,6 @@
 
 FAZENDO:
 		
-	- cad_user
-				
-		
 		3. fazer o alterar senha (validar tamanho, letras e numeros)
 		- colocar javascript para mostrar se senha esta boa.
 		- quando fizer, colocar no cadastro de usuario do admin tambem 
@@ -15,6 +12,7 @@ FAZENDO:
 		4. senha por e-mail registro de usuario
 		- quem cadastrou tambem, se foi admin ou se foi sozinho.
 		- colocar o tipo de cadastro admin/usuario
+		- criar o esqueci minha senha.
 		
 		4. colocar botão para exibir os inativos.
 			ocultar os inativos normalmente.
