@@ -10,4 +10,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     List<Usuario> findAllByOrderByIdDesc();
 
+    List<Usuario> findByEmailContainingOrderByEmailAsc(String email);
+
 }

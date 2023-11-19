@@ -13,16 +13,27 @@
 				<div class="card-body">
 					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 
-					<a th:href="@{/usuarios/novo}" class="btn btn-light" role="button">
-						<i class="bi bi-person-add"></i> Novo</a>
+					<div class="row align-items-center">
+						<div class="col-7">
+							<div class="input-group">
+								<span class="input-group-text"><i class="bi bi-search"></i></span>
+								<input type="text" class="form-control" id="searchField" th:value="${searchValue}"
+									data-url="/usuarios/listSearch" placeholder="Pesquisar" maxlength="100">
+							</div>
+						</div>
+						<div class="col">
+							<a th:href="@{/usuarios/novo}" class="btn btn-light" role="button">
+								<i class="bi bi-person-add"></i> Novo</a>
+						</div>
+					</div>
 
 					<div class="table-responsive mt-3">
 						<table class="table table-striped" style="cursor: pointer;">
 							<tbody>
 								<tr th:each="usuario : ${usuarios}"
 									th:onclick="window.location=[[@{/usuarios/editar(usuarioId=${usuario.id})}]]">
-									<td th:text="${usuario.id}" />
-									<td>
+									<td class="col-1 text-secondary" th:text="${usuario.id}" />
+									<td class="col-1">
 										<span th:if="${usuario.ativo}"><i class="bi bi-toggle-on"></i></span>
 										<span th:unless="${usuario.ativo}"><i class="bi bi-toggle-off"></i></span>
 									</td>
@@ -30,6 +41,9 @@
 								</tr>
 							</tbody>
 						</table>
+						<div th:if="${#lists.isEmpty(usuarios)}">
+							<p>Nenhum resultado.</p>
+						</div>
 					</div>
 
 					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->

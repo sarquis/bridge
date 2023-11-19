@@ -27,6 +27,13 @@ public class UsuarioService {
 	return repository.findAllByOrderByIdDesc();
     }
 
+    public List<Usuario> findByEmailContaining(String email) {
+	if (email == null || email.isBlank())
+	    return repository.findAllByOrderByIdDesc();
+
+	return repository.findByEmailContainingOrderByEmailAsc(email.trim());
+    }
+
     public Optional<Usuario> findById(Integer id) {
 	return repository.findById(id);
     }

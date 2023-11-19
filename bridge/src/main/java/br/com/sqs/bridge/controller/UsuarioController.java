@@ -25,8 +25,16 @@ public class UsuarioController {
     }
 
     @GetMapping("/list")
-    public String listEmployees(Model model) {
+    public String list(Model model) {
 	model.addAttribute("usuarios", service.findAll());
+	model.addAttribute("searchValue", "");
+	return "usuarios/usuarios-list";
+    }
+
+    @GetMapping("/listSearch")
+    public String listSearch(Model model, @RequestParam("searchValue") String searchValue) {
+	model.addAttribute("usuarios", service.findByEmailContaining(searchValue));
+	model.addAttribute("searchValue", searchValue);
 	return "usuarios/usuarios-list";
     }
 
