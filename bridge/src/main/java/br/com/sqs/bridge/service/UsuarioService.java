@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sqs.bridge.model.entity.Usuario;
 import br.com.sqs.bridge.repository.UsuarioRepository;
+import br.com.sqs.bridge.util.SenhaInvalidaException;
 
 @Service
 public class UsuarioService {
@@ -39,20 +40,37 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void save(Usuario usuario) {
-	if (usuario.getId() == null) {
-	    usuario.setAtivo(true);
-	    usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-	    usuario.setFuncoes(funcaoService.obterFuncaoPadrao());
-	}
+    public void salvarNovoUsuario(Usuario usuario) {
+	usuario.setId(null);
+	usuario.setAtivo(true);
+	usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+	usuario.setFuncoes(funcaoService.obterFuncaoPadrao());
 	repository.save(usuario);
     }
 
     @Transactional
-    public void ativarDesativar(Integer id) {
-	Usuario usuario = repository.findById(id).get();
+    public void ativarDesativar(Integer idUsuario) {
+	Usuario usuario = repository.findById(idUsuario).get();
 	usuario.setAtivo(!usuario.getAtivo());
 	repository.save(usuario);
+    }
+
+    @Transactional
+    public void alterarSenha(String senhaAtual, String novaSenha, Integer idUsuario) throws SenhaInvalidaException {
+	Usuario usuario = repository.findById(idUsuario).get();
+
+	if (!passwordEncoder.matches(senhaAtual, usuario.getSenha()))
+	    throw new SenhaInvalidaException("Senha atual inválida");
+
+	if (!isValidaSenha(novaSenha))
+	    throw new SenhaInvalidaException("A nova senha não atende aos requisitos mínimos de segurança.");
+
+	usuario.setSenha(passwordEncoder.encode(novaSenha));
+	repository.save(usuario);
+    }
+
+    private boolean isValidaSenha(String senha) {
+	return senha.length() >= 8 && senha.matches(".*[a-zA-Z].*") && senha.matches(".*\\d.*");
     }
 
 }

@@ -54,4 +54,9 @@ public class BridgeMessage {
     public boolean isNotAllowed() {
 	return (type == Type.NOT_ALLOWED);
     }
+
+    public Object handleSuccess(String string) {
+	// TODO Auto-generated method stub
+	return null;
+    }
 }

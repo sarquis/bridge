@@ -4,6 +4,105 @@
 !!! Atenção !!! PENSAR SEMPRE EM MVP, NADA DE COMPLICAR FAZER RODAR DEPOIS IR MELHORANDO.
 
 FAZENDO:
+
+
+criar exceções diversas...
+
+---
+A melhor prática é ter a lógica relacionada às mensagens a serem exibidas para o usuário no controlador, 
+
+enquanto o serviço deve se concentrar na lógica de negócios e manipulação de dados. 
+
+O serviço pode lançar exceções específicas ou fornecer algum tipo de sinal para indicar ao controlador que algo inesperado ocorreu, 
+e o controlador seria responsável por mapear essas informações em mensagens significativas para o usuário.
+
+Aqui estão alguns passos que você pode seguir para lidar com mensagens no contexto de um método para alterar senha:
+1.	Serviço (Service):
+o	O serviço deve conter a lógica de negócios para a alteração da senha.
+o	Pode lançar exceções ou usar algum mecanismo para indicar o sucesso ou falha da operação.
+java
+@Service
+public class UsuarioService {
+
+    public void alterarSenha(String senhaAtual, String novaSenha) throws SenhaAtualIncorretaException {
+        // Lógica para verificar se a senha atual está correta e realizar a alteração
+        // Lança uma exceção personalizada se a senha atual estiver incorreta
+    }
+}
+2.	Controlador (Controller):
+o	O controlador deve chamar o serviço para realizar a operação desejada.
+o	Captura exceções ou verifica o resultado da operação e adiciona mensagens ao modelo.
+java
+@Controller
+@RequestMapping("/usuario")
+public class UsuarioController {
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @PostMapping("/alterar-senha")
+    public String alterarSenha(@RequestParam String senhaAtual, @RequestParam String novaSenha, Model model) {
+        try {
+            usuarioService.alterarSenha(senhaAtual, novaSenha);
+            model.addAttribute("mensagemSucesso", "Senha alterada com sucesso!");
+        } catch (SenhaAtualIncorretaException e) {
+            model.addAttribute("mensagemErro", "Senha atual incorreta. Tente novamente.");
+        } catch (Exception e) {
+            model.addAttribute("mensagemErro", "Ocorreu um erro ao alterar a senha.");
+        }
+
+        return "paginaResultado";
+    }
+}
+3.	Template Thymeleaf:
+o	O template Thymeleaf pode acessar essas mensagens no modelo e exibi-las para o usuário.
+html
+<!-- paginaResultado.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Cabeçalho da página -->
+</head>
+<body>
+    <div th:if="${mensagemSucesso}">
+        <p th:text="${mensagemSucesso}" style="color: green;"></p>
+    </div>
+    <div th:if="${mensagemErro}">
+        <p th:text="${mensagemErro}" style="color: red;"></p>
+    </div>
+    <!-- Restante do conteúdo da página -->
+</body>
+</html>
+Isolando a lógica de apresentação de mensagens no controlador e template Thymeleaf, você mantém a separação de responsabilidades e facilita a manutenção do código. O serviço continua sendo responsável apenas pela lógica de negócios.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 		3. fazer o alterar senha (validar tamanho, letras e numeros)
 		- colocar javascript para mostrar se senha esta boa.
