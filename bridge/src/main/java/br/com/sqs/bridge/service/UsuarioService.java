@@ -56,8 +56,8 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void alterarSenha(String senhaAtual, String novaSenha, Integer idUsuario) throws SenhaInvalidaException {
-	Usuario usuario = repository.findById(idUsuario).get();
+    public void alterarSenha(String senhaAtual, String novaSenha, String userEmail) throws SenhaInvalidaException {
+	Usuario usuario = repository.findByEmail(userEmail);
 
 	if (!passwordEncoder.matches(senhaAtual, usuario.getSenha()))
 	    throw new SenhaInvalidaException("Senha atual inválida");

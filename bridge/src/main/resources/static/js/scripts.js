@@ -38,18 +38,18 @@ function setupDynamicSearch() {
 	});
 }
 
-function showHidePassword() {
-	var selector = '#show_hide_password';
+function showHidePassword(index) {
+	var selector = '#show_hide_password' + index;
 	$(selector + ' a').on('click', function(event) {
 		event.preventDefault();
 		if ($(selector + ' input').attr('type') == 'text') {
 			$(selector + ' input').attr('type', 'password');
-			$(selector + ' #eye').removeClass('bi bi-eye');
-			$(selector + ' #eye').addClass('bi bi-eye-slash');
+			$(selector + ' #eye'+ index).removeClass('bi bi-eye');
+			$(selector + ' #eye'+ index).addClass('bi bi-eye-slash');
 		} else if ($(selector + ' input').attr('type') == 'password') {
 			$(selector + ' input').attr('type', 'text');
-			$(selector + ' #eye').removeClass('bi bi-eye-slash');
-			$(selector + ' #eye').addClass('bi bi-eye');
+			$(selector + ' #eye'+ index).removeClass('bi bi-eye-slash');
+			$(selector + ' #eye'+ index).addClass('bi bi-eye');
 		}
 	});
 }
@@ -57,7 +57,8 @@ function showHidePassword() {
 // Aguardar até que o DOM (Document Object Model) esteja completamente carregado.
 $(document).ready(function() {
 	setupDynamicSearch();
-	showHidePassword();
+	showHidePassword("");
+	showHidePassword("1");
 });
 
 

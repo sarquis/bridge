@@ -7,12 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.sqs.bridge.model.dto.SenhaDTO;
 import br.com.sqs.bridge.service.UsuarioService;
 import br.com.sqs.bridge.util.BridgeMessage;
 
 @Controller
+@RequestMapping("/alterarSenha")
 public class AlterarSenhaController {
 
     private UsuarioService service;
@@ -23,7 +25,7 @@ public class AlterarSenhaController {
 	this.message = message;
     }
 
-    @GetMapping("/alterarSenha")
+    @GetMapping("/show")
     public String showAlterarSenha(Model model) {
 	model.addAttribute("senhaDTO", new SenhaDTO());
 	return "alterarSenha";
@@ -33,11 +35,9 @@ public class AlterarSenhaController {
     public String salvar(Model model, @ModelAttribute("senhaDTO") SenhaDTO senhaDTO,
 	    @AuthenticationPrincipal UserDetails userDetails) {
 	try {
-	    String username = userDetails.getUsername();
-	    System.out.println(username);
-	    // Integer idUsuario = null;
-	    // service.alterarSenha(senhaDTO.getAtual(), senhaDTO.getNova(), idUsuario); //
-	    // TODO CONTINUAR AQUI TENHO QUE PEGAR O NOME DO USUARIO E TRANSFORMAR EM ID.
+	    String userName = userDetails.getUsername();
+	    service.alterarSenha(senhaDTO.getAtual(), senhaDTO.getNova(), userName);
+	    model.addAttribute("senhaAlteradaComSucesso", true);
 	    model.addAttribute("message", message.handleSuccess("Senha alterada com sucesso!"));
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));

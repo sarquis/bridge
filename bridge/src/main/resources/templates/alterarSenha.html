@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://thymeleaf.org">
 
-<head th:replace="~{../static/html/head :: head}"></head>
+<head th:replace="~{../static/html/headSub :: head}"></head>
 
 <body>
 	<section>
@@ -11,11 +11,56 @@
 			<hr>
 			<div class="card">
 				<div class="card-body">
-					<form action="#" th:action="@{/usuarios/salvar}" th:object="${usuario}" method="post">
+					<form action="#" th:action="@{/alterarSenha/salvar}" th:object="${senhaDTO}" method="post">
 						<div class="container">
 							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 
-							teste
+							<div th:replace="~{fragments/message :: message}"></div>
+
+							<div th:if="${senhaAlteradaComSucesso == null}">
+
+								<div class="row align-items-center">
+
+									<div class="col-sm mb-3">
+										<div class="form-floating" id="show_hide_password">
+											<input type="password" class="form-control" placeholder="Senha atual"
+												th:field="*{atual}" maxlength="50" required />
+											<label class="text-secondary">
+												<span class="bi bi-key"></span> Senha atual</label>
+											<span class="input-group-text">
+												<a href="" style="color:gray;text-decoration: none;">
+													<i id="eye" class="bi bi-eye-slash"></i> exibir senha</a></span>
+										</div>
+									</div>
+
+									<div class="col-sm mb-3">
+										<div class="form-floating" id="show_hide_password1">
+											<input type="password" class="form-control" placeholder="Nova senha *"
+												th:field="*{nova}" maxlength="50" required />
+											<label class="text-secondary">
+												<span class="bi bi-key"></span> Nova senha *</label>
+											<span class="input-group-text">
+												<a href="" style="color:gray;text-decoration: none;">
+													<i id="eye1" class="bi bi-eye-slash"></i> exibir senha</a></span>
+										</div>
+									</div>
+									
+									<div class="col-sm mb-3 text-secondary">
+										* Mímino de 8 caracteres, incluindo letras e números.
+									</div>
+
+								</div> <!-- row -->
+
+								<button type="submit" class="btn btn-success mt-1">
+									<i class="bi bi-floppy"></i> Salvar</button>
+
+								<br />
+
+							</div>
+
+							<a th:href="@{/}" class="btn btn-light mt-3" role="button">
+								<i class="bi bi-arrow-left"></i> Voltar</a>
+
 
 							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 						</div> <!-- container -->

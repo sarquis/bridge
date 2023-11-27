@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class BridgeMessage {
 
-    public enum Type {
-	ERROR, NOT_ALLOWED
+    private enum Type {
+	SUCCESS, ERROR, DB_CONSTRAINT_BLOCK, NOT_ALLOWED
     }
 
     private Type type;
@@ -27,8 +27,10 @@ public class BridgeMessage {
 	final String SYSTEM_FAILURE_MESSAGE = "Ocorreu uma falha no sistema. Por favor, entre em contato com o suporte técnico.";
 	final String DUPLICATE_ENTRY_MESSAGE = "\"%s\" já existe.";
 
-	if (msg != null && msg.toUpperCase().contains("DUPLICATE ENTRY")) {
+	if (e instanceof SenhaInvalidaException) {
 	    type = Type.NOT_ALLOWED;
+	} else if (msg != null && msg.toUpperCase().contains("DUPLICATE ENTRY")) {
+	    type = Type.DB_CONSTRAINT_BLOCK;
 	    msg = String.format(DUPLICATE_ENTRY_MESSAGE, extrairValorDuplicadoDaMensagem(msg));
 	} else {
 	    type = Type.ERROR;
@@ -43,8 +45,16 @@ public class BridgeMessage {
 	return valor.substring(0, valor.indexOf("'"));
     }
 
+    public BridgeMessage handleSuccess(String msg) {
+	return new BridgeMessage(Type.SUCCESS, msg);
+    }
+
     public String getMsg() {
 	return msg;
+    }
+
+    public boolean isSuccess() {
+	return (type == Type.SUCCESS);
     }
 
     public boolean isError() {
@@ -55,8 +65,8 @@ public class BridgeMessage {
 	return (type == Type.NOT_ALLOWED);
     }
 
-    public Object handleSuccess(String string) {
-	// TODO Auto-generated method stub
-	return null;
+    public boolean isDbConstraintBlock() {
+	return (type == Type.DB_CONSTRAINT_BLOCK);
     }
+
 }

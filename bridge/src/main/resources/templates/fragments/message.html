@@ -1,5 +1,11 @@
 <div th:fragment="message">
 	<div th:if="${message != null}">
+	
+		<div th:if="${message.success}">
+			<div class="alert alert-success col-xs-offset-1 col-xs-10">
+				<i class="bi bi-bookmark-check-fill"></i> <span th:text="${message.msg}"></span>
+			</div>
+		</div>
 		
 		<div th:if="${message.error}">
 			<div class="alert alert-danger col-xs-offset-1 col-xs-10">
@@ -8,6 +14,12 @@
 		</div>
 		
 		<div th:if="${message.notAllowed}">
+			<div class="alert alert-danger col-xs-offset-1 col-xs-10">
+				<i class="bi bi-x-octagon-fill"></i> <span th:text="${message.msg}"></span>
+			</div>
+		</div>
+		
+		<div th:if="${message.dbConstraintBlock}">
 			<div class="alert alert-danger col-xs-offset-1 col-xs-10">
 				<i class="bi bi-database-fill-slash"></i> <span th:text="${message.msg}"></span>
 			</div>
