@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sqs.bridge.model.entity.Usuario;
 import br.com.sqs.bridge.repository.UsuarioRepository;
-import br.com.sqs.bridge.util.SenhaInvalidaException;
+import br.com.sqs.bridge.util.BridgeEmailValidator;
+import br.com.sqs.bridge.util.BridgeException;
+import br.com.sqs.bridge.util.BridgePasswordHandler;
 
 @Service
 public class UsuarioService {
@@ -40,10 +42,18 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void salvarNovoUsuario(Usuario usuario) {
+    public void salvarNovoUsuario(Usuario usuario, boolean viaTelaDeRegistro) throws BridgeException {
+
+	if (!BridgeEmailValidator.isValidEmail(usuario.getEmail()))
+	    throw new BridgeException(
+		    "O endereço de e-mail inserido não é válido. Por favor, verifique e tente novamente.");
+
 	usuario.setId(null);
-	usuario.setAtivo(true);
-	usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+	usuario.setAtivo(!viaTelaDeRegistro);
+	String password = viaTelaDeRegistro
+		? BridgePasswordHandler.generateInitialPassword()
+		: passwordEncoder.encode(usuario.getSenha());
+	usuario.setSenha(password);
 	usuario.setFuncoes(funcaoService.obterFuncaoPadrao());
 	repository.save(usuario);
     }
@@ -56,21 +66,17 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void alterarSenha(String senhaAtual, String novaSenha, String userEmail) throws SenhaInvalidaException {
+    public void alterarSenha(String senhaAtual, String novaSenha, String userEmail) throws BridgeException {
 	Usuario usuario = repository.findByEmail(userEmail);
 
 	if (!passwordEncoder.matches(senhaAtual, usuario.getSenha()))
-	    throw new SenhaInvalidaException("Senha atual inválida");
+	    throw new BridgeException("Senha atual inválida");
 
-	if (!isValidaSenha(novaSenha))
-	    throw new SenhaInvalidaException("A nova senha não atende aos requisitos mínimos de segurança.");
+	if (!BridgePasswordHandler.isPasswordSecure(novaSenha))
+	    throw new BridgeException("A nova senha não atende aos requisitos mínimos de segurança.");
 
 	usuario.setSenha(passwordEncoder.encode(novaSenha));
 	repository.save(usuario);
-    }
-
-    private boolean isValidaSenha(String senha) {
-	return senha.length() >= 8 && senha.matches(".*[a-zA-Z].*") && senha.matches(".*\\d.*");
     }
 
 }

@@ -7,3 +7,8 @@ body {
 .btn-light {
 	--bs-btn-border-color: #ebeff2;
 }
+
+.swal2-html-container {
+	font-size: 0.8em !important;
+	text-align: justify !important;
+} 

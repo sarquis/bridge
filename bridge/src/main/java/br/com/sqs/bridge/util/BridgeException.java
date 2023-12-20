@@ -1,10 +1,10 @@
 package br.com.sqs.bridge.util;
 
-public class SenhaInvalidaException extends Exception {
+public class BridgeException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
-    public SenhaInvalidaException(String msg) {
+    public BridgeException(String msg) {
 	super(msg);
     }
 

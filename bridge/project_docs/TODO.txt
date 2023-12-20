@@ -4,20 +4,19 @@
 !!! Atenção !!! PENSAR SEMPRE EM MVP, NADA DE COMPLICAR FAZER RODAR DEPOIS IR MELHORANDO.
 
 FAZENDO:
-				
-		4. senha por e-mail registro de usuario
-		- quem cadastrou tambem, se foi admin ou se foi sozinho.
-		- colocar o tipo de cadastro admin/usuario
-		- colocar validacao de senha requisitos minimos
 		
-		- criar o esqueci minha senha.
+		REGISTRO DE USUÁRIO
+		
+		>> fazer botão de disparo de e-mail com senha, ativa e dispara o e-mail, na tela de que ativa pode colocar o botão disparar e-mail.
+		>> criar o esqueci minha senha.
+	
 		
 		4. colocar botão para exibir os inativos.
 			ocultar os inativos normalmente.
+	
 		5. ver como usar a strategia do infinite-scrolling...
 		acho que não é uma boa nao, colocar paginação é melhor... nao sei... 
 		acho que como é light, o infite -scrolling pode ser uma boa.. testar...	  	
-	
 	
 A FAZER:
 

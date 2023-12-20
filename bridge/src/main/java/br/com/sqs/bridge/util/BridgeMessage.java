@@ -27,7 +27,7 @@ public class BridgeMessage {
 	final String SYSTEM_FAILURE_MESSAGE = "Ocorreu uma falha no sistema. Por favor, entre em contato com o suporte técnico.";
 	final String DUPLICATE_ENTRY_MESSAGE = "\"%s\" já existe.";
 
-	if (e instanceof SenhaInvalidaException) {
+	if (e instanceof BridgeException) {
 	    type = Type.NOT_ALLOWED;
 	} else if (msg != null && msg.toUpperCase().contains("DUPLICATE ENTRY")) {
 	    type = Type.DB_CONSTRAINT_BLOCK;

@@ -3,6 +3,7 @@ package br.com.sqs.bridge.security;
 import java.util.Optional;
 
 import org.springframework.data.domain.AuditorAware;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,15 +20,14 @@ public class SpringSecurityAuditorAware implements AuditorAware<String> {
 	//
 	// Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
 	//
-	// if (authentication == null || !authentication.isAuthenticated())
-	// 	return null;
-	//
 	// return ((UserDetails) authentication.getPrincipal()).getUsername();
 	//
 	// @formatter:on
 
-	// Em uma forma mais "moderna":
+	if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
+	    return Optional.of("");
 
+	// Em uma forma mais "complicada / moderna":
 	return Optional.ofNullable(SecurityContextHolder.getContext())
 		.map(SecurityContext::getAuthentication)
 		.filter(Authentication::isAuthenticated)

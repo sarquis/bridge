@@ -58,7 +58,7 @@ public class UsuarioController {
 	     * usar DTO quando transferir dados entre a camada de controle (Controller) e a
 	     * camada de visualização (View). (Proteção contra Over-Posting.)
 	     */
-	    service.salvarNovoUsuario(usuario);
+	    service.salvarNovoUsuario(usuario, false);
 	    return "redirect:../usuarios/list";
 	} catch (Exception e) {
 	    model.addAttribute("usuario", usuario);
