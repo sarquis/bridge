@@ -5,18 +5,10 @@
 
 FAZENDO:
 		
-		REGISTRO DE USUÁRIO
-		
-		>> fazer botão de disparo de e-mail com senha, ativa e dispara o e-mail, na tela de que ativa pode colocar o botão disparar e-mail.
-		>> criar o esqueci minha senha.
+		0. Criar o esqueci minha senha.
+			- se a pessoa tiver inativa, não permitir mandar o e-mail.
 	
-		
-		4. colocar botão para exibir os inativos.
-			ocultar os inativos normalmente.
-	
-		5. ver como usar a strategia do infinite-scrolling...
-		acho que não é uma boa nao, colocar paginação é melhor... nao sei... 
-		acho que como é light, o infite -scrolling pode ser uma boa.. testar...	  	
+		1. Cadastro do a receber. FINALMENTE PRIMEIRA FUNÇÃO DO NEGOCIO!
 	
 A FAZER:
 
@@ -25,17 +17,6 @@ A FAZER:
 	* Necessário que o controller sempre valide a requisição, para saber o que esta sendo feito e por quem.
 	***********
 
-	- quando for fazer a parte de registro do usuario
-	- validar e-mail (minimo, se tem @ já basta)
-	- validar senha (minimo 8, com letas e numeros)
-	- quando for fazer a funcao de registro do usuario ver como ficou o usuario de auditoria
-
-	- novo botão: criar uma conta
-	- criar o esqueceu sua senha
-	
-	-- infinite-scrolling : https://www.uxmatters.com/mt/archives/2020/07/designing-mobile-tables.php
-	-- https://medium.com/appnroll-publication/5-practical-solutions-to-make-responsive-data-tables-ff031c48b122
-	-- Collapsed
 	
 BACKLOG:
 
@@ -52,3 +33,12 @@ BACKLOG:
 	- colocar questão da senha segura nao permitir senhas fáceis
 	
 	- logar os erros do sistema em uma tabela, onde só o admin veja.
+	- colocar botão para exibir usuarios ativos/inativos
+	
+	5. ver como usar a strategia do infinite-scrolling...
+		-- infinite-scrolling : https://www.uxmatters.com/mt/archives/2020/07/designing-mobile-tables.php
+		-- https://medium.com/appnroll-publication/5-practical-solutions-to-make-responsive-data-tables-ff031c48b122
+		-- Collapsed
+		acho que não é uma boa nao, colocar paginação é melhor... nao sei... 
+		acho que como é light, o infite -scrolling pode ser uma boa.. testar...
+		

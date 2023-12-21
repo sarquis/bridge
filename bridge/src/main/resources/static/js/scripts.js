@@ -98,7 +98,7 @@ Ao clicar em "Aceitar" ou utilizar nosso software, você reconhece ter lido, com
 	}).then((result) => {
 		if (result.isConfirmed) {
 			window.location.href = "/showRegisterPage";
-		} 
+		}
 	});
 
 	/* 
@@ -119,6 +119,12 @@ Ao clicar em "Aceitar" ou utilizar nosso software, você reconhece ter lido, com
 		  window.location.href = "/showRegisterPage"; 
 	  }
 	*/
-	
+
 }
 
+// Para desabilitar o botão assim que for clicado e evitar cliques duplos.
+function disableButton(button) {
+	button.disabled = true;
+	button.innerHTML = "Aguarde...";
+	return true; // Allow the default behavior (i.e., navigation to the specified URL)
+}

@@ -72,8 +72,13 @@
 								</div>
 							</div>
 
-							<a th:href="@{/usuarios/list}" class="btn btn-light mt-3" role="button">
-								<i class="bi bi-arrow-left"></i> Voltar</a>
+							<a th:href="@{/usuarios/list}" class="btn btn-light mt-3" role="button"><i
+									class="bi bi-backspace"></i> Voltar</a>
+
+							<button th:if="${senhaEnviadaComSucesso == null}"
+								th:onclick="disableButton(this); window.location=[[@{/usuarios/enviarSenha(usuarioId=${usuario.id})}]];"
+								class="btn btn-success mt-3" style="margin-left:1rem;" role="button"><i
+									class="bi bi-envelope"></i> Enviar senha</button>
 
 							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 						</div> <!-- container -->

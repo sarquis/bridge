@@ -19,11 +19,14 @@ public class UsuarioService {
     private UsuarioRepository repository;
     private PasswordEncoder passwordEncoder;
     private FuncaoService funcaoService;
+    private MailSenderService mailSenderService;
 
-    public UsuarioService(UsuarioRepository repository, PasswordEncoder passwordEncoder, FuncaoService funcaoService) {
+    public UsuarioService(UsuarioRepository repository, PasswordEncoder passwordEncoder, FuncaoService funcaoService,
+	    MailSenderService mailSenderService) {
 	this.repository = repository;
 	this.passwordEncoder = passwordEncoder;
 	this.funcaoService = funcaoService;
+	this.mailSenderService = mailSenderService;
     }
 
     public List<Usuario> findAll() {
@@ -48,10 +51,17 @@ public class UsuarioService {
 	    throw new BridgeException(
 		    "O endereço de e-mail inserido não é válido. Por favor, verifique e tente novamente.");
 
+	/*
+	 * Quando o usuário realizar o cadastro por meio da Tela de Registro
+	 * ("Criar Nova Conta"), ele será inicialmente registrado como inativo, e uma
+	 * senha será gerada automaticamente. A ativação da conta e o envio da nova
+	 * senha serão de responsabilidade do administrador.
+	 */
+
 	usuario.setId(null);
 	usuario.setAtivo(!viaTelaDeRegistro);
 	String password = viaTelaDeRegistro
-		? BridgePasswordHandler.generateInitialPassword()
+		? passwordEncoder.encode(BridgePasswordHandler.generateInitialPassword())
 		: passwordEncoder.encode(usuario.getSenha());
 	usuario.setSenha(password);
 	usuario.setFuncoes(funcaoService.obterFuncaoPadrao());
@@ -77,6 +87,40 @@ public class UsuarioService {
 
 	usuario.setSenha(passwordEncoder.encode(novaSenha));
 	repository.save(usuario);
+    }
+
+    public void enviarNovaSenha(Usuario usuario, boolean esqueciMinhaSenha) {
+
+	final String novaSenha = criarSalvarNovaSenha(usuario);
+
+	String subject = esqueciMinhaSenha ? "橋 Bridge - 2Receive - nova senha" : "Bem-vindo ao 橋 Bridge - 2Receive!";
+	String body = "";
+
+	if (esqueciMinhaSenha) {
+	    body += "Conforme solicitado, aqui está sua nova senha para acessar nossa plataforma:\r\n";
+	} else {
+	    body += "Seja muito bem-vindo ao 2Receive, sua plataforma dedicada para uma gestão eficiente e simplificada!\r\n\r\n";
+	    body += "Aqui está sua senha para acessar nossa plataforma:\r\n";
+	}
+
+	body += "Senha: " + novaSenha + "\r\n\r\n";
+	body += "Recomendamos que altere sua senha assim que possível para garantir a segurança de sua conta.\r\n\r\n";
+
+	if (!esqueciMinhaSenha)
+	    body += "Agradecemos por escolher o Bridge - 2Receive. Esperamos que aproveite ao máximo nossa plataforma!\r\n\r\n";
+
+	body += "Atenciosamente,\r\n";
+	body += "Equipe 橋 Bridge - 2Receive\r\n";
+
+	mailSenderService.sendNewMail(usuario.getEmail(), subject, body);
+    }
+
+    @Transactional
+    private String criarSalvarNovaSenha(Usuario usuario) {
+	final String novaSenha = BridgePasswordHandler.generateInitialPassword();
+	usuario.setSenha(passwordEncoder.encode(novaSenha));
+	repository.save(usuario);
+	return novaSenha;
     }
 
 }

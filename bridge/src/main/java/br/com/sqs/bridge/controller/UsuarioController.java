@@ -75,4 +75,16 @@ public class UsuarioController {
 	return "usuarios/usuario-editar";
     }
 
+    @GetMapping("/enviarSenha")
+    public String enviarSenha(Model model, @RequestParam("usuarioId") int id) {
+	try {
+	    service.enviarNovaSenha(service.findById(id).get(), false);
+	    model.addAttribute("senhaEnviadaComSucesso", true);
+	    model.addAttribute("usuario", service.findById(id).get()); // Nova consulta para obter auditoria atualizada.
+	    model.addAttribute("message", message.handleSuccess("Senha enviada por e-mail."));
+	} catch (Exception e) {
+	    model.addAttribute("message", message.handleExepection(e));
+	}
+	return "usuarios/usuario-editar";
+    }
 }
