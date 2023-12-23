@@ -54,7 +54,7 @@
 									</div>
 
 									<!-- Senha input -->
-									<div class="form-floating mb-4" id="show_hide_password">
+									<div class="form-floating mb-1" id="show_hide_password">
 										<input type="password" id="senhaInput" name="password" class="form-control"
 											placeholder="senha" />
 										<label class="text-secondary"><span class="bi bi-lock"></span> Senha</label>
@@ -63,8 +63,11 @@
 												<i id="eye" class="bi bi-eye-slash"></i> exibir senha</a></span>
 									</div>
 
+									<a th:href="@{/showEsqueceuSenha}" class="d-flex justify-content-right"
+										style="text-decoration: none; font-size: 0.9rem;">Esqueceu sua senha?</a>
+
 									<!-- Submit button -->
-									<button type="submit" class="btn btn-success btn-lg col-12">
+									<button type="submit" class="btn btn-success btn-lg col-12 mt-3">
 										<span class="bi bi-door-open"></span> Entrar</button>
 
 									<button type="button" onclick="exibirTermos()"

@@ -51,14 +51,14 @@
 
 								</div> <!-- row -->
 
-
-								<a th:href="@{/}" class="btn btn-light mt-2" role="button">
-									<i class="bi bi-backspace"></i> Voltar</a>
-
-								<button type="submit" class="btn btn-success mt-2" style="margin-left:1rem;">
-									<i class="bi bi-floppy"></i> Salvar</button>
-
 							</div>
+
+							<a th:href="@{/}" class="btn btn-light mt-2" role="button">
+								<i class="bi bi-backspace"></i> Voltar</a>
+
+							<button th:if="${senhaAlteradaComSucesso == null}" type="submit"
+								class="btn btn-success mt-2" style="margin-left:1rem;">
+								<i class="bi bi-floppy"></i> Salvar</button>
 
 							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 						</div> <!-- container -->

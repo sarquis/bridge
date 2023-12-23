@@ -128,3 +128,8 @@ function disableButton(button) {
 	button.innerHTML = "Aguarde...";
 	return true; // Allow the default behavior (i.e., navigation to the specified URL)
 }
+
+function submitForm() {
+	var form = document.getElementById("form");
+	form.submit();
+}

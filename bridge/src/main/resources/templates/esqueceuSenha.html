@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="~{../static/html/head :: head}"></head>
+
+<body>
+	<section>
+
+		<div class="px-z4 py-5 px-md-5 text-center text-lg-start">
+			<div class="container">
+				<div class="row gx-lg-5 align-items-center">
+
+					<!-- Logo Panel -->
+					<div class="col-lg-6 mb-2 mb-lg-0">
+						<h1 class="my-3 display-3 fw-bold ls-tight">
+							橋 2Receive <br />
+						</h1>
+						<p style="color: hsl(217, 10%, 50.8%)">
+							A sua ajuda no controle de contas a receber.
+						</p>
+					</div>
+
+					<!-- Login Panel -->
+					<div class="col-lg-6 mb-5 mb-lg-0">
+						<div class="card">
+							<div class="card-body py-4 px-md-5">
+
+								<!-- Form -->
+								<form id="form" action="#" th:action="@{/obterNovaSenha}" th:object="${usuario}"
+									method="post">
+
+									<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+
+									<div th:replace="~{fragments/message :: message}"></div>
+
+									<div th:if="${solicitacaoRealizada == null}">
+										<!-- E-mail input -->
+										<div class="form-floating mb-4">
+											<input type="text" id="emailInput" th:field="*{email}" class="form-control"
+												placeholder="E-mail" maxlength="100" required />
+											<label class="text-secondary" for="emailInput"><span
+													class="bi bi-envelope-at"></span>
+												E-mail</label>
+										</div>
+
+										<!-- Submit button -->
+										<button th:if="${solicitacaoRealizada == null}" role="button"
+											th:onclick="disableButton(this); submitForm();"
+											class="btn btn-success btn-lg col-12">
+											<span class="bi bi-arrow-repeat"></span> Obter nova senha</button>
+									</div>
+
+									<a th:href="@{/}" class="btn btn-light col-12 mt-3" role="button">
+										<i class="bi bi-backspace"></i> Voltar</a>
+
+									<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+
+								</form>
+								<!-- Form -->
+
+							</div>
+						</div>
+					</div>
+					<!-- Login Panel -->
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>

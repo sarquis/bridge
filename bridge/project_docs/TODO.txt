@@ -4,10 +4,7 @@
 !!! Atenção !!! PENSAR SEMPRE EM MVP, NADA DE COMPLICAR FAZER RODAR DEPOIS IR MELHORANDO.
 
 FAZENDO:
-		
-		0. Criar o esqueci minha senha.
-			- se a pessoa tiver inativa, não permitir mandar o e-mail.
-	
+			
 		1. Cadastro do a receber. FINALMENTE PRIMEIRA FUNÇÃO DO NEGOCIO!
 	
 A FAZER:

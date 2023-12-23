@@ -32,6 +32,12 @@ public class LoginController {
 	return "register";
     }
 
+    @GetMapping("/showEsqueceuSenha")
+    public String showEsqueceuSenha(Model model) {
+	model.addAttribute("usuario", new Usuario());
+	return "esqueceuSenha";
+    }
+
     @PostMapping("/criarNovaConta")
     public String criarNovaConta(Model model, @ModelAttribute("usuario") Usuario usuario) {
 	String msgSucesso = "Conta criada com sucesso! "
@@ -45,6 +51,22 @@ public class LoginController {
 	    model.addAttribute("message", message.handleExepection(e));
 	}
 	return "register";
+    }
+
+    @PostMapping("/obterNovaSenha")
+    public String obterNovaSenha(Model model, @ModelAttribute("usuario") Usuario usuario) {
+	String msgSucesso = "Solicitação realizada! Se o seu e-mail estiver associado a uma conta válida, "
+			    + "em breve você receberá um e-mail com uma nova senha. "
+			    + "Verifique sua caixa de entrada, incluindo a pasta de spam, "
+			    + "caso não receba a mensagem em alguns minutos.";
+	try {
+	    service.solicitarEnvioDeNovaSenha(usuario, true);
+	    model.addAttribute("solicitacaoRealizada", true);
+	    model.addAttribute("message", message.handleSuccess(msgSucesso));
+	} catch (Exception e) {
+	    model.addAttribute("message", message.handleExepection(e));
+	}
+	return "esqueceuSenha";
     }
 
     @GetMapping("/accessDenied")

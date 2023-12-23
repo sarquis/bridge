@@ -47,9 +47,7 @@ public class UsuarioService {
     @Transactional
     public void salvarNovoUsuario(Usuario usuario, boolean viaTelaDeRegistro) throws BridgeException {
 
-	if (!BridgeEmailValidator.isValidEmail(usuario.getEmail()))
-	    throw new BridgeException(
-		    "O endereço de e-mail inserido não é válido. Por favor, verifique e tente novamente.");
+	validarEmail(usuario);
 
 	/*
 	 * Quando o usuário realizar o cadastro por meio da Tela de Registro
@@ -121,6 +119,19 @@ public class UsuarioService {
 	usuario.setSenha(passwordEncoder.encode(novaSenha));
 	repository.save(usuario);
 	return novaSenha;
+    }
+
+    public void solicitarEnvioDeNovaSenha(Usuario usuario, boolean b) throws BridgeException {
+	validarEmail(usuario);
+	usuario = repository.findByEmail(usuario.getEmail());
+	if (usuario != null && usuario.getAtivo())
+	    enviarNovaSenha(usuario, true);
+    }
+
+    private void validarEmail(Usuario usuario) throws BridgeException {
+	if (!BridgeEmailValidator.isValidEmail(usuario.getEmail()))
+	    throw new BridgeException(
+		    "O endereço de e-mail inserido não é válido. Por favor, verifique e tente novamente.");
     }
 
 }
