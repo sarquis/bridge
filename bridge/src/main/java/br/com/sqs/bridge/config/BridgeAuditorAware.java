@@ -14,20 +14,9 @@ public class BridgeAuditorAware implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
 
-	// @formatter:off
-	//
-	// Em uma forma mais legível:
-	//
-	// Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
-	//
-	// return ((UserDetails) authentication.getPrincipal()).getUsername();
-	//
-	// @formatter:on
-
 	if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
 	    return Optional.of("");
 
-	// Em uma forma mais "complicada / moderna":
 	return Optional.ofNullable(SecurityContextHolder.getContext())
 		.map(SecurityContext::getAuthentication)
 		.filter(Authentication::isAuthenticated)
