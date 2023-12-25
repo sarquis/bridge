@@ -1,4 +1,4 @@
-package br.com.sqs.bridge.util;
+package br.com.sqs.bridge.config;
 
 import java.util.Properties;
 

@@ -1,4 +1,4 @@
-package br.com.sqs.bridge.security;
+package br.com.sqs.bridge.config;
 
 import java.util.Optional;
 
