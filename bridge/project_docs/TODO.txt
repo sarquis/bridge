@@ -5,7 +5,27 @@
 
 FAZENDO:
 			
-		1. Cadastro do a receber. FINALMENTE PRIMEIRA FUNÇÃO DO NEGOCIO!
+		1. Cadastro do a receber. 
+			
+			a) Criar entidades:
+				ok - Cliente
+				ok - AReceber
+				ok - Rodar update no banco
+				ok - verificar no banco como ficou, validar tabelas e relacionamentos
+				
+				1. fazer tela de lista de a receber
+				
+				2. fazer cadastro de a receber
+				
+				3. consulta de receber somente do usuario atual criado
+				
+				4. função atualizar saldo do cliente.
+					
+				
+			
+			
+
+		2. NOVAS SECOES DO CURSO DE SPRING: 165! fAZER AS AULAS
 	
 A FAZER:
 

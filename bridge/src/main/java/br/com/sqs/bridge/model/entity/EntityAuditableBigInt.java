@@ -7,18 +7,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class EntityAuditable extends Auditable {
+public abstract class EntityAuditableBigInt extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id", columnDefinition = "bigint unsigned")
+    private Long id;
 
-    public Integer getId() {
+    public Long getId() {
 	return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
 	this.id = id;
     }
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import br.com.sqs.bridge.util.BridgeString;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,7 +47,7 @@ public class Usuario extends EntityAuditable {
     }
 
     public void setEmail(String email) {
-	this.email = email;
+	this.email = BridgeString.trim(email);
     }
 
     public String getSenha() {
