@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="~{../static/html/headSub :: head}"></head>
+
+<body>
+	<section>
+		<div th:replace="~{fragments/menu :: menu}"></div>
+		<div class="container mt-3">
+			<h2><i class="bi bi-cash-coin"></i> Novo A Receber</h2>
+			<hr>
+			<div class="card">
+				<div class="card-body">
+					<form id="formAReceber" action="#" th:action="@{/aReceber/salvar}" th:object="${aReceber}"
+						method="post">
+						<div class="container">
+							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+
+							<div th:replace="~{fragments/message :: message}"></div>
+
+							<div class="row align-items-center">
+
+								<div class="col-sm mb-3">
+									<div class="input-group">
+										<span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+										<input type="text" th:field="*{valor}" class="form-control"
+											placeholder="Valor a receber" inputmode="numeric"
+											oninput="formatarMoeda(this)" maxlength="15"
+											th:pattern="'^\d{1,3}(?:\.\d{3})*(?:,\d{1,2})?$'" required>
+									</div>
+								</div>
+
+								<div class="col-sm mb-3">
+									<div class="input-group">
+										<span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+										<select class="form-select" th:field="*{cliente.nome}"
+											th:if="${permitirDigitarNomeDoCliente == null}"
+											onchange="if (this.value === 'novo_cli_option_value') document.getElementById('formAReceber').submit();">
+											<option value="escolha_cliente_label" disabled selected>Escolha um cliente
+											</option>
+											<option value="novo_cli_option_value">Criar novo cliente</option>
+											<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+												th:text="${cliente.nome}">
+											</option>
+										</select>
+										<input type="text" th:if="${permitirDigitarNomeDoCliente}"
+											th:field="*{cliente.nome}" class="form-control" maxlength="100"
+											placeholder="Nome do cliente" required>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="row align-items-center">
+
+								<div class="col-sm mb-3">
+									<div class="form-group">
+										<label for="obs-text-area">Observações</label>
+										<textarea th:field="*{observacoes}" class="form-control" id="obs-text-area"
+											maxlength="1000" rows="3"></textarea>
+									</div>
+								</div>
+
+							</div>
+
+							<a th:href="@{/aReceber/list}" class="btn btn-light mt-2" role="button">
+								<i class="bi bi-backspace"></i> Voltar</a>
+
+							<button type="submit" class="btn btn-success mt-2" style="margin-left:1rem;">
+								<i class="bi bi-floppy"></i> Salvar</button>
+
+							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+						</div> <!-- container -->
+					</form>
+				</div> <!-- card-body -->
+			</div> <!-- card -->
+		</div>
+	</section>
+</body>
+
+</html>

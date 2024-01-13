@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="~{../static/html/headSub :: head}"></head>
+
+<body>
+	<section>
+		<div th:replace="~{fragments/menu :: menu}"></div>
+		<div class="container mt-3">
+			<h2><i class="bi bi-cash-coin"></i> A Receber</h2>
+			<hr>
+			<div class="card">
+				<div class="card-body">
+					<form id="formAReceber" action="#" th:action="@{/aReceber/salvar}" th:object="${aReceber}"
+						method="post">
+						<div class="container">
+							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+
+							<div th:replace="~{fragments/message :: message}"></div>
+
+							<a th:href="@{/usuarios/list}" class="btn btn-light mt-2" role="button">
+								<i class="bi bi-backspace"></i> Voltar</a>
+
+							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+						</div> <!-- container -->
+					</form>
+				</div> <!-- card-body -->
+			</div> <!-- card -->
+		</div>
+	</section>
+</body>
+
+</html>

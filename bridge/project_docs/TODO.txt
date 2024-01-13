@@ -33,14 +33,8 @@ FAZENDO:
 			1. fazer tela de lista de a receber	
 			3. consulta de receber somente do usuario atual criado
 			4. função atualizar saldo do cliente.
-					
-				
-			
-			
 	
 A FAZER:
-
-
 	
 BACKLOG:
 
