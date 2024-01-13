@@ -3,39 +3,48 @@
 
 !!! Atenção !!! PENSAR SEMPRE EM MVP, NADA DE COMPLICAR FAZER RODAR DEPOIS IR MELHORANDO.
 
+Pensar em PWA:
+	inputmode="numeric"
+	
+Pensar em controles (sempre usar):
+	maxlength
+	formatarMoeda
+	required	
+
+***********
+* ATENÇÃO ! MUITO CUIDADO COM A QUESTÃO DO INPUT HIDDEN ID
+* Necessário que o controller sempre valide a requisição, para saber o que esta sendo feito e por quem.
+***********
+
 FAZENDO:
 			
 		1. Cadastro do a receber. 
 			
-			a) Criar entidades:
-				ok - Cliente
-				ok - AReceber
-				ok - Rodar update no banco
-				ok - verificar no banco como ficou, validar tabelas e relacionamentos
+			> salvar persistir
+						
+			> tratar a questao de salvar um cliente que ja existe, quando a pessoa colocar novo e digitar um nome que ja existe
+			
+			> testar: lista de clientes cadastrados, considerado somente os que foram cadastrados pelo usuario.
+			
+			> cadastrar
+	
+			-------------------------------------------------------				
 				
-				1. fazer tela de lista de a receber
-				
-				2. fazer cadastro de a receber
-				
-				3. consulta de receber somente do usuario atual criado
-				
-				4. função atualizar saldo do cliente.
+			1. fazer tela de lista de a receber	
+			3. consulta de receber somente do usuario atual criado
+			4. função atualizar saldo do cliente.
 					
 				
 			
 			
-
-		2. NOVAS SECOES DO CURSO DE SPRING: 165! fAZER AS AULAS
 	
 A FAZER:
 
-	***********
-	* ATENÇÃO ! MUITO CUIDADO COM A QUESTÃO DO INPUT HIDDEN ID
-	* Necessário que o controller sempre valide a requisição, para saber o que esta sendo feito e por quem.
-	***********
 
 	
 BACKLOG:
+
+	- NOVAS SECOES DO CURSO DE SPRING: 165! fAZER AS AULAS
 
 	- criar uma pagina default para erros não tratados, forcar um erro de thymeleaf qualquer para testar.
 	

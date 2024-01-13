@@ -133,3 +133,12 @@ function submitForm() {
 	var form = document.getElementById("form");
 	form.submit();
 }
+
+function formatarMoeda(element) {
+	let valor = element.value.replace(/\D/g, ''); 
+	if (valor !== "") {
+		valor = (parseFloat(valor) / 100).toFixed(2).replace('.', ',');
+		valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+	}
+	element.value = valor;
+}

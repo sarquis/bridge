@@ -1,4 +1,4 @@
-package br.com.sqs.bridge.security;
+package br.com.sqs.bridge.config;
 
 import javax.sql.DataSource;
 
@@ -38,6 +38,7 @@ public class SecurityConfig {
 		.permitAll()
 		.requestMatchers("/").hasRole("USUARIO")
 		.requestMatchers("/usuarios/**").hasRole("ADMIN")
+		.requestMatchers("/aReceber/**").hasRole("USUARIO")
 		.anyRequest().authenticated())
 		.formLogin(form -> form
 			.loginPage("/showLoginPage")
