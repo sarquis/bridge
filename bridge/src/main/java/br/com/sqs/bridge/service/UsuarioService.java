@@ -44,7 +44,7 @@ public class UsuarioService {
 	return repository.findById(id);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void salvarNovoUsuario(Usuario usuario, boolean viaTelaDeRegistro) throws BridgeException {
 
 	validarEmail(usuario);
@@ -66,14 +66,14 @@ public class UsuarioService {
 	repository.save(usuario);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void ativarDesativar(Integer idUsuario) {
 	Usuario usuario = repository.findById(idUsuario).get();
 	usuario.setAtivo(!usuario.getAtivo());
 	repository.save(usuario);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void alterarSenha(String senhaAtual, String novaSenha, String userEmail) throws BridgeException {
 	Usuario usuario = repository.findByEmail(userEmail);
 
@@ -113,7 +113,7 @@ public class UsuarioService {
 	mailSenderService.sendNewMail(usuario.getEmail(), subject, body);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     private String criarSalvarNovaSenha(Usuario usuario) {
 	final String novaSenha = BridgePasswordHandler.generateInitialPassword();
 	usuario.setSenha(passwordEncoder.encode(novaSenha));

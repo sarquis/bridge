@@ -14,16 +14,16 @@
 					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 
 					<div class="row align-items-center">
-						<div class="col-7">
+						<div class="col mb-2">
+							<a th:href="@{/usuarios/novo}" class="btn btn-light" role="button">
+								<i class="bi bi-person-add"></i> Novo</a>
+						</div>
+						<div class="col-10 mb-2">
 							<div class="input-group">
 								<span class="input-group-text"><i class="bi bi-search"></i></span>
 								<input type="text" class="form-control" id="searchField" th:value="${searchValue}"
 									data-url="/usuarios/listSearch" placeholder="Pesquisar" maxlength="100">
 							</div>
-						</div>
-						<div class="col">
-							<a th:href="@{/usuarios/novo}" class="btn btn-light" role="button">
-								<i class="bi bi-person-add"></i> Novo</a>
 						</div>
 					</div>
 

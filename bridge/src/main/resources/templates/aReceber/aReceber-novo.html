@@ -38,8 +38,8 @@
 											onchange="if (this.value === 'novo_cli_option_value') document.getElementById('formAReceber').submit();">
 											<option value="escolha_cliente_label" disabled selected>Escolha um cliente
 											</option>
-											<option value="novo_cli_option_value">Criar novo cliente</option>
-											<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+											<option value="novo_cli_option_value">Digitar nome do cliente</option>
+											<option th:each="cliente : ${clientes}" th:value="${cliente.nome}"
 												th:text="${cliente.nome}">
 											</option>
 										</select>

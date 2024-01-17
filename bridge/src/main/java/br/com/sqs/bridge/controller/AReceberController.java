@@ -1,5 +1,7 @@
 package br.com.sqs.bridge.controller;
 
+import java.util.List;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,18 +34,31 @@ public class AReceberController {
 	this.message = message;
     }
 
+    @GetMapping("/list")
+    public String list(Model model, Authentication authentication) {
+	model.addAttribute("aReceberLista", aReceberService.findAll(authentication.getName()));
+	return "aReceber/aReceber-list";
+    }
+
     @GetMapping("/novo")
     public String novo(Model model, Authentication authentication) {
 	AReceber aReceber = new AReceber();
 	aReceber.setCliente(new Cliente());
-	aReceber.getCliente().setNome(SELECT_KEY_LABEL_NOVO_CLIENTE);
+
+	List<Cliente> clientes = clienteService.obterClientes(authentication.getName());
+
+	if (clientes.isEmpty())
+	    permitirDigitarNomeDoCliente(model, aReceber);
+	else
+	    aReceber.getCliente().setNome(SELECT_KEY_LABEL_NOVO_CLIENTE);
+
 	model.addAttribute("aReceber", aReceber);
-	model.addAttribute("clientes", clienteService.obterClientes(authentication.getName()));
+	model.addAttribute("clientes", clientes);
 	return "aReceber/aReceber-novo";
     }
 
     @PostMapping("/salvar")
-    public String salvar(Model model, @ModelAttribute("aReceber") AReceber aReceber) {
+    public String salvar(Model model, @ModelAttribute("aReceber") AReceber aReceber, Authentication authentication) {
 	try {
 
 	    if (semCliente(aReceber)) {
@@ -57,17 +72,21 @@ public class AReceberController {
 	     * cliente digitar o nome de um novo cliente.
 	     */
 	    if (aReceber.getCliente().getNome().equalsIgnoreCase("novo_cli_option_value")) {
-		aReceber.getCliente().setNome("");
-		model.addAttribute("permitirDigitarNomeDoCliente", true);
+		permitirDigitarNomeDoCliente(model, aReceber);
 		return "aReceber/aReceber-novo";
 	    }
 
-	    aReceberService.salvar(aReceber);
+	    aReceberService.salvar(aReceber, authentication.getName());
 	    return "aReceber/aReceber-list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
 	    return "aReceber/aReceber-novo";
 	}
+    }
+
+    private void permitirDigitarNomeDoCliente(Model model, AReceber aReceber) {
+	aReceber.getCliente().setNome("");
+	model.addAttribute("permitirDigitarNomeDoCliente", true);
     }
 
     private boolean semCliente(AReceber aReceber) {

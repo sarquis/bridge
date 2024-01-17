@@ -10,4 +10,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     List<Cliente> findByCreatedByOrderByNome(String createdBy);
 
+    Cliente findByNomeAndCreatedBy(String nome, String createdBy);
+
 }

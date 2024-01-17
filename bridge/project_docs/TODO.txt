@@ -20,23 +20,46 @@ FAZENDO:
 			
 		1. Cadastro do a receber. 
 			
-			> salvar persistir
-						
-			> tratar a questao de salvar um cliente que ja existe, quando a pessoa colocar novo e digitar um nome que ja existe
-			
-			> testar: lista de clientes cadastrados, considerado somente os que foram cadastrados pelo usuario.
-			
-			> cadastrar
-	
 			-------------------------------------------------------				
 				
-			1. fazer tela de lista de a receber	
+			1. fazer tela de lista de a receber
+			
+				- colocar o link do menu para lista do areceber
+				
+				- formatar os decimais
+				
+			
+			
+			2. fazer filtro do a receber por cliente
+			
+			3. fazer tela de cadastro de cliente
+				fazer tela de lista de cliente
+				filtro de cliente por nome
+				
+			
+				
 			3. consulta de receber somente do usuario atual criado
 			4. função atualizar saldo do cliente.
 	
+	
+			- os lancamentos a receber devem poder ser baixados
+			ou seja pagos, o pagamento pode ser total ou parcial
+			criar uma tabela de pagamentos.
+			
+			
+			
 A FAZER:
 	
+	uma vez que o lancamento do areceber foi dado baixa 
+	- entao nao precisa mais ser listado no a receber
+	pode ir para uma tela de baixas
+	lancamentos recebidos coisa do tipo
+	
 BACKLOG:
+
+	- inativar clientes, inativar a receber, atenção ao inativar o cliente tem uma serie de restrições a serem feitas no cadastro de uma novo a receber.
+	- melhor nao deixar inativar nada por enquanto. só permitir quando existir um historico.
+	- nem permitir trocar valores do a receber. gerando uma maior segurança.
 
 	- NOVAS SECOES DO CURSO DE SPRING: 165! fAZER AS AULAS
 

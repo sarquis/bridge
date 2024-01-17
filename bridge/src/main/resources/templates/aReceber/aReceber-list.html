@@ -11,19 +11,38 @@
 			<hr>
 			<div class="card">
 				<div class="card-body">
-					<form id="formAReceber" action="#" th:action="@{/aReceber/salvar}" th:object="${aReceber}"
-						method="post">
-						<div class="container">
-							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 
-							<div th:replace="~{fragments/message :: message}"></div>
+					<div class="row align-items-center">
+						<div class="col mb-2">
+							<a th:href="@{/aReceber/novo}" class="btn btn-light" role="button">
+								<i class="bi bi-cash-coin"></i> Novo</a>
+						</div>
+						<div class="col-10 mb-2">
+							<div class="input-group">
+								<span class="input-group-text"><i class="bi bi-search"></i></span>
+								<input type="text" class="form-control" id="searchField" th:value="${searchValue}"
+									data-url="/usuarios/listSearch" placeholder="Pesquisar" maxlength="100">
+							</div>
+						</div>
+					</div>
 
-							<a th:href="@{/usuarios/list}" class="btn btn-light mt-2" role="button">
-								<i class="bi bi-backspace"></i> Voltar</a>
+					<div class="table-responsive mt-3">
+						<table class="table table-striped" style="cursor: pointer;">
+							<tbody>
+								<tr th:each="aReceber : ${aReceberLista}"
+									th:onclick="window.location=[[@{/usuarios/editar(usuarioId=${aReceber.id})}]]">
+									<td class="col-1 text-secondary" th:text="${aReceber.id}" />
+									<td th:text="${aReceber.valor}" />
+								</tr>
+							</tbody>
+						</table>
+						<div th:if="${#lists.isEmpty(aReceberLista)}">
+							<p>Nenhum resultado.</p>
+						</div>
+					</div>
 
-							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
-						</div> <!-- container -->
-					</form>
+					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 				</div> <!-- card-body -->
 			</div> <!-- card -->
 		</div>
