@@ -28,14 +28,14 @@ public class UsuarioController {
     public String list(Model model) {
 	model.addAttribute("usuarios", service.findAll());
 	model.addAttribute("searchValue", "");
-	return "usuarios/usuarios-list";
+	return "usuarios/usuario-list";
     }
 
     @GetMapping("/listSearch")
     public String listSearch(Model model, @RequestParam("searchValue") String searchValue) {
 	model.addAttribute("usuarios", service.findByEmailContaining(searchValue));
 	model.addAttribute("searchValue", searchValue);
-	return "usuarios/usuarios-list";
+	return "usuarios/usuario-list";
     }
 
     @GetMapping("/novo")

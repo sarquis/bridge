@@ -9,7 +9,8 @@ Pensar em PWA:
 Pensar em controles (sempre usar):
 	maxlength
 	formatarMoeda
-	required	
+	required
+	inputmode	
 
 ***********
 * ATENÇÃO ! MUITO CUIDADO COM A QUESTÃO DO INPUT HIDDEN ID
