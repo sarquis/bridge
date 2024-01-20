@@ -22,7 +22,7 @@
 							<div class="input-group">
 								<span class="input-group-text"><i class="bi bi-search"></i></span>
 								<input type="text" class="form-control" id="searchField" th:value="${searchValue}"
-									data-url="/usuarios/listSearch" placeholder="Pesquisar" maxlength="100">
+									data-url="/usuarios/listSearch" placeholder="Pesquisar cliente" maxlength="100">
 							</div>
 						</div>
 					</div>
@@ -30,10 +30,20 @@
 					<div class="table-responsive mt-3">
 						<table class="table table-striped" style="cursor: pointer;">
 							<tbody>
-								<tr th:each="aReceber : ${aReceberLista}"
-									th:onclick="window.location=[[@{/usuarios/editar(usuarioId=${aReceber.id})}]]">
-									<td class="col-1 text-secondary" th:text="${aReceber.id}" />
-									<td th:text="${aReceber.valor}" />
+								<tr th:each="aReceber : ${aReceberLista}">
+									<td class="col-1 align-middle" style="text-align: right;padding-left: 1rem;"
+										th:text="${#numbers.formatDecimal(aReceber.valor, 0, 'POINT', 2, 'COMMA')}" />
+									<td class="align-middle" style="text-align: center;">
+										<div th:text="${aReceber.cliente.nome}" />
+										<i>
+											<div class="text-secondary font-italic"
+												th:text="${aReceber.createdDateShortFormatted}" />
+										</i>
+									</td>
+									<td class="align-middle d-none d-sm-block" style="text-align: center;">
+										<textarea class="form-control" id="areaDeTexto" rows="2"
+											th:text="${aReceber.observacoes}" th:readonly="true"></textarea>
+									</td>
 								</tr>
 							</tbody>
 						</table>

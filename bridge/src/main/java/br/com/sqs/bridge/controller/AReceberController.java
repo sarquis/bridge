@@ -36,7 +36,7 @@ public class AReceberController {
 
     @GetMapping("/list")
     public String list(Model model, Authentication authentication) {
-	model.addAttribute("aReceberLista", aReceberService.findAll(authentication.getName()));
+	model.addAttribute("aReceberLista", aReceberService.findAllWithCliente(authentication.getName()));
 	return "aReceber/aReceber-list";
     }
 
@@ -77,7 +77,7 @@ public class AReceberController {
 	    }
 
 	    aReceberService.salvar(aReceber, authentication.getName());
-	    return "aReceber/aReceber-list";
+	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
 	    return "aReceber/aReceber-novo";

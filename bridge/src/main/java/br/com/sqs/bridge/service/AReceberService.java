@@ -46,8 +46,8 @@ public class AReceberService {
 	}
     }
 
-    public List<AReceber> findAll(String emailUsuario) {
-	return repository.findByCreatedByOrderByIdDesc(emailUsuario);
+    public List<AReceber> findAllWithCliente(String emailUsuario) {
+	return repository.findByCreatedByWithCliente(emailUsuario);
     }
 
 }

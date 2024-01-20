@@ -24,22 +24,15 @@ FAZENDO:
 				
 			1. fazer tela de lista de a receber
 			
-				- colocar o link do menu para lista do areceber
+				- fazer filtro do a receber por cliente
+				- fazer o click na linha que leva para tela de edição.
+				- colocar a opção de apagar (inativar).
+					- usar o pop-up responsivo para confirmar o desejo de apagar.
 				
-				- formatar os decimais
-				
-			
-			
-			2. fazer filtro do a receber por cliente
-			
 			3. fazer tela de cadastro de cliente
 				fazer tela de lista de cliente
 				filtro de cliente por nome
-				
-			
-				
-			3. consulta de receber somente do usuario atual criado
-			4. função atualizar saldo do cliente.
+						4. função atualizar saldo do cliente.
 	
 	
 			- os lancamentos a receber devem poder ser baixados
