@@ -25,7 +25,6 @@ FAZENDO:
 				
 			1. fazer tela de lista de a receber
 			
-				- fazer filtro do a receber por cliente
 				- fazer o click na linha que leva para tela de edição.
 				- colocar a opção de apagar (inativar).
 					- usar o pop-up responsivo para confirmar o desejo de apagar.

@@ -35,7 +35,7 @@ public class UsuarioService {
 
     public List<Usuario> findByEmailContaining(String email) {
 	if (email == null || email.isBlank())
-	    return repository.findAllByOrderByIdDesc();
+	    return findAll();
 
 	return repository.findByEmailContainingOrderByEmailAsc(email.trim());
     }

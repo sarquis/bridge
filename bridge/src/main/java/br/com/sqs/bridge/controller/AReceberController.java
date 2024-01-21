@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.sqs.bridge.model.entity.AReceber;
 import br.com.sqs.bridge.model.entity.Cliente;
@@ -37,6 +38,15 @@ public class AReceberController {
     @GetMapping("/list")
     public String list(Model model, Authentication authentication) {
 	model.addAttribute("aReceberLista", aReceberService.findAllWithCliente(authentication.getName()));
+	model.addAttribute("searchValue", "");
+	return "aReceber/aReceber-list";
+    }
+
+    @GetMapping("/listSearch")
+    public String listSearch(Model model, @RequestParam("searchValue") String searchValue,
+	    Authentication authentication) {
+	model.addAttribute("aReceberLista", aReceberService.findByCliente(searchValue, authentication.getName()));
+	model.addAttribute("searchValue", searchValue);
 	return "aReceber/aReceber-list";
     }
 

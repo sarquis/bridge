@@ -50,4 +50,11 @@ public class AReceberService {
 	return repository.findByCreatedByWithCliente(emailUsuario);
     }
 
+    public List<AReceber> findByCliente(String clienteNome, String emailUsuario) {
+	if (clienteNome == null || clienteNome.isBlank())
+	    return findAllWithCliente(emailUsuario);
+
+	return repository.findByCliente(clienteNome.trim(), emailUsuario);
+    }
+
 }
