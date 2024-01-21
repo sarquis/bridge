@@ -25,9 +25,13 @@ FAZENDO:
 				
 			1. fazer tela de lista de a receber
 			
-				- fazer o click na linha que leva para tela de edição.
+			
 				- colocar a opção de apagar (inativar).
 					- usar o pop-up responsivo para confirmar o desejo de apagar.
+					- recalcular o saldo do cliente ao excluir.
+			
+				- é necessário corrigir as consultas (duas consultas, quais são mesmo as duas? alias colocar em todas) para só trazer registros ativos. * * * * * 
+				- na realidade é alterar todas as consultas do Repository para considerar somente os registros ativos.
 				
 			3. fazer tela de cadastro de cliente
 				fazer tela de lista de cliente

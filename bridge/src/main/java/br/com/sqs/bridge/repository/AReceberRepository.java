@@ -1,6 +1,7 @@
 package br.com.sqs.bridge.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +20,5 @@ public interface AReceberRepository extends JpaRepository<AReceber, Long> {
 	   + " ORDER BY c.nome ASC ")
     List<AReceber> findByCliente(@Param("clienteNome") String clienteNome, @Param("createdBy") String createdBy);
 
+    Optional<AReceber> findByIdAndCreatedBy(Long id, String createdBy);
 }

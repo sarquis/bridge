@@ -67,6 +67,23 @@ public class AReceberController {
 	return "aReceber/aReceber-novo";
     }
 
+    @GetMapping("/editar")
+    public String editar(Model model, @RequestParam("aReceberId") long id, Authentication authentication) {
+	model.addAttribute("aReceber", aReceberService.findById(id, authentication.getName()).get());
+	return "aReceber/aReceber-editar";
+    }
+
+    @PostMapping("/salvarObservacoes")
+    public String salvarObservacoes(Model model, @ModelAttribute("aReceber") AReceber aReceber) {
+	try {
+	    aReceberService.salvarObservacoes(aReceber);
+	    return "redirect:../aReceber/list";
+	} catch (Exception e) {
+	    model.addAttribute("message", message.handleExepection(e));
+	    return "aReceber/aReceber-novo";
+	}
+    }
+
     @PostMapping("/salvar")
     public String salvar(Model model, @ModelAttribute("aReceber") AReceber aReceber, Authentication authentication) {
 	try {
@@ -86,7 +103,7 @@ public class AReceberController {
 		return "aReceber/aReceber-novo";
 	    }
 
-	    aReceberService.salvar(aReceber, authentication.getName());
+	    aReceberService.salvarNovo(aReceber, authentication.getName());
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));

@@ -1,6 +1,7 @@
 package br.com.sqs.bridge.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,17 @@ public class AReceberService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void salvar(AReceber aReceber, String emailUsuario) throws BridgeException {
+    public void salvarObservacoes(AReceber aReceber) throws BridgeException {
+	String novasObservacoes = aReceber.getObservacoes();
+	// Garantindo que só altere a observação.
+	aReceber = repository.findById(aReceber.getId()).get();
+	aReceber.setObservacoes(novasObservacoes);
+	repository.save(aReceber);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void salvarNovo(AReceber aReceber, String emailUsuario) throws BridgeException {
+	aReceber.setId(null);
 	validarESalvarClienteSeNecessario(aReceber, emailUsuario);
 	aReceber.setAtivo(true);
 	repository.save(aReceber);
@@ -55,6 +66,10 @@ public class AReceberService {
 	    return findAllWithCliente(emailUsuario);
 
 	return repository.findByCliente(clienteNome.trim(), emailUsuario);
+    }
+
+    public Optional<AReceber> findById(Long id, String emailUsuario) {
+	return repository.findByIdAndCreatedBy(id, emailUsuario);
     }
 
 }
