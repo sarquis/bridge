@@ -31,7 +31,7 @@
 						<table class="table table-striped" style="cursor: pointer;">
 							<tbody>
 								<tr th:each="aReceber : ${aReceberLista}"
-									th:onclick="window.location=[[@{/aReceber/editar(aReceberId=${aReceber.id})}]]">
+									th:onclick="window.location=[[@{/aReceber/editar(id=${aReceber.id})}]]">
 									<td class="col-1 align-middle" style="text-align: right;padding-left: 1rem;"
 										th:text="${#numbers.formatDecimal(aReceber.valor, 0, 'POINT', 2, 'COMMA')}" />
 									<td class="align-middle" style="text-align: center;">

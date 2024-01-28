@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,7 +69,7 @@ public class AReceberController {
     }
 
     @GetMapping("/editar")
-    public String editar(Model model, @RequestParam("aReceberId") long id, Authentication authentication) {
+    public String editar(Model model, @RequestParam("id") long id, Authentication authentication) {
 	model.addAttribute("aReceber", aReceberService.findById(id, authentication.getName()).get());
 	return "aReceber/aReceber-editar";
     }
@@ -80,7 +81,7 @@ public class AReceberController {
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
-	    return "aReceber/aReceber-novo";
+	    return "aReceber/aReceber-editar";
 	}
     }
 
@@ -108,6 +109,17 @@ public class AReceberController {
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
 	    return "aReceber/aReceber-novo";
+	}
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(Model model, @PathVariable("id") long id, Authentication authentication) {
+	try {
+	    aReceberService.excluir(id, authentication.getName());
+	    return "redirect:../list";
+	} catch (Exception e) {
+	    model.addAttribute("message", message.handleExepection(e));
+	    return "aReceber/aReceber-editar";
 	}
     }
 

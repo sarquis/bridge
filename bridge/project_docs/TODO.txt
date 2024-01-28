@@ -3,8 +3,7 @@
 
 !!! Atenção !!! PENSAR SEMPRE EM MVP, NADA DE COMPLICAR FAZER RODAR DEPOIS IR MELHORANDO.
 
-Pensar em PWA:
-	inputmode="numeric"
+Pensar em PWA: inputmode="numeric"
 	
 Pensar em controles (sempre usar):
 	maxlength
@@ -23,32 +22,27 @@ FAZENDO:
 			
 			-------------------------------------------------------				
 				
-			1. fazer tela de lista de a receber
-			
-			
-				- colocar a opção de apagar (inativar).
-					- usar o pop-up responsivo para confirmar o desejo de apagar.
-					- recalcular o saldo do cliente ao excluir.
-			
-				- é necessário corrigir as consultas (duas consultas, quais são mesmo as duas? alias colocar em todas) para só trazer registros ativos. * * * * * 
-				- na realidade é alterar todas as consultas do Repository para considerar somente os registros ativos.
+			1. fazer tela de cadastro de cliente
+
+				- fazer tela de lista de cliente
+				- fazer de edicao cliente
+				- fazer tela de novo cliente
+				- filtro de cliente por nome
 				
-			3. fazer tela de cadastro de cliente
-				fazer tela de lista de cliente
-				filtro de cliente por nome
-						4. função atualizar saldo do cliente.
-	
-	
-			- os lancamentos a receber devem poder ser baixados
+				- Esse questão do saldo é bem importante. Pensar nos riscos e falhas.
+				- Função atualizar saldo do cliente (executar toda vez que entra no cliente).
+				- Seria bom ter uma forma de consultar todos os a receber desse cliente
+				
+
+			2. Os lancamentos a receber devem poder ser baixados
 			ou seja pagos, o pagamento pode ser total ou parcial
 			criar uma tabela de pagamentos.
-			
-			
 			
 A FAZER:
 	
 	uma vez que o lancamento do areceber foi dado baixa 
-	- entao nao precisa mais ser listado no a receber
+	- entao nao precisa mais ser listado no a receber 
+	(pode fazer uma flag pago, ou utilizar a flag situacao, e tornar ele inativo.)
 	pode ir para uma tela de baixas
 	lancamentos recebidos coisa do tipo
 	

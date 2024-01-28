@@ -61,8 +61,6 @@ $(document).ready(function() {
 
 function exibirTermos() {
 	var mensagem = `
-**Termos e Condições de Uso do Software**
-
 Bem-vindo aos Termos e Condições de Uso do nosso software. Ao utilizar nossos serviços, você concorda com os seguintes termos e condições. Recomendamos que você leia atentamente e compreenda completamente as disposições a seguir.
 
 1. **Disponibilidade do Serviço:**
@@ -119,6 +117,22 @@ Ao clicar em "Aceitar" ou utilizar nosso software, você reconhece ter lido, com
 		  window.location.href = "/showRegisterPage"; 
 	  }
 	*/
+}
+
+function confirmarExcluir(href) {
+	var mensagem = `Esta ação é irreversível. <br /> Por favor, confirme sua escolha.`;
+	Swal.fire({
+		title: 'Confirmação de Exclusão',
+		html: mensagem,
+		icon: null,
+		showCancelButton: true,
+		confirmButtonText: 'Confirmar Exclusão',
+		cancelButtonText: 'Cancelar',
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location.href = href;
+		}
+	});
 
 }
 
@@ -135,7 +149,7 @@ function submitForm() {
 }
 
 function formatarMoeda(element) {
-	let valor = element.value.replace(/\D/g, ''); 
+	let valor = element.value.replace(/\D/g, '');
 	if (valor !== "") {
 		valor = (parseFloat(valor) / 100).toFixed(2).replace('.', ',');
 		valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');

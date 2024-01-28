@@ -73,6 +73,11 @@
 							<button type="submit" class="btn btn-success mt-2" style="margin-left:1rem;">
 								<i class="bi bi-floppy"></i> Salvar</button>
 
+							<button type="button"
+								th:onclick="confirmarExcluir('/aReceber/excluir/[[*{id}]]')"
+								class="btn btn-danger mt-2" style="margin-left:1rem;">
+								<i class="bi bi-trash"></i></button>
+
 							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 						</div> <!-- container -->
 					</form>

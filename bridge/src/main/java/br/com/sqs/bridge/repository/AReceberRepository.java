@@ -20,5 +20,7 @@ public interface AReceberRepository extends JpaRepository<AReceber, Long> {
 	   + " ORDER BY c.nome ASC ")
     List<AReceber> findByCliente(@Param("clienteNome") String clienteNome, @Param("createdBy") String createdBy);
 
+    @Query(" SELECT a FROM AReceber a JOIN FETCH a.cliente "
+	   + " WHERE a.id = :id AND a.createdBy = :createdBy ")
     Optional<AReceber> findByIdAndCreatedBy(Long id, String createdBy);
 }

@@ -1,5 +1,6 @@
 package br.com.sqs.bridge.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,6 +71,18 @@ public class AReceberService {
 
     public Optional<AReceber> findById(Long id, String emailUsuario) {
 	return repository.findByIdAndCreatedBy(id, emailUsuario);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void excluir(long id, String emailUsuario) {
+	AReceber aReceber = repository.findByIdAndCreatedBy(id, emailUsuario).get();
+
+	Cliente cliente = aReceber.getCliente();
+	BigDecimal saldoAnterior = cliente.getSaldo();
+	cliente.setSaldo(saldoAnterior.add(aReceber.getValor())); // Devolvendo saldo do cliente.
+	clienteService.atualizar(cliente);
+
+	repository.delete(aReceber);
     }
 
 }
