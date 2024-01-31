@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="~{../static/html/headSub :: head}"></head>
+
+<body>
+	<section>
+		<div th:replace="~{fragments/menu :: menu}"></div>
+		<div class="container mt-3">
+			<h2><i class="bi bi-cash-coin"></i> Clientes</h2>
+			<hr>
+			<div class="card">
+				<div class="card-body">
+					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+
+					<div class="row align-items-center">
+						<div class="col mb-2">
+							<a th:href="@{/clientes/novo}" class="btn btn-light" role="button">
+								<i class="bi bi-cash-coin"></i> Novo</a>
+						</div>
+						<div class="col-10 mb-2">
+							<div class="input-group">
+								<span class="input-group-text"><i class="bi bi-search"></i></span>
+								<input type="text" class="form-control" id="searchField" th:value="${searchValue}"
+									data-url="/aReceber/listSearch" placeholder="Pesquisar cliente" maxlength="100">
+							</div>
+						</div>
+					</div>
+
+					<div class="table-responsive mt-3">
+						<table class="table table-striped" style="cursor: pointer;">
+							<tbody>
+								<tr th:each="aReceber : ${aReceberLista}"
+									th:onclick="window.location=[[@{/aReceber/editar(id=${aReceber.id})}]]">
+									<td class="col-1 align-middle" style="text-align: right;padding-left: 1rem;"
+										th:text="${#numbers.formatDecimal(aReceber.valor, 0, 'POINT', 2, 'COMMA')}" />
+									<td class="align-middle" style="text-align: center;">
+										<div th:text="${aReceber.cliente.nome}" />
+										<i>
+											<div class="text-secondary font-italic"
+												th:text="${aReceber.createdDateShortFormatted}" />
+										</i>
+									</td>
+									<td class="align-middle d-none d-sm-block" style="text-align: center;">
+										<textarea class="form-control" id="areaDeTexto" rows="2"
+											th:text="${aReceber.observacoes}" th:readonly="true"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div th:if="${#lists.isEmpty(aReceberLista)}">
+							<p>Nenhum resultado.</p>
+						</div>
+					</div>
+
+					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
+				</div> <!-- card-body -->
+			</div> <!-- card -->
+		</div>
+	</section>
+</body>
+
+</html>
