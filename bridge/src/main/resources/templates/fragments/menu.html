@@ -18,6 +18,9 @@
 						<a class="nav-link" th:href="@{/aReceber/list}"><i class="bi bi-cash-coin"></i> A Receber</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link" th:href="@{/clientes/list}"><i class="bi bi-people"></i> Clientes</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" th:href="@{/alterarSenha/show}"><i class="bi bi-lock"></i> Alterar Senha</a>
 					</li>
 					<!-- 
@@ -38,7 +41,8 @@
 					-->
 					<div sec:authorize="hasRole('ADMIN')">
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{/usuarios/list}"><i class="bi bi-people"></i> Usuários</a>
+							<a class="nav-link" th:href="@{/usuarios/list}"><i class="bi bi-file-person"></i>
+								Usuários</a>
 						</li>
 					</div>
 					<li class="nav-item">
