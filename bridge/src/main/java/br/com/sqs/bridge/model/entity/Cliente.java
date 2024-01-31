@@ -18,7 +18,7 @@ import jakarta.persistence.UniqueConstraint;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "cliente",
        uniqueConstraints = @UniqueConstraint(name = "unique_cliente_nome",
-					     columnNames = { "nome" }))
+					     columnNames = { "nome", "created_by" }))
 public class Cliente extends EntityAuditable {
 
     // @OneToMany >> FetchType.LAZY (padrão)

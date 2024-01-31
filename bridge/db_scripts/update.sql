@@ -29,7 +29,7 @@
        drop index unique_cliente_nome;
 
     alter table cliente 
-       add constraint unique_cliente_nome unique (nome);
+       add constraint unique_cliente_nome unique (nome, created_by);
 
     alter table a_receber 
        add constraint fk_a_receber_cliente 

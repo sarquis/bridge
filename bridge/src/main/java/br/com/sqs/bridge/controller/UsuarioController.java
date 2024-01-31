@@ -16,6 +16,7 @@ import br.com.sqs.bridge.util.BridgeMessage;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
+    private static final String BASE_PATH = "usuarios/usuario";
     private UsuarioService service;
     private BridgeMessage message;
 
@@ -28,26 +29,26 @@ public class UsuarioController {
     public String list(Model model) {
 	model.addAttribute("usuarios", service.findAll());
 	model.addAttribute("searchValue", "");
-	return "usuarios/usuario-list";
+	return BASE_PATH + "-list";
     }
 
     @GetMapping("/listSearch")
     public String listSearch(Model model, @RequestParam("searchValue") String searchValue) {
 	model.addAttribute("usuarios", service.findByEmailContaining(searchValue));
 	model.addAttribute("searchValue", searchValue);
-	return "usuarios/usuario-list";
+	return BASE_PATH + "-list";
     }
 
     @GetMapping("/novo")
     public String novo(Model model) {
 	model.addAttribute("usuario", new Usuario());
-	return "usuarios/usuario-novo";
+	return BASE_PATH + "-novo";
     }
 
     @GetMapping("/editar")
     public String editar(Model model, @RequestParam("usuarioId") int id) {
 	model.addAttribute("usuario", service.findById(id).get());
-	return "usuarios/usuario-editar";
+	return BASE_PATH + "-editar";
     }
 
     @PostMapping("/salvar")
@@ -63,7 +64,7 @@ public class UsuarioController {
 	} catch (Exception e) {
 	    model.addAttribute("usuario", usuario);
 	    model.addAttribute("message", message.handleExepection(e));
-	    return "usuarios/usuario-novo";
+	    return BASE_PATH + "-novo";
 	}
     }
 
@@ -72,7 +73,7 @@ public class UsuarioController {
 	Integer id = usuario.getId();
 	service.ativarDesativar(id);
 	model.addAttribute("usuario", service.findById(id).get());
-	return "usuarios/usuario-editar";
+	return BASE_PATH + "-editar";
     }
 
     @GetMapping("/enviarSenha")
@@ -85,6 +86,6 @@ public class UsuarioController {
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
 	}
-	return "usuarios/usuario-editar";
+	return BASE_PATH + "-editar";
     }
 }
