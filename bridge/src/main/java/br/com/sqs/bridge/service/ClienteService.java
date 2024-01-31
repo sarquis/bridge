@@ -1,6 +1,7 @@
 package br.com.sqs.bridge.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +18,11 @@ public class ClienteService {
 	this.repository = repository;
     }
 
-    public List<Cliente> obterClientes(String emailUsuario) {
+    public List<Cliente> obterTodosOsClientes(String emailUsuario) {
 	return repository.findByCreatedByOrderByNome(emailUsuario);
     }
 
-    public Cliente obterCliente(String nome, String emailUsuario) {
+    public Cliente obterClienteEspecifico(String nome, String emailUsuario) {
 	return repository.findByNomeAndCreatedBy(nome, emailUsuario);
     }
 
@@ -34,5 +35,16 @@ public class ClienteService {
     @Transactional(rollbackFor = Exception.class)
     public void atualizar(Cliente cliente) {
 	repository.save(cliente);
+    }
+
+    public List<Cliente> findByNome(String clienteNome, String emailUsuario) {
+	if (clienteNome == null || clienteNome.isBlank())
+	    return obterTodosOsClientes(emailUsuario);
+
+	return repository.findByNomeContainingAndCreatedByOrderByNomeAsc(clienteNome.trim(), emailUsuario);
+    }
+
+    public Optional<Cliente> findById(Integer id, String emailUsuario) {
+	return repository.findByIdAndCreatedBy(id, emailUsuario);
     }
 }

@@ -22,11 +22,24 @@ FAZENDO:
 			
 			-------------------------------------------------------				
 				
+				
 			1. fazer tela de cadastro de cliente
 
 				- fazer tela de lista de cliente
+				
+					- fazer o teste de pesquisa e ver qual SQL ele esta 
+						escrevendo, se esta trazendo só os do usuario
+						e se esta usando like sem considerar Caps
+						
+					- fazer o teste de dois clientes com o mesmo nome
+						para usuarios diferentes
+						
+				
 				- fazer de edicao cliente
+				
 				- fazer tela de novo cliente
+					validar informando que o cliente já existe
+				
 				- filtro de cliente por nome
 				
 				- Esse questão do saldo é bem importante. Pensar nos riscos e falhas.

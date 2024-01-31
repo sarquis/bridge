@@ -58,7 +58,7 @@ public class AReceberController {
 	AReceber aReceber = new AReceber();
 	aReceber.setCliente(new Cliente());
 
-	List<Cliente> clientes = clienteService.obterClientes(authentication.getName());
+	List<Cliente> clientes = clienteService.obterTodosOsClientes(authentication.getName());
 
 	if (clientes.isEmpty())
 	    permitirDigitarNomeDoCliente(model, aReceber);

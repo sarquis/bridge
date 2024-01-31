@@ -46,7 +46,7 @@ public class AReceberService {
 	if (cliente == null || cliente.getNome() == null || cliente.getNome().isBlank())
 	    throw new BridgeException("O nome do cliente está vazio.");
 
-	Cliente clienteEncontrado = clienteService.obterCliente(aReceber.getCliente().getNome(), atualizar);
+	Cliente clienteEncontrado = clienteService.obterClienteEspecifico(aReceber.getCliente().getNome(), atualizar);
 
 	if (clienteEncontrado == null) {
 	    cliente.setSaldo(aReceber.getValor().negate());
