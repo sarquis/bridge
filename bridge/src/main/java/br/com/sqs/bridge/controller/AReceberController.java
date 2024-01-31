@@ -23,6 +23,8 @@ import br.com.sqs.bridge.util.BridgeMessage;
 @RequestMapping("/aReceber")
 public class AReceberController {
 
+    private static final String BASE_PATH = "aReceber/aReceber";
+
     private AReceberService aReceberService;
     private ClienteService clienteService;
     private BridgeMessage message;
@@ -40,7 +42,7 @@ public class AReceberController {
     public String list(Model model, Authentication authentication) {
 	model.addAttribute("aReceberLista", aReceberService.findAllWithCliente(authentication.getName()));
 	model.addAttribute("searchValue", "");
-	return "aReceber/aReceber-list";
+	return BASE_PATH + "-list";
     }
 
     @GetMapping("/listSearch")
@@ -48,7 +50,7 @@ public class AReceberController {
 	    Authentication authentication) {
 	model.addAttribute("aReceberLista", aReceberService.findByCliente(searchValue, authentication.getName()));
 	model.addAttribute("searchValue", searchValue);
-	return "aReceber/aReceber-list";
+	return BASE_PATH + "-list";
     }
 
     @GetMapping("/novo")
@@ -65,13 +67,13 @@ public class AReceberController {
 
 	model.addAttribute("aReceber", aReceber);
 	model.addAttribute("clientes", clientes);
-	return "aReceber/aReceber-novo";
+	return BASE_PATH + "-novo";
     }
 
     @GetMapping("/editar")
     public String editar(Model model, @RequestParam("id") long id, Authentication authentication) {
 	model.addAttribute("aReceber", aReceberService.findById(id, authentication.getName()).get());
-	return "aReceber/aReceber-editar";
+	return BASE_PATH + "-editar";
     }
 
     @PostMapping("/salvarObservacoes")
@@ -81,7 +83,7 @@ public class AReceberController {
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
-	    return "aReceber/aReceber-editar";
+	    return BASE_PATH + "-editar";
 	}
     }
 
@@ -101,14 +103,14 @@ public class AReceberController {
 	     */
 	    if (aReceber.getCliente().getNome().equalsIgnoreCase("novo_cli_option_value")) {
 		permitirDigitarNomeDoCliente(model, aReceber);
-		return "aReceber/aReceber-novo";
+		return BASE_PATH + "-novo";
 	    }
 
 	    aReceberService.salvarNovo(aReceber, authentication.getName());
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
-	    return "aReceber/aReceber-novo";
+	    return BASE_PATH + "-novo";
 	}
     }
 
@@ -119,7 +121,7 @@ public class AReceberController {
 	    return "redirect:../list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
-	    return "aReceber/aReceber-editar";
+	    return BASE_PATH + "-editar";
 	}
     }
 
