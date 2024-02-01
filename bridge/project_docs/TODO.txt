@@ -27,6 +27,13 @@ FAZENDO:
 				
 				- fazer de edicao cliente
 				
+					- validar se nome do cliente esta em branco...
+					- validar se o nome do cliente já existe....
+					
+				
+					
+				
+				
 				- fazer tela de novo cliente
 					validar informando que o cliente já existe
 				

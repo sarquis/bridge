@@ -56,8 +56,8 @@ public class ClienteController {
 	return BASE_PATH + "-editar";
     }
 
-    @PostMapping("/salvarObservacoes")
-    public String salvarObservacoes(Model model, @ModelAttribute("cliente") Cliente cliente) {
+    @PostMapping("/salvarAlteracao")
+    public String salvarAlteracao(Model model, @ModelAttribute("cliente") Cliente cliente) {
 	try {
 	    // TODO AQUI TEM QUE TER CUIDADO.
 	    // porque pode trocar o nome e as observacoes

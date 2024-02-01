@@ -54,7 +54,7 @@
 
 							<div class="row align-items-center">
 								<div class="col-sm mb-2">
-									<div class="text-secondary" th:if="${aReceber.createdBy != null}">
+									<div class="text-secondary">
 										<strong>Criado em:</strong><br />
 										<span th:text="${aReceber.createdDateFormatted}" /><br />
 									</div>
@@ -73,8 +73,7 @@
 							<button type="submit" class="btn btn-success mt-2" style="margin-left:1rem;">
 								<i class="bi bi-floppy"></i> Salvar</button>
 
-							<button type="button"
-								th:onclick="confirmarExcluir('/aReceber/excluir/[[*{id}]]')"
+							<button type="button" th:onclick="confirmarExcluir('/aReceber/excluir/[[*{id}]]')"
 								class="btn btn-danger mt-2" style="margin-left:1rem;">
 								<i class="bi bi-trash"></i></button>
 

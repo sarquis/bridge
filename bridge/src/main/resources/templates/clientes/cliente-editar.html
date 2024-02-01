@@ -7,12 +7,12 @@
 	<section>
 		<div th:replace="~{fragments/menu :: menu}"></div>
 		<div class="container mt-3">
-			<h2><i class="bi bi-cash-coin"></i> Detalhes do Cliente</h2>
+			<h2><i class="bi bi-people"></i> Detalhes do Cliente</h2>
 			<hr>
 			<div class="card">
 				<div class="card-body">
-					<form id="formAReceber" action="#" th:action="@{/aReceber/salvarObservacoes}"
-						th:object="${aReceber}" method="post">
+					<form id="formAReceber" action="#" th:action="@{/clientes/salvarAlteracao}" th:object="${cliente}"
+						method="post">
 						<div class="container">
 							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 
@@ -24,19 +24,19 @@
 
 								<div class="col-sm mb-3">
 									<div class="input-group">
+										<span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+										<input type="text" th:field="*{nome}" class="form-control"
+											maxlength="100" placeholder="Nome do cliente">
+									</div>
+								</div>
+								
+								<div class="col-sm mb-3">
+									<div class="input-group">
 										<span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
-										<input type="text" th:field="*{valor}" class="form-control"
+										<input type="text" th:field="*{saldo}" class="form-control"
 											placeholder="Valor a receber" inputmode="numeric"
 											oninput="formatarMoeda(this)" maxlength="15" readonly
 											th:pattern="'^\d{1,3}(?:\.\d{3})*(?:,\d{1,2})?$'">
-									</div>
-								</div>
-
-								<div class="col-sm mb-3">
-									<div class="input-group">
-										<span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-										<input type="text" readonly th:field="*{cliente.nome}" class="form-control"
-											maxlength="100" placeholder="Nome do cliente">
 									</div>
 								</div>
 
@@ -54,27 +54,26 @@
 
 							<div class="row align-items-center">
 								<div class="col-sm mb-2">
-									<div class="text-secondary" th:if="${aReceber.createdBy != null}">
+									<div class="text-secondary">
 										<strong>Criado em:</strong><br />
-										<span th:text="${aReceber.createdDateFormatted}" /><br />
+										<span th:text="${cliente.createdDateFormatted}" /><br />
 									</div>
 								</div>
 								<div class="col-sm mb-2">
-									<div class="text-secondary" th:if="${aReceber.lastModifiedBy != null}">
+									<div class="text-secondary" th:if="${cliente.lastModifiedBy != null}">
 										<strong>Última modificação:</strong><br />
-										<span th:text="${aReceber.lastModifiedDateFormatted}" /><br />
+										<span th:text="${cliente.lastModifiedDateFormatted}" /><br />
 									</div>
 								</div>
 							</div>
 
-							<a th:href="@{/aReceber/list}" class="btn btn-light mt-2" role="button">
+							<a th:href="@{/clientes/list}" class="btn btn-light mt-2" role="button">
 								<i class="bi bi-backspace"></i> Voltar</a>
 
 							<button type="submit" class="btn btn-success mt-2" style="margin-left:1rem;">
 								<i class="bi bi-floppy"></i> Salvar</button>
 
-							<button type="button"
-								th:onclick="confirmarExcluir('/aReceber/excluir/[[*{id}]]')"
+							<button type="button" th:onclick="confirmarExcluir('/clientes/excluir/[[*{id}]]')"
 								class="btn btn-danger mt-2" style="margin-left:1rem;">
 								<i class="bi bi-trash"></i></button>
 
