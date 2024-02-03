@@ -23,4 +23,5 @@ public interface AReceberRepository extends JpaRepository<AReceber, Long> {
     @Query(" SELECT a FROM AReceber a JOIN FETCH a.cliente "
 	   + " WHERE a.id = :id AND a.createdBy = :createdBy ")
     Optional<AReceber> findByIdAndCreatedBy(Long id, String createdBy);
+
 }

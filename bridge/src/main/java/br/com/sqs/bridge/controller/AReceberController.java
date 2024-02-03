@@ -77,11 +77,13 @@ public class AReceberController {
     }
 
     @PostMapping("/salvarObservacoes")
-    public String salvarObservacoes(Model model, @ModelAttribute("aReceber") AReceber aReceber) {
+    public String salvarObservacoes(Model model, @ModelAttribute("aReceber") AReceber aReceber,
+	    Authentication authentication) {
 	try {
-	    aReceberService.salvarObservacoes(aReceber);
+	    aReceberService.salvarObservacoes(aReceber, authentication.getName());
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
+	    model.addAttribute("aReceber", aReceberService.findById(aReceber.getId(), authentication.getName()).get());
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-editar";
 	}

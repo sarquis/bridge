@@ -24,10 +24,10 @@ public class AReceberService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void salvarObservacoes(AReceber aReceber) throws BridgeException {
+    public void salvarObservacoes(AReceber aReceber, String emailUsuario) throws BridgeException {
 	String novasObservacoes = aReceber.getObservacoes();
 	// Garantindo que só altere a observação.
-	aReceber = repository.findById(aReceber.getId()).get();
+	aReceber = repository.findByIdAndCreatedBy(aReceber.getId(), emailUsuario).get();
 	aReceber.setObservacoes(novasObservacoes);
 	repository.save(aReceber);
     }

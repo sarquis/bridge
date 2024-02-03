@@ -57,16 +57,13 @@ public class ClienteController {
     }
 
     @PostMapping("/salvarAlteracao")
-    public String salvarAlteracao(Model model, @ModelAttribute("cliente") Cliente cliente) {
+    public String salvarAlteracao(Model model, @ModelAttribute("cliente") Cliente cliente,
+	    Authentication authentication) {
 	try {
-	    // TODO AQUI TEM QUE TER CUIDADO.
-	    // porque pode trocar o nome e as observacoes
-	    // validar se o nome já existe.
-	    // ATENÇÃO: lembrando que manda para service, consulta por id e troca os campos
-	    // manualmente. POIS NAO ESTOU USANDO DTO
-	    // service.salvarObservacoes(cliente);
-	    return "redirect:../aReceber/list";
+	    service.salvarAlteracao(cliente, authentication.getName());
+	    return "redirect:../clientes/list";
 	} catch (Exception e) {
+	    model.addAttribute("cliente", service.findById(cliente.getId(), authentication.getName()).get());
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-editar";
 	}

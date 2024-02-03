@@ -24,15 +24,13 @@ FAZENDO:
 				
 				
 			1. fazer tela de cadastro de cliente
-				
-				- fazer de edicao cliente
-				
-					- validar se nome do cliente esta em branco...
-					- validar se o nome do cliente já existe....
 					
+				- colocar botão para recalcular saldo
 				
-					
-				
+				- no excluir olhar o saldo do clietne se é zero
+			
+			
+			
 				
 				- fazer tela de novo cliente
 					validar informando que o cliente já existe
