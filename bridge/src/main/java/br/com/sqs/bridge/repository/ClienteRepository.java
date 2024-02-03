@@ -9,6 +9,14 @@ import br.com.sqs.bridge.model.entity.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
+    /*
+     * [ ATENÇÃO! ]
+     * 
+     * [ a.createdBy = :createdBy ]
+     * 
+     * * * É obrigatório. * * *
+     */
+
     List<Cliente> findByCreatedByOrderByNome(String createdBy);
 
     Cliente findByNomeAndCreatedBy(String nome, String createdBy);

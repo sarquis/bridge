@@ -19,11 +19,11 @@ public class ClienteService {
 	this.repository = repository;
     }
 
-    public List<Cliente> obterTodosOsClientes(String emailUsuario) {
+    public List<Cliente> findByCreatedByOrderByNome(String emailUsuario) {
 	return repository.findByCreatedByOrderByNome(emailUsuario);
     }
 
-    public Cliente obterClienteEspecifico(String nome, String emailUsuario) {
+    public Cliente findByNomeAndCreatedBy(String nome, String emailUsuario) {
 	return repository.findByNomeAndCreatedBy(nome, emailUsuario);
     }
 
@@ -39,21 +39,21 @@ public class ClienteService {
 	repository.save(cliente);
     }
 
-    public List<Cliente> findByNome(String clienteNome, String emailUsuario) {
+    public List<Cliente> findByNomeContainingAndCreatedByOrderByNomeAsc(String clienteNome, String emailUsuario) {
 	if (clienteNome == null || clienteNome.isBlank())
-	    return obterTodosOsClientes(emailUsuario);
+	    return findByCreatedByOrderByNome(emailUsuario);
 
 	return repository.findByNomeContainingAndCreatedByOrderByNomeAsc(clienteNome.trim(), emailUsuario);
     }
 
-    public Optional<Cliente> findById(Integer id, String emailUsuario) {
+    public Optional<Cliente> findByIdAndCreatedBy(Integer id, String emailUsuario) {
 	return repository.findByIdAndCreatedBy(id, emailUsuario);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void salvarAlteracao(Cliente clienteTemp, String emailUsuario) throws BridgeException {
 
-	Cliente cliente = findById(clienteTemp.getId(), emailUsuario).get();
+	Cliente cliente = findByIdAndCreatedBy(clienteTemp.getId(), emailUsuario).get();
 
 	validarNome(clienteTemp.getNome(), cliente.getNome(), emailUsuario);
 
@@ -70,7 +70,7 @@ public class ClienteService {
 
 	// Verificando se ocorreu troca no nome.
 	if (!nomeNovo.equalsIgnoreCase(nomeOriginal))
-	    if (obterClienteEspecifico(nomeNovo, emailUsuario) != null)
+	    if (findByNomeAndCreatedBy(nomeNovo, emailUsuario) != null)
 		throw new BridgeException("Já existe um cliente com esse nome. Por favor, escolha outro nome.");
     }
 }

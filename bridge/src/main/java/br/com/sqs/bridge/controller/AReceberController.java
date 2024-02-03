@@ -59,7 +59,7 @@ public class AReceberController {
 	AReceber aReceber = new AReceber();
 	aReceber.setCliente(new Cliente());
 
-	List<Cliente> clientes = clienteService.obterTodosOsClientes(authentication.getName());
+	List<Cliente> clientes = clienteService.findByCreatedByOrderByNome(authentication.getName());
 
 	if (clientes.isEmpty())
 	    permitirDigitarNomeDoCliente(model, aReceber);
@@ -73,7 +73,8 @@ public class AReceberController {
 
     @GetMapping("/editar")
     public String editar(Model model, @RequestParam("id") long id, Authentication authentication) {
-	model.addAttribute("aReceber", aReceberService.findByIdAndCreatedByWithCliente(id, authentication.getName()).get());
+	model.addAttribute("aReceber",
+		aReceberService.findByIdAndCreatedByWithCliente(id, authentication.getName()).get());
 	return BASE_PATH + "-editar";
     }
 
@@ -84,7 +85,8 @@ public class AReceberController {
 	    aReceberService.salvarObservacoes(aReceber, authentication.getName());
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
-	    model.addAttribute("aReceber", aReceberService.findByIdAndCreatedByWithCliente(aReceber.getId(), authentication.getName()).get());
+	    model.addAttribute("aReceber",
+		    aReceberService.findByIdAndCreatedByWithCliente(aReceber.getId(), authentication.getName()).get());
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-editar";
 	}

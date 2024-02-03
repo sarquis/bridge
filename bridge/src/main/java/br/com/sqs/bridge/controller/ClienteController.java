@@ -31,7 +31,7 @@ public class ClienteController {
 
     @GetMapping("/list")
     public String list(Model model, Authentication authentication) {
-	model.addAttribute("clientes", service.obterTodosOsClientes(authentication.getName()));
+	model.addAttribute("clientes", service.findByCreatedByOrderByNome(authentication.getName()));
 	model.addAttribute("searchValue", "");
 	return BASE_PATH + "-list";
     }
@@ -39,7 +39,8 @@ public class ClienteController {
     @GetMapping("/listSearch")
     public String listSearch(Model model, @RequestParam("searchValue") String searchValue,
 	    Authentication authentication) {
-	model.addAttribute("clientes", service.findByNome(searchValue, authentication.getName()));
+	model.addAttribute("clientes",
+		service.findByNomeContainingAndCreatedByOrderByNomeAsc(searchValue, authentication.getName()));
 	model.addAttribute("searchValue", searchValue);
 	return BASE_PATH + "-list";
     }
@@ -52,7 +53,7 @@ public class ClienteController {
 
     @GetMapping("/editar")
     public String editar(Model model, @RequestParam("id") int id, Authentication authentication) {
-	model.addAttribute("cliente", service.findById(id, authentication.getName()).get());
+	model.addAttribute("cliente", service.findByIdAndCreatedBy(id, authentication.getName()).get());
 	return BASE_PATH + "-editar";
     }
 
@@ -63,7 +64,8 @@ public class ClienteController {
 	    service.salvarAlteracao(cliente, authentication.getName());
 	    return "redirect:../clientes/list";
 	} catch (Exception e) {
-	    model.addAttribute("cliente", service.findById(cliente.getId(), authentication.getName()).get());
+	    model.addAttribute("cliente",
+		    service.findByIdAndCreatedBy(cliente.getId(), authentication.getName()).get());
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-editar";
 	}
