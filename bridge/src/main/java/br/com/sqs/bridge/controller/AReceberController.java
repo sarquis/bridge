@@ -40,7 +40,7 @@ public class AReceberController {
 
     @GetMapping("/list")
     public String list(Model model, Authentication authentication) {
-	model.addAttribute("aReceberLista", aReceberService.findAllWithCliente(authentication.getName()));
+	model.addAttribute("aReceberLista", aReceberService.findByCreatedByWithCliente(authentication.getName()));
 	model.addAttribute("searchValue", "");
 	return BASE_PATH + "-list";
     }
@@ -48,7 +48,8 @@ public class AReceberController {
     @GetMapping("/listSearch")
     public String listSearch(Model model, @RequestParam("searchValue") String searchValue,
 	    Authentication authentication) {
-	model.addAttribute("aReceberLista", aReceberService.findByCliente(searchValue, authentication.getName()));
+	model.addAttribute("aReceberLista", aReceberService
+		.findByCreatedByAndClienteNomeContainingWithCliente(searchValue, authentication.getName()));
 	model.addAttribute("searchValue", searchValue);
 	return BASE_PATH + "-list";
     }
@@ -72,7 +73,7 @@ public class AReceberController {
 
     @GetMapping("/editar")
     public String editar(Model model, @RequestParam("id") long id, Authentication authentication) {
-	model.addAttribute("aReceber", aReceberService.findById(id, authentication.getName()).get());
+	model.addAttribute("aReceber", aReceberService.findByIdAndCreatedByWithCliente(id, authentication.getName()).get());
 	return BASE_PATH + "-editar";
     }
 
@@ -83,7 +84,7 @@ public class AReceberController {
 	    aReceberService.salvarObservacoes(aReceber, authentication.getName());
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
-	    model.addAttribute("aReceber", aReceberService.findById(aReceber.getId(), authentication.getName()).get());
+	    model.addAttribute("aReceber", aReceberService.findByIdAndCreatedByWithCliente(aReceber.getId(), authentication.getName()).get());
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-editar";
 	}

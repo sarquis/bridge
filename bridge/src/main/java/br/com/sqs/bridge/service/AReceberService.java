@@ -25,8 +25,8 @@ public class AReceberService {
 
     @Transactional(rollbackFor = Exception.class)
     public void salvarObservacoes(AReceber aReceber, String emailUsuario) throws BridgeException {
-	String novasObservacoes = aReceber.getObservacoes();
 	// Garantindo que só altere a observação.
+	String novasObservacoes = aReceber.getObservacoes();
 	aReceber = repository.findByIdAndCreatedBy(aReceber.getId(), emailUsuario).get();
 	aReceber.setObservacoes(novasObservacoes);
 	repository.save(aReceber);
@@ -58,24 +58,24 @@ public class AReceberService {
 	}
     }
 
-    public List<AReceber> findAllWithCliente(String emailUsuario) {
+    public List<AReceber> findByCreatedByWithCliente(String emailUsuario) {
 	return repository.findByCreatedByWithCliente(emailUsuario);
     }
 
-    public List<AReceber> findByCliente(String clienteNome, String emailUsuario) {
+    public List<AReceber> findByCreatedByAndClienteNomeContainingWithCliente(String clienteNome, String emailUsuario) {
 	if (clienteNome == null || clienteNome.isBlank())
-	    return findAllWithCliente(emailUsuario);
+	    return findByCreatedByWithCliente(emailUsuario);
 
-	return repository.findByCliente(clienteNome.trim(), emailUsuario);
+	return repository.findByCreatedByAndClienteNomeContainingWithCliente(clienteNome.trim(), emailUsuario);
     }
 
-    public Optional<AReceber> findById(Long id, String emailUsuario) {
-	return repository.findByIdAndCreatedBy(id, emailUsuario);
+    public Optional<AReceber> findByIdAndCreatedByWithCliente(Long id, String emailUsuario) {
+	return repository.findByIdAndCreatedByWithCliente(id, emailUsuario);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void excluir(long id, String emailUsuario) {
-	AReceber aReceber = repository.findByIdAndCreatedBy(id, emailUsuario).get();
+	AReceber aReceber = repository.findByIdAndCreatedByWithCliente(id, emailUsuario).get();
 
 	Cliente cliente = aReceber.getCliente();
 	BigDecimal saldoAnterior = cliente.getSaldo();
