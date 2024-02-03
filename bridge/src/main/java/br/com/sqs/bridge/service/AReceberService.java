@@ -1,6 +1,5 @@
 package br.com.sqs.bridge.service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,34 +23,32 @@ public class AReceberService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void salvarObservacoes(AReceber aReceber, String emailUsuario) throws BridgeException {
+    public void salvarObservacoes(AReceber aReceberTemp, String emailUsuario) throws BridgeException {
 	// Garantindo que só altere a observação.
-	String novasObservacoes = aReceber.getObservacoes();
-	aReceber = repository.findByIdAndCreatedBy(aReceber.getId(), emailUsuario).get();
-	aReceber.setObservacoes(novasObservacoes);
+	AReceber aReceber = repository.findByIdAndCreatedBy(aReceberTemp.getId(), emailUsuario).get();
+	aReceber.setObservacoes(aReceberTemp.getObservacoes());
 	repository.save(aReceber);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void salvarNovo(AReceber aReceber, String emailUsuario) throws BridgeException {
-	aReceber.setId(null);
 	validarESalvarClienteSeNecessario(aReceber, emailUsuario);
+	aReceber.setId(null);
 	aReceber.setAtivo(true);
 	repository.save(aReceber);
     }
 
-    private void validarESalvarClienteSeNecessario(AReceber aReceber, String atualizar) throws BridgeException {
-	Cliente cliente = aReceber.getCliente();
-
-	if (cliente == null || cliente.getNome() == null || cliente.getNome().isBlank())
+    private void validarESalvarClienteSeNecessario(AReceber aReceber, String emailUsuario) throws BridgeException {
+	String nomeDoCliente = aReceber.getCliente().getNome();
+	if (nomeDoCliente == null || nomeDoCliente.isBlank())
 	    throw new BridgeException("O nome do cliente está vazio.");
 
-	Cliente clienteEncontrado = clienteService.obterClienteEspecifico(aReceber.getCliente().getNome(), atualizar);
-
+	Cliente clienteEncontrado = clienteService.obterClienteEspecifico(nomeDoCliente, emailUsuario);
 	if (clienteEncontrado == null) {
-	    cliente.setSaldo(aReceber.getValor().negate());
-	    clienteService.salvarNovoCliente(cliente);
+	    aReceber.getCliente().setSaldo(aReceber.getValor().negate()); // Definindo o saldo inicial.
+	    clienteService.salvarNovoCliente(aReceber.getCliente());
 	} else {
+	    // Atualizando o saldo:
 	    clienteEncontrado.setSaldo(clienteEncontrado.getSaldo().subtract(aReceber.getValor()));
 	    clienteService.atualizar(clienteEncontrado);
 	    aReceber.setCliente(clienteEncontrado);
@@ -78,8 +75,7 @@ public class AReceberService {
 	AReceber aReceber = repository.findByIdAndCreatedByWithCliente(id, emailUsuario).get();
 
 	Cliente cliente = aReceber.getCliente();
-	BigDecimal saldoAnterior = cliente.getSaldo();
-	cliente.setSaldo(saldoAnterior.add(aReceber.getValor())); // Devolvendo saldo do cliente.
+	cliente.setSaldo(cliente.getSaldo().add(aReceber.getValor())); // Devolvendo saldo do cliente.
 	clienteService.atualizar(cliente);
 
 	repository.delete(aReceber);

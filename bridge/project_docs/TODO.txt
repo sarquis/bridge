@@ -21,6 +21,15 @@ FAZENDO:
 		1. Cadastro do a receber. 
 			
 			-------------------------------------------------------				
+			
+			0. Revalidar os metodos do Areceber....
+			code review completo
+			
+			0. Refazer nomenclatura do cliente... 
+				seguindo o mesmo modelo do areceber
+				revisar o codigo por completo.	
+				
+				
 				
 				
 			1. fazer tela de cadastro de cliente

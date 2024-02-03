@@ -29,6 +29,7 @@ public class ClienteService {
 
     @Transactional(rollbackFor = Exception.class)
     public void salvarNovoCliente(Cliente cliente) {
+	cliente.setId(null);
 	cliente.setAtivo(true);
 	repository.save(cliente);
     }
