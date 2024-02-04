@@ -1,5 +1,6 @@
 package br.com.sqs.bridge.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,18 @@ public class ClienteService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void atualizar(Cliente cliente) {
+    public void adicionarSaldo(Cliente clienteTemp, BigDecimal valor) {
+	// Garantindo que apenas o saldo seja alterado.
+	Cliente cliente = repository.findById(clienteTemp.getId()).get();
+	cliente.setSaldo(cliente.getSaldo().add(valor));
+	repository.save(cliente);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void removerSaldo(Cliente clienteTemp, BigDecimal valor) {
+	// Garantindo que apenas o saldo seja alterado.
+	Cliente cliente = repository.findById(clienteTemp.getId()).get();
+	cliente.setSaldo(cliente.getSaldo().subtract(valor));
 	repository.save(cliente);
     }
 

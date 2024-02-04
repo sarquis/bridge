@@ -12,7 +12,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     /*
      * [ ATENÇÃO! ]
      * 
-     * [ a.createdBy = :createdBy ]
+     * [ createdBy ]
      * 
      * * * É obrigatório. * * *
      */

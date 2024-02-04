@@ -21,14 +21,9 @@ FAZENDO:
 		1. Cadastro do a receber. 
 			
 			-------------------------------------------------------				
-			
-			0. Revalidar os metodos do Areceber....
-			code review completo
-			
-			0. Refazer nomenclatura do cliente... 
-				seguindo o mesmo modelo do areceber
-				revisar o codigo por completo.	
-				
+						
+			0. Cliente service:
+				- continuar o review e fazer o restante dos metodos.
 				
 				
 				
@@ -50,6 +45,9 @@ FAZENDO:
 				- Função atualizar saldo do cliente (executar toda vez que entra no cliente).
 				- Seria bom ter uma forma de consultar todos os a receber desse cliente
 				
+			3. Fazer tela para cadastro de pagamentos.
+				mesmo esquema do areceber, só que de entra da dinheiro.
+			
 
 			2. Os lancamentos a receber devem poder ser baixados
 			ou seja pagos, o pagamento pode ser total ou parcial

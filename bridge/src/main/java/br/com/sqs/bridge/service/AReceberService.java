@@ -48,9 +48,7 @@ public class AReceberService {
 	    aReceber.getCliente().setSaldo(aReceber.getValor().negate()); // Definindo o saldo inicial.
 	    clienteService.salvarNovoCliente(aReceber.getCliente());
 	} else {
-	    // Atualizando o saldo:
-	    clienteEncontrado.setSaldo(clienteEncontrado.getSaldo().subtract(aReceber.getValor()));
-	    clienteService.atualizar(clienteEncontrado);
+	    clienteService.removerSaldo(clienteEncontrado, aReceber.getValor());
 	    aReceber.setCliente(clienteEncontrado);
 	}
     }
@@ -73,10 +71,7 @@ public class AReceberService {
     @Transactional(rollbackFor = Exception.class)
     public void excluir(long id, String emailUsuario) {
 	AReceber aReceber = repository.findByIdAndCreatedByWithCliente(id, emailUsuario).get();
-	Cliente cliente = aReceber.getCliente();
-	// Devolvendo saldo do cliente.
-	cliente.setSaldo(cliente.getSaldo().add(aReceber.getValor()));
-	clienteService.atualizar(cliente);
+	clienteService.adicionarSaldo(aReceber.getCliente(), aReceber.getValor());
 	repository.delete(aReceber);
     }
 
