@@ -73,11 +73,10 @@ public class AReceberService {
     @Transactional(rollbackFor = Exception.class)
     public void excluir(long id, String emailUsuario) {
 	AReceber aReceber = repository.findByIdAndCreatedByWithCliente(id, emailUsuario).get();
-
 	Cliente cliente = aReceber.getCliente();
-	cliente.setSaldo(cliente.getSaldo().add(aReceber.getValor())); // Devolvendo saldo do cliente.
+	// Devolvendo saldo do cliente.
+	cliente.setSaldo(cliente.getSaldo().add(aReceber.getValor()));
 	clienteService.atualizar(cliente);
-
 	repository.delete(aReceber);
     }
 

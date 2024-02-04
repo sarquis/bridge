@@ -39,27 +39,26 @@ public class AReceberController {
     }
 
     @GetMapping("/list")
-    public String list(Model model, Authentication authentication) {
-	model.addAttribute("aReceberLista", aReceberService.findByCreatedByWithCliente(authentication.getName()));
+    public String list(Model model, Authentication authUser) {
+	model.addAttribute("aReceberLista", aReceberService.findByCreatedByWithCliente(authUser.getName()));
 	model.addAttribute("searchValue", "");
 	return BASE_PATH + "-list";
     }
 
     @GetMapping("/listSearch")
-    public String listSearch(Model model, @RequestParam("searchValue") String searchValue,
-	    Authentication authentication) {
+    public String listSearch(Model model, @RequestParam("searchValue") String searchValue, Authentication authUser) {
 	model.addAttribute("aReceberLista", aReceberService
-		.findByCreatedByAndClienteNomeContainingWithCliente(searchValue, authentication.getName()));
+		.findByCreatedByAndClienteNomeContainingWithCliente(searchValue, authUser.getName()));
 	model.addAttribute("searchValue", searchValue);
 	return BASE_PATH + "-list";
     }
 
     @GetMapping("/novo")
-    public String novo(Model model, Authentication authentication) {
+    public String novo(Model model, Authentication authUser) {
 	AReceber aReceber = new AReceber();
 	aReceber.setCliente(new Cliente());
 
-	List<Cliente> clientes = clienteService.findByCreatedByOrderByNome(authentication.getName());
+	List<Cliente> clientes = clienteService.findByCreatedByOrderByNome(authUser.getName());
 
 	if (clientes.isEmpty())
 	    permitirDigitarNomeDoCliente(model, aReceber);
@@ -72,28 +71,27 @@ public class AReceberController {
     }
 
     @GetMapping("/editar")
-    public String editar(Model model, @RequestParam("id") long id, Authentication authentication) {
-	model.addAttribute("aReceber",
-		aReceberService.findByIdAndCreatedByWithCliente(id, authentication.getName()).get());
+    public String editar(Model model, @RequestParam("id") long id, Authentication authUser) {
+	model.addAttribute("aReceber", aReceberService.findByIdAndCreatedByWithCliente(id, authUser.getName()).get());
 	return BASE_PATH + "-editar";
     }
 
     @PostMapping("/salvarObservacoes")
-    public String salvarObservacoes(Model model, @ModelAttribute("aReceber") AReceber aReceber,
-	    Authentication authentication) {
+    public String salvarObservacoes(Model model,
+	    @ModelAttribute("aReceber") AReceber aReceber, Authentication authUser) {
 	try {
-	    aReceberService.salvarObservacoes(aReceber, authentication.getName());
+	    aReceberService.salvarObservacoes(aReceber, authUser.getName());
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
-	    model.addAttribute("aReceber",
-		    aReceberService.findByIdAndCreatedByWithCliente(aReceber.getId(), authentication.getName()).get());
+	    model.addAttribute("aReceber", aReceberService
+		    .findByIdAndCreatedByWithCliente(aReceber.getId(), authUser.getName()).get());
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-editar";
 	}
     }
 
     @PostMapping("/salvar")
-    public String salvar(Model model, @ModelAttribute("aReceber") AReceber aReceber, Authentication authentication) {
+    public String salvar(Model model, @ModelAttribute("aReceber") AReceber aReceber, Authentication authUser) {
 	try {
 
 	    if (semCliente(aReceber)) {
@@ -111,7 +109,7 @@ public class AReceberController {
 		return BASE_PATH + "-novo";
 	    }
 
-	    aReceberService.salvarNovo(aReceber, authentication.getName());
+	    aReceberService.salvarNovo(aReceber, authUser.getName());
 	    return "redirect:../aReceber/list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
@@ -120,9 +118,9 @@ public class AReceberController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(Model model, @PathVariable("id") long id, Authentication authentication) {
+    public String excluir(Model model, @PathVariable("id") long id, Authentication authUser) {
 	try {
-	    aReceberService.excluir(id, authentication.getName());
+	    aReceberService.excluir(id, authUser.getName());
 	    return "redirect:../list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
