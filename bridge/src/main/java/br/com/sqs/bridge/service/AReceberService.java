@@ -46,7 +46,7 @@ public class AReceberService {
 	Cliente clienteEncontrado = clienteService.findByNomeAndCreatedBy(nomeDoCliente, emailUsuario);
 	if (clienteEncontrado == null) {
 	    aReceber.getCliente().setSaldo(aReceber.getValor().negate()); // Definindo o saldo inicial.
-	    clienteService.salvarNovoCliente(aReceber.getCliente());
+	    clienteService.salvarNovoCliente(aReceber.getCliente(), emailUsuario);
 	} else {
 	    clienteService.removerSaldo(clienteEncontrado, aReceber.getValor());
 	    aReceber.setCliente(clienteEncontrado);

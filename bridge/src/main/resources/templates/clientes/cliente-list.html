@@ -35,8 +35,8 @@
 									<td class="align-middle" style="text-align: center;">
 										<div th:text="${cliente.nome}" />
 									</td>
-									<td class="col-1 align-middle" style="text-align: right;padding-left: 1rem;"
-										th:text="${#numbers.formatDecimal(cliente.saldo, 0, 'POINT', 2, 'COMMA')}" />
+									<td class="align-middle" style="text-align: center;padding-left: 1rem;"
+										th:text="${#numbers.formatDecimal(cliente.saldo, 1, 'POINT', 2, 'COMMA')}" />
 									<td class="align-middle d-none d-sm-block" style="text-align: center;">
 										<textarea class="form-control" id="areaDeTexto" rows="2"
 											th:text="${cliente.observacoes}" th:readonly="true"></textarea>

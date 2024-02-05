@@ -1,5 +1,7 @@
 package br.com.sqs.bridge.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.sqs.bridge.model.entity.Cliente;
-import br.com.sqs.bridge.model.entity.Usuario;
 import br.com.sqs.bridge.service.ClienteService;
 import br.com.sqs.bridge.util.BridgeMessage;
 
@@ -30,53 +31,54 @@ public class ClienteController {
     }
 
     @GetMapping("/list")
-    public String list(Model model, Authentication authentication) {
-	model.addAttribute("clientes", service.findByCreatedByOrderByNome(authentication.getName()));
+    public String list(Model model, Authentication authUser) {
+	model.addAttribute("clientes", service.findByCreatedByOrderByNome(authUser.getName()));
 	model.addAttribute("searchValue", "");
 	return BASE_PATH + "-list";
     }
 
     @GetMapping("/listSearch")
     public String listSearch(Model model, @RequestParam("searchValue") String searchValue,
-	    Authentication authentication) {
-	model.addAttribute("clientes",
-		service.findByNomeContainingAndCreatedByOrderByNomeAsc(searchValue, authentication.getName()));
+	    Authentication authUser) {
+	model.addAttribute("clientes", service
+		.findByNomeContainingAndCreatedByOrderByNomeAsc(searchValue, authUser.getName()));
 	model.addAttribute("searchValue", searchValue);
 	return BASE_PATH + "-list";
     }
 
     @GetMapping("/novo")
     public String novo(Model model) {
-	model.addAttribute("cliente", new Usuario());
+	Cliente cliente = new Cliente();
+	cliente.setSaldo(BigDecimal.ZERO);
+	model.addAttribute("cliente", cliente);
 	return BASE_PATH + "-novo";
     }
 
     @GetMapping("/editar")
-    public String editar(Model model, @RequestParam("id") int id, Authentication authentication) {
-	model.addAttribute("cliente", service.findByIdAndCreatedBy(id, authentication.getName()).get());
+    public String editar(Model model, @RequestParam("id") int id, Authentication authUser) {
+	// TODO chamar um método para recalcular o saldo por segurança.
+	model.addAttribute("cliente", service.findByIdAndCreatedBy(id, authUser.getName()).get());
 	return BASE_PATH + "-editar";
     }
 
     @PostMapping("/salvarAlteracao")
-    public String salvarAlteracao(Model model, @ModelAttribute("cliente") Cliente cliente,
-	    Authentication authentication) {
+    public String salvarAlteracao(Model model, @ModelAttribute("cliente") Cliente cliente, Authentication authUser) {
 	try {
-	    service.salvarAlteracao(cliente, authentication.getName());
+	    service.salvarAlteracao(cliente, authUser.getName());
 	    return "redirect:../clientes/list";
 	} catch (Exception e) {
 	    model.addAttribute("cliente",
-		    service.findByIdAndCreatedBy(cliente.getId(), authentication.getName()).get());
+		    service.findByIdAndCreatedBy(cliente.getId(), authUser.getName()).get());
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-editar";
 	}
     }
 
     @PostMapping("/salvar")
-    public String salvar(Model model, @ModelAttribute("cliente") Cliente cliente, Authentication authentication) {
+    public String salvar(Model model, @ModelAttribute("cliente") Cliente cliente, Authentication authUser) {
 	try {
-	    // TODO AQUI TEM QUE TER CUIDADO.
-	    // verificar se nome já existe, evitar duplicação
-	    // service.salvarNovo(aReceber, authentication.getName());
+	    cliente.setSaldo(BigDecimal.ZERO);
+	    service.salvarNovoCliente(cliente, authUser.getName());
 	    return "redirect:../clientes/list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));

@@ -17,69 +17,26 @@ Pensar em controles (sempre usar):
 ***********
 
 FAZENDO:
+				 				
+		1. CRUD Pagamentos
+			- Fazer tela para cadastro de pagamentos.
+			- mesmo esquema do areceber, só que de entra da dinheiro.	
 			
-		1. Cadastro do a receber. 
+		2. CRUD Clientes
 			
-			-------------------------------------------------------				
-						
-			0. Cliente service:
-				- continuar o review e fazer o restante dos metodos.
-				
-				
-				
-			1. fazer tela de cadastro de cliente
-					
-				- colocar botão para recalcular saldo
-				
-				- no excluir olhar o saldo do clietne se é zero
-			
-			
-			
-				
-				- fazer tela de novo cliente
-					validar informando que o cliente já existe
-				
-				- filtro de cliente por nome
-				
-				- Esse questão do saldo é bem importante. Pensar nos riscos e falhas.
-				- Função atualizar saldo do cliente (executar toda vez que entra no cliente).
-				- Seria bom ter uma forma de consultar todos os a receber desse cliente
-				
-			3. Fazer tela para cadastro de pagamentos.
-				mesmo esquema do areceber, só que de entra da dinheiro.
-			
-
-			2. Os lancamentos a receber devem poder ser baixados
-			ou seja pagos, o pagamento pode ser total ou parcial
-			criar uma tabela de pagamentos.
+			- Editar: falta o recalculo do saldo. * Fazer função atualizar saldo.
+			- Excluir: falta fazer tudo: verificar tabela de areceber e pagamentos.
+					   falta verificar tabela de pagamentos.
 			
 A FAZER:
 	
-	uma vez que o lancamento do areceber foi dado baixa 
-	- entao nao precisa mais ser listado no a receber 
-	(pode fazer uma flag pago, ou utilizar a flag situacao, e tornar ele inativo.)
-	pode ir para uma tela de baixas
-	lancamentos recebidos coisa do tipo
-	
 BACKLOG:
-
-	- inativar clientes, inativar a receber, atenção ao inativar o cliente tem uma serie de restrições a serem feitas no cadastro de uma novo a receber.
-	- melhor nao deixar inativar nada por enquanto. só permitir quando existir um historico.
-	- nem permitir trocar valores do a receber. gerando uma maior segurança.
-
-	- NOVAS SECOES DO CURSO DE SPRING: 165! fAZER AS AULAS
-
-	- criar uma pagina default para erros não tratados, forcar um erro de thymeleaf qualquer para testar.
-	
-	- criar botão de "registro de novo usuario" "Criar uma conta"
-	- criar esqueci minha senha.
 	
 	- ver como instalar no celular
 	
 	- bloqueio de usuario por tentativas
+	
 	- all logging to a table 
-	- fazer funcionalidade do registro com envio para e-mail de senha
-	- colocar questão da senha segura nao permitir senhas fáceis
 	
 	- logar os erros do sistema em uma tabela, onde só o admin veja.
 	- colocar botão para exibir usuarios ativos/inativos

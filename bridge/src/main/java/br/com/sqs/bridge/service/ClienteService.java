@@ -29,7 +29,8 @@ public class ClienteService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void salvarNovoCliente(Cliente cliente) {
+    public void salvarNovoCliente(Cliente cliente, String emailUsuario) throws BridgeException {
+	verificarSeNomeJaEstaEmUso(cliente.getNome(), emailUsuario);
 	cliente.setId(null);
 	cliente.setAtivo(true);
 	repository.save(cliente);
@@ -80,9 +81,13 @@ public class ClienteService {
 	    throw new BridgeException("Parece que você esqueceu de preencher o nome do cliente. "
 				      + "Por favor, preencha este campo para continuar.");
 
-	// Verificando se ocorreu troca no nome.
+	// Verificando se ocorreu mudança no nome.
 	if (!nomeNovo.equalsIgnoreCase(nomeOriginal))
-	    if (findByNomeAndCreatedBy(nomeNovo, emailUsuario) != null)
-		throw new BridgeException("Já existe um cliente com esse nome. Por favor, escolha outro nome.");
+	    verificarSeNomeJaEstaEmUso(nomeNovo, emailUsuario);
+    }
+
+    private void verificarSeNomeJaEstaEmUso(String nome, String emailUsuario) throws BridgeException {
+	if (findByNomeAndCreatedBy(nome, emailUsuario) != null)
+	    throw new BridgeException("Já existe um cliente com esse nome. Por favor, escolha outro nome.");
     }
 }
