@@ -19,6 +19,16 @@ Pensar em controles (sempre usar):
 FAZENDO:
 				 				
 		1. CRUD Pagamentos
+			Feito: Entidade, repository, service e controller.
+			
+			>> Falta fazer: htmls
+			Lembrar de :
+				- No pagamento não tem essa de digitar nome do cliente
+					tem que obrigatoriamente selecionar um da lista!
+				- Testar passar cliente vazio.
+				* * * - Testar cadastrar novo pagamento sem ter nenhum clinte! * * *
+				* TESTAR O CONTROLE DE SALDO: adicionando e removendo saldo.
+			
 			- Fazer tela para cadastro de pagamentos.
 			- mesmo esquema do areceber, só que de entra da dinheiro.	
 			

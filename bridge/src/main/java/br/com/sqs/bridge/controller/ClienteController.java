@@ -67,8 +67,7 @@ public class ClienteController {
 	    service.salvarAlteracao(cliente, authUser.getName());
 	    return "redirect:../clientes/list";
 	} catch (Exception e) {
-	    model.addAttribute("cliente",
-		    service.findByIdAndCreatedBy(cliente.getId(), authUser.getName()).get());
+	    model.addAttribute("cliente", cliente);
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-editar";
 	}

@@ -1,5 +1,11 @@
 
-    create table a_receber (
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    create table pagamento (
         id bigint unsigned not null auto_increment,
         ativo BOOLEAN not null,
         created_by varchar(255),
@@ -12,26 +18,7 @@
         primary key (id)
     ) engine=InnoDB;
 
-    create table cliente (
-        id integer not null auto_increment,
-        ativo BOOLEAN not null,
-        created_by varchar(255),
-        created_date datetime(6),
-        last_modified_by varchar(255),
-        last_modified_date datetime(6),
-        nome varchar(100) not null,
-        observacoes varchar(1000),
-        saldo decimal(15,2) not null,
-        primary key (id)
-    ) engine=InnoDB;
-
-    alter table cliente 
-       drop index unique_cliente_nome;
-
-    alter table cliente 
-       add constraint unique_cliente_nome unique (nome, created_by);
-
-    alter table a_receber 
-       add constraint fk_a_receber_cliente 
+    alter table pagamento 
+       add constraint fk_pagamento_cliente 
        foreign key (cliente_id) 
        references cliente (id);
