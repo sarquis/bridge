@@ -95,7 +95,14 @@ public class AReceberController {
 
 	    if (semCliente(aReceber)) {
 		aReceber.setCliente(new Cliente());
-		aReceber.getCliente().setNome(SELECT_KEY_LABEL_NOVO_CLIENTE);
+		List<Cliente> clientes = clienteService.findByCreatedByOrderByNome(authUser.getName());
+
+		if (clientes.isEmpty())
+		    permitirDigitarNomeDoCliente(model, aReceber);
+		else
+		    aReceber.getCliente().setNome(SELECT_KEY_LABEL_NOVO_CLIENTE);
+
+		model.addAttribute("clientes", clientes);
 		throw new BridgeException("Por favor, informe um cliente.");
 	    }
 
