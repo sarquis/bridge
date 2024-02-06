@@ -31,6 +31,8 @@ FAZENDO:
 			
 			- Fazer tela para cadastro de pagamentos.
 			- mesmo esquema do areceber, só que de entra da dinheiro.	
+
+			- menu pagamentos
 			
 		2. CRUD Clientes
 			
