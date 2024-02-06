@@ -20,8 +20,14 @@ FAZENDO:
 				 				
 		1. CRUD Pagamentos
 			Feito: Entidade, repository, service e controller.
+			Feito: HTMLs
 			
-			>> Falta fazer: htmls
+			- testar cadastrar novo
+			
+			- testar list e search
+						
+			- testar editar
+			
 			Lembrar de :
 				- No pagamento não tem essa de digitar nome do cliente
 					tem que obrigatoriamente selecionar um da lista!
@@ -32,7 +38,7 @@ FAZENDO:
 			- Fazer tela para cadastro de pagamentos.
 			- mesmo esquema do areceber, só que de entra da dinheiro.	
 
-			- menu pagamentos
+
 			
 		2. CRUD Clientes
 			
