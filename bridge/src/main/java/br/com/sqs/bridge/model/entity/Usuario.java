@@ -30,6 +30,9 @@ public class Usuario extends EntityAuditable {
     @Column(name = "senha", nullable = false, length = 68)
     private String senha;
 
+    @Column(name = "ativo", nullable = false, columnDefinition = "BOOLEAN")
+    private Boolean ativo;
+
     @ManyToMany(fetch = FetchType.LAZY,
 		cascade = { CascadeType.PERSIST,
 			    CascadeType.MERGE,
@@ -64,6 +67,14 @@ public class Usuario extends EntityAuditable {
 
     public void setFuncoes(List<Funcao> funcoes) {
 	this.funcoes = funcoes;
+    }
+
+    public Boolean getAtivo() {
+	return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+	this.ativo = ativo;
     }
 
 }

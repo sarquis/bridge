@@ -14,9 +14,6 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class Auditable {
 
-    @Column(name = "ativo", nullable = false, columnDefinition = "BOOLEAN")
-    private Boolean ativo;
-
     @CreatedDate
     @Column(name = "created_date")
     private LocalDateTime createdDate;
@@ -32,14 +29,6 @@ public abstract class Auditable {
     @LastModifiedBy
     @Column(name = "last_modified_by")
     private String lastModifiedBy;
-
-    public Boolean getAtivo() {
-	return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-	this.ativo = ativo;
-    }
 
     public LocalDateTime getCreatedDate() {
 	return createdDate;

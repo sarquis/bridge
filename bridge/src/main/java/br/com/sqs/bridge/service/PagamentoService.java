@@ -34,15 +34,16 @@ public class PagamentoService {
     public void salvarNovo(Pagamento pagamento, String emailUsuario) throws BridgeException {
 	clienteValidarAtualizarSaldo(pagamento, emailUsuario);
 	pagamento.setId(null);
-	pagamento.setAtivo(true);
 	repository.save(pagamento);
     }
 
     private void clienteValidarAtualizarSaldo(Pagamento pagamento, String emailUsuario) throws BridgeException {
-	String nomeDoCliente = pagamento.getCliente().getNome();
-	if (nomeDoCliente == null || nomeDoCliente.isBlank())
+	if (pagamento.getCliente() == null
+		|| pagamento.getCliente().getNome() == null
+		|| pagamento.getCliente().getNome().isBlank())
 	    throw new BridgeException("Por favor, informe um cliente.");
 
+	String nomeDoCliente = pagamento.getCliente().getNome();
 	Cliente cliente = clienteService.findByNomeAndCreatedBy(nomeDoCliente, emailUsuario);
 	clienteService.adicionarSaldo(cliente, pagamento.getValor());
 	pagamento.setCliente(cliente);

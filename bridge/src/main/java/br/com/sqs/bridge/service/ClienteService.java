@@ -32,7 +32,6 @@ public class ClienteService {
     public void salvarNovoCliente(Cliente cliente, String emailUsuario) throws BridgeException {
 	verificarSeNomeJaEstaEmUso(cliente.getNome(), emailUsuario);
 	cliente.setId(null);
-	cliente.setAtivo(true);
 	repository.save(cliente);
     }
 

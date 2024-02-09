@@ -22,23 +22,11 @@ FAZENDO:
 			Feito: Entidade, repository, service e controller.
 			Feito: HTMLs
 			
-			- testar cadastrar novo
+			- testar cadastrar novo (ver os sqls)
+			- testar list e search (ver os sqls)
+			- testar editar (ver os sqls)
+			- TESTAR O CONTROLE DE SALDO: adicionando e removendo saldo.
 			
-			- testar list e search
-						
-			- testar editar
-			
-			Lembrar de :
-				- No pagamento não tem essa de digitar nome do cliente
-					tem que obrigatoriamente selecionar um da lista!
-				- Testar passar cliente vazio.
-				* * * - Testar cadastrar novo pagamento sem ter nenhum clinte! * * *
-				* TESTAR O CONTROLE DE SALDO: adicionando e removendo saldo.
-			
-			- Fazer tela para cadastro de pagamentos.
-			- mesmo esquema do areceber, só que de entra da dinheiro.	
-
-
 			
 		2. CRUD Clientes
 			
@@ -51,6 +39,8 @@ A FAZER:
 BACKLOG:
 	
 	- ver como instalar no celular
+	
+	- era bom poder colocar um search nos combo box? entende? ou não é besteira?
 	
 	- bloqueio de usuario por tentativas
 	

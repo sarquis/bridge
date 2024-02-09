@@ -9,13 +9,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.ForeignKey;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "a_receber")
+@Table(name = "a_receber",
+       indexes = { @Index(name = "idx_created_by", columnList = "created_by") })
 public class AReceber extends EntityAuditableBigInt {
 
     // @ManyToOne >> FetchType.EAGER (padrão)

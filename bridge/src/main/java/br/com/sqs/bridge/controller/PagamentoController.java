@@ -16,6 +16,7 @@ import br.com.sqs.bridge.model.entity.Cliente;
 import br.com.sqs.bridge.model.entity.Pagamento;
 import br.com.sqs.bridge.service.ClienteService;
 import br.com.sqs.bridge.service.PagamentoService;
+import br.com.sqs.bridge.util.BridgeException;
 import br.com.sqs.bridge.util.BridgeMessage;
 
 @Controller
@@ -27,6 +28,9 @@ public class PagamentoController {
     private PagamentoService pagamentoService;
     private ClienteService clienteService;
     private BridgeMessage message;
+
+    // Para mostrar label: Escolha um cliente
+    private static final String SELECT_KEY_LABEL_NOVO_CLIENTE = "escolha_cliente_label";
 
     public PagamentoController(PagamentoService pagamentoService, ClienteService clienteService,
 	    BridgeMessage message) {
@@ -58,15 +62,16 @@ public class PagamentoController {
 	if (clientes.isEmpty()) {
 	    model.addAttribute("pagamentos", pagamentoService.findByCreatedByWithCliente(authUser.getName()));
 	    model.addAttribute("searchValue", "");
-	    Exception exception = new Exception("Desculpe, não é possível realizar esta ação no momento, "
-						+ "pois não há clientes cadastrados para receber. "
-						+ "Por favor, cadastre pelo menos um cliente antes de prosseguir.");
+	    BridgeException exception = new BridgeException("Desculpe, não é possível realizar esta ação no momento, "
+							    + "pois não há clientes cadastrados para receber. "
+							    + "Por favor, cadastre pelo menos um cliente antes de prosseguir.");
 	    model.addAttribute("message", message.handleExepection(exception));
 	    return BASE_PATH + "-list";
 	}
 
 	Pagamento pagamento = new Pagamento();
 	pagamento.setCliente(new Cliente());
+	pagamento.getCliente().setNome(SELECT_KEY_LABEL_NOVO_CLIENTE);
 
 	model.addAttribute("pagamento", pagamento);
 	model.addAttribute("clientes", clientes);
@@ -85,7 +90,7 @@ public class PagamentoController {
 	    Authentication authUser) {
 	try {
 	    pagamentoService.salvarObservacoes(pagamento, authUser.getName());
-	    return "redirect:../pagamento/list";
+	    return "redirect:../pagamentos/list";
 	} catch (Exception e) {
 	    model.addAttribute("pagamento", pagamento);
 	    model.addAttribute("message", message.handleExepection(e));
@@ -97,8 +102,13 @@ public class PagamentoController {
     public String salvar(Model model, @ModelAttribute("pagamento") Pagamento pagamento, Authentication authUser) {
 	try {
 	    pagamentoService.salvarNovo(pagamento, authUser.getName());
-	    return "redirect:../pagamento/list";
+	    return "redirect:../pagamentos/list";
 	} catch (Exception e) {
+	    List<Cliente> clientes = clienteService.findByCreatedByOrderByNome(authUser.getName());
+	    model.addAttribute("clientes", clientes);
+	    pagamento.setCliente(new Cliente());
+	    pagamento.getCliente().setNome(SELECT_KEY_LABEL_NOVO_CLIENTE);
+	    model.addAttribute("pagamento", pagamento);
 	    model.addAttribute("message", message.handleExepection(e));
 	    return BASE_PATH + "-novo";
 	}

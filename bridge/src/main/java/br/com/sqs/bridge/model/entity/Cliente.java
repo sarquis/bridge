@@ -10,6 +10,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Index;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -17,6 +18,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "cliente",
+       indexes = { @Index(name = "idx_created_by", columnList = "created_by") },
        uniqueConstraints = @UniqueConstraint(name = "unique_cliente_nome",
 					     columnNames = { "nome", "created_by" }))
 public class Cliente extends EntityAuditable {

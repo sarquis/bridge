@@ -34,7 +34,6 @@ public class AReceberService {
     public void salvarNovo(AReceber aReceber, String emailUsuario) throws BridgeException {
 	validarESalvarClienteSeNecessario(aReceber, emailUsuario);
 	aReceber.setId(null);
-	aReceber.setAtivo(true);
 	repository.save(aReceber);
     }
 
