@@ -17,34 +17,31 @@ Pensar em controles (sempre usar):
 ***********
 
 FAZENDO:
-				 				
-		1. CRUD Pagamentos
-			Feito: Entidade, repository, service e controller.
-			Feito: HTMLs
-			Feito: Teste de excluir, novo, search, editar, saldo
-						
-			- colocar um botão para listar os pagamentos do ze
-			- colocar um botão para listar os a receber do ze
 			
-		2. CRUD Clientes
+		1. CRUD Clientes
 			
 			- Editar: falta o recalculo do saldo. * Fazer função atualizar saldo.
 			- Excluir: falta fazer tudo: verificar tabela de areceber e pagamentos.
 					   falta verificar tabela de pagamentos.
+					   
+			- colocar um botão para listar os pagamentos do ze
+			- colocar um botão para listar os a receber do ze
+			
+
+		2. Graficos.
 			
 A FAZER:
+		
+		- Ver como instalar no celular. PWA
 	
 BACKLOG:
-	
-	- ver como instalar no celular
 	
 	- era bom poder colocar um search nos combo box? entende? ou não é besteira?
 	
 	- bloqueio de usuario por tentativas
 	
-	- all logging to a table 
-	
 	- logar os erros do sistema em uma tabela, onde só o admin veja.
+	
 	- colocar botão para exibir usuarios ativos/inativos
 	
 	5. ver como usar a strategia do infinite-scrolling...
