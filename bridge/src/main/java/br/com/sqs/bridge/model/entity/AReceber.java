@@ -8,6 +8,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
@@ -20,8 +21,9 @@ import jakarta.persistence.Table;
        indexes = { @Index(name = "idx_created_by", columnList = "created_by") })
 public class AReceber extends EntityAuditableBigInt {
 
-    // @ManyToOne >> FetchType.EAGER (padrão)
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+    // @ManyToOne >> FetchType.EAGER é por padrão, necessário explicitar LAZY.
+    @ManyToOne(fetch = FetchType.LAZY,
+	       cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			   CascadeType.DETACH, CascadeType.REFRESH })
     @JoinColumn(name = "cliente_id", nullable = false, foreignKey = @ForeignKey(name = "fk_a_receber_cliente"))
     private Cliente cliente;

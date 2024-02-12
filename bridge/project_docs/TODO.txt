@@ -21,12 +21,10 @@ FAZENDO:
 		1. CRUD Pagamentos
 			Feito: Entidade, repository, service e controller.
 			Feito: HTMLs
-			
-			- testar cadastrar novo (ver os sqls)
-			- testar list e search (ver os sqls)
-			- testar editar (ver os sqls)
-			- TESTAR O CONTROLE DE SALDO: adicionando e removendo saldo.
-			
+			Feito: Teste de excluir, novo, search, editar, saldo
+						
+			- colocar um botão para listar os pagamentos do ze
+			- colocar um botão para listar os a receber do ze
 			
 		2. CRUD Clientes
 			
