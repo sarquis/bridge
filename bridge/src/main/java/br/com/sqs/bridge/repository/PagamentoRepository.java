@@ -1,5 +1,6 @@
 package br.com.sqs.bridge.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,23 +20,26 @@ public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
      * * * É obrigatório. * * *
      */
 
-    @Query("  SELECT a FROM Pagamento a JOIN FETCH a.cliente "
-	   + " WHERE a.createdBy = :createdBy "
-	   + " ORDER BY a.id DESC ")
+    @Query("  SELECT p FROM Pagamento p JOIN FETCH p.cliente "
+	   + " WHERE p.createdBy = :createdBy "
+	   + " ORDER BY p.id DESC ")
     List<Pagamento> findByCreatedByWithCliente(@Param("createdBy") String createdBy);
 
-    @Query("  SELECT a FROM Pagamento a JOIN FETCH a.cliente c "
-	   + " WHERE a.createdBy = :createdBy AND c.nome LIKE %:clienteNome% "
+    @Query("  SELECT p FROM Pagamento p JOIN FETCH p.cliente c "
+	   + " WHERE p.createdBy = :createdBy AND c.nome LIKE %:clienteNome% "
 	   + " ORDER BY c.nome ASC ")
     List<Pagamento> findByCreatedByAndClienteNomeContainingWithCliente(@Param("clienteNome") String clienteNome,
 	    @Param("createdBy") String createdBy);
 
-    @Query("  SELECT a FROM Pagamento a JOIN FETCH a.cliente "
-	   + " WHERE a.id = :id AND a.createdBy = :createdBy ")
+    @Query("  SELECT p FROM Pagamento p JOIN FETCH p.cliente "
+	   + " WHERE p.id = :id AND p.createdBy = :createdBy ")
     Optional<Pagamento> findByIdAndCreatedByWithCliente(Long id, String createdBy);
 
-    @Query("  SELECT a FROM Pagamento a "
-	   + " WHERE a.id = :id AND a.createdBy = :createdBy ")
+    @Query("  SELECT p FROM Pagamento p "
+	   + " WHERE p.id = :id AND p.createdBy = :createdBy ")
     Optional<Pagamento> findByIdAndCreatedBy(Long id, String createdBy);
 
+    @Query(" SELECT SUM(p.valor) FROM Pagamento p "
+	   + " WHERE p.cliente.id = :clienteId ")
+    BigDecimal valorTotalDoCliente(Integer clienteId);
 }

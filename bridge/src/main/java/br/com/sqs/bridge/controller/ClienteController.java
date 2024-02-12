@@ -56,7 +56,7 @@ public class ClienteController {
 
     @GetMapping("/editar")
     public String editar(Model model, @RequestParam("id") int id, Authentication authUser) {
-	// TODO chamar um método para recalcular o saldo por segurança.
+	service.recalcularSaldo(id, authUser.getName(), true);
 	model.addAttribute("cliente", service.findByIdAndCreatedBy(id, authUser.getName()).get());
 	return BASE_PATH + "-editar";
     }

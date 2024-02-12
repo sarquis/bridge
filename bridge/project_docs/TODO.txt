@@ -20,7 +20,13 @@ FAZENDO:
 			
 		1. CRUD Clientes
 			
-			- Editar: falta o recalculo do saldo. * Fazer função atualizar saldo.
+			- botão para recalcular saldo
+			- exibir data do ultimo recalculo do saldo
+			- exibir mensagem do saldo do cliente
+			
+			- mudar tela para usar o id em do cliente em vez do nome do cliente
+				na hora de salvar um pagamento.
+							
 			- Excluir: falta fazer tudo: verificar tabela de areceber e pagamentos.
 					   falta verificar tabela de pagamentos.
 					   

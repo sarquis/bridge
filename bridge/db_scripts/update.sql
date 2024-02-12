@@ -5,14 +5,164 @@
     alter table cliente 
        modify column saldo decimal(15,2) not null;
 
+    alter table cliente 
+       add column ultima_diferenca_saldo decimal(15,2);
+
     alter table pagamento 
        modify column valor decimal(15,2) not null;
 
-    create index idx_created_by 
-       on a_receber (created_by);
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
 
-    create index idx_created_by 
-       on cliente (created_by);
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
 
-    create index idx_created_by 
-       on pagamento (created_by);
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;
+
+    alter table a_receber 
+       modify column valor decimal(15,2) not null;
+
+    alter table cliente 
+       modify column saldo decimal(15,2) not null;
+
+    alter table cliente 
+       modify column ultima_diferenca_saldo decimal(15,2);
+
+    alter table pagamento 
+       modify column valor decimal(15,2) not null;

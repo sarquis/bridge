@@ -1,5 +1,6 @@
 package br.com.sqs.bridge.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,4 +39,7 @@ public interface AReceberRepository extends JpaRepository<AReceber, Long> {
 	   + " WHERE a.id = :id AND a.createdBy = :createdBy ")
     Optional<AReceber> findByIdAndCreatedBy(Long id, String createdBy);
 
+    @Query(" SELECT SUM(a.valor) FROM AReceber a "
+	   + " WHERE a.cliente.id = :clienteId ")
+    BigDecimal valorTotalDoCliente(Integer clienteId);
 }

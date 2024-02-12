@@ -1,6 +1,9 @@
 package br.com.sqs.bridge.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,16 +11,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sqs.bridge.model.entity.Cliente;
+import br.com.sqs.bridge.repository.AReceberRepository;
 import br.com.sqs.bridge.repository.ClienteRepository;
+import br.com.sqs.bridge.repository.PagamentoRepository;
 import br.com.sqs.bridge.util.BridgeException;
 
 @Service
 public class ClienteService {
 
     private ClienteRepository repository;
+    private AReceberRepository aReceberRepository;
+    private PagamentoRepository pagamentoRepository;
 
-    public ClienteService(ClienteRepository repository) {
+    public ClienteService(ClienteRepository repository, AReceberRepository aReceberRepository,
+	    PagamentoRepository pagamentoRepository) {
 	this.repository = repository;
+	this.aReceberRepository = aReceberRepository;
+	this.pagamentoRepository = pagamentoRepository;
     }
 
     public List<Cliente> findByCreatedByOrderByNome(String emailUsuario) {
@@ -88,5 +98,38 @@ public class ClienteService {
     private void verificarSeNomeJaEstaEmUso(String nome, String emailUsuario) throws BridgeException {
 	if (findByNomeAndCreatedBy(nome, emailUsuario) != null)
 	    throw new BridgeException("Já existe um cliente com esse nome. Por favor, escolha outro nome.");
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void recalcularSaldo(int id, String emailUsuario, boolean automatico) {
+	Cliente cliente = findByIdAndCreatedBy(id, emailUsuario).get();
+	final LocalDateTime DATA_ATUAL = LocalDateTime.now();
+
+	if (automatico) {
+	    final int QTD_DIAS_MINIMO = 30;
+	    if (cliente.getUltimaVerificacaoSaldo() != null) {
+		Duration duracao = Duration.between(cliente.getUltimaVerificacaoSaldo(), DATA_ATUAL);
+		if (duracao.toDays() < QTD_DIAS_MINIMO)
+		    return; // NÃO PRECISA REFAZER O CALCULO.
+	    }
+	}
+
+	cliente.setUltimaVerificacaoSaldo(DATA_ATUAL);
+
+	BigDecimal totalAReceber = aReceberRepository.valorTotalDoCliente(cliente.getId());
+	totalAReceber = (totalAReceber == null ? BigDecimal.ZERO : totalAReceber);
+
+	BigDecimal totalPagamentos = pagamentoRepository.valorTotalDoCliente(cliente.getId());
+	totalPagamentos = (totalPagamentos == null ? BigDecimal.ZERO : totalPagamentos);
+
+	BigDecimal novoSaldo = totalPagamentos.subtract(totalAReceber);
+	BigDecimal diferenca = novoSaldo.subtract(cliente.getSaldo()).setScale(2, RoundingMode.HALF_EVEN);
+
+	if (diferenca.compareTo(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_EVEN)) != 0) {
+	    cliente.setSaldo(novoSaldo);
+	    cliente.setUltimaDiferencaSaldo(diferenca);
+	}
+
+	repository.save(cliente);
     }
 }
