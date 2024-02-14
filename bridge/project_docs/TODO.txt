@@ -19,21 +19,16 @@ Pensar em controles (sempre usar):
 FAZENDO:
 			
 		1. CRUD Clientes
-			
-			- botão para recalcular saldo
-			- exibir data do ultimo recalculo do saldo
-			- exibir mensagem do saldo do cliente
-			
-			- mudar tela para usar o id em do cliente em vez do nome do cliente
-				na hora de salvar um pagamento.
-							
+						
 			- Excluir: falta fazer tudo: verificar tabela de areceber e pagamentos.
 					   falta verificar tabela de pagamentos.
 					   
 			- colocar um botão para listar os pagamentos do ze
 			- colocar um botão para listar os a receber do ze
 			
-
+			- mudar tela para usar o id em do cliente em vez do nome do cliente
+				na hora de salvar um pagamento.
+			
 		2. Graficos.
 			
 A FAZER:

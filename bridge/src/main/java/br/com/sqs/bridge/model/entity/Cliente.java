@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import br.com.sqs.bridge.util.BridgeDateFormatter;
 import br.com.sqs.bridge.util.BridgeString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -75,6 +76,10 @@ public class Cliente extends EntityAuditable {
 
     public LocalDateTime getUltimaVerificacaoSaldo() {
 	return ultimaVerificacaoSaldo;
+    }
+
+    public String getUltimaVerificacaoSaldoFormatted() {
+	return BridgeDateFormatter.formatMedium(ultimaVerificacaoSaldo);
     }
 
     public void setUltimaVerificacaoSaldo(LocalDateTime ultimaVerificacaoSaldo) {

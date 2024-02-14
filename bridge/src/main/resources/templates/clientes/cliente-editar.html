@@ -11,8 +11,7 @@
 			<hr>
 			<div class="card">
 				<div class="card-body">
-					<form action="#" th:action="@{/clientes/salvarAlteracao}" th:object="${cliente}"
-						method="post">
+					<form action="#" th:action="@{/clientes/salvarAlteracao}" th:object="${cliente}" method="post">
 						<div class="container">
 							<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 
@@ -52,17 +51,25 @@
 								</div>
 							</div>
 
-							<div class="row align-items-center">
-								<div class="col-sm mb-2">
-									<div class="text-secondary">
-										<strong>Criado em:</strong><br />
-										<span th:text="${cliente.createdDateFormatted}" /><br />
+							<div class="collapse" id="info">
+								<div class="row align-items-center">
+									<div class="col-sm mb-2">
+										<div class="text-secondary">
+											<strong>Criado em:</strong><br />
+											<span th:text="${cliente.createdDateFormatted}" /><br />
+										</div>
 									</div>
-								</div>
-								<div class="col-sm mb-2">
-									<div class="text-secondary" th:if="${cliente.lastModifiedBy != null}">
-										<strong>Última modificação:</strong><br />
-										<span th:text="${cliente.lastModifiedDateFormatted}" /><br />
+									<div class="col-sm mb-2">
+										<div class="text-secondary" th:if="${cliente.lastModifiedBy != null}">
+											<strong>Última modificação:</strong><br />
+											<span th:text="${cliente.lastModifiedDateFormatted}" /><br />
+										</div>
+									</div>
+									<div class="col-sm mb-2">
+										<div class="text-secondary" th:if="${cliente.ultimaVerificacaoSaldo != null}">
+											<strong>Último recalculo de saldo:</strong><br />
+											<span th:text="${cliente.ultimaVerificacaoSaldoFormatted}" /><br />
+										</div>
 									</div>
 								</div>
 							</div>
@@ -72,6 +79,16 @@
 
 							<button type="submit" class="btn btn-success mt-2" style="margin-left:1rem;">
 								<i class="bi bi-floppy"></i> Salvar</button>
+
+							<a class="btn btn-primary mt-2" data-bs-toggle="collapse" href="#info" role="button"
+								aria-expanded="false" aria-controls="info" style="margin-left:1rem;margin-right:1rem;">
+								<i class="bi bi-info-circle"></i>
+							</a>
+
+							<button type="button"
+								th:onclick="window.location=[[@{/clientes/recalcularSaldo(id=${cliente.id})}]]"
+								class="btn btn-warning mt-2">
+								<i class="bi bi-calculator"></i> Recalcular Saldo</button>
 
 							<button type="button" th:onclick="confirmarExcluir('/clientes/excluir/[[*{id}]]')"
 								class="btn btn-danger mt-2" style="margin-left:1rem;">

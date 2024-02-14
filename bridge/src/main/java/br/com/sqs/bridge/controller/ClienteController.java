@@ -61,6 +61,14 @@ public class ClienteController {
 	return BASE_PATH + "-editar";
     }
 
+    @GetMapping("/recalcularSaldo")
+    public String recalcularSaldo(Model model, @RequestParam("id") int id, Authentication authUser) {
+	String saldo = service.recalcularSaldo(id, authUser.getName(), false);
+	model.addAttribute("cliente", service.findByIdAndCreatedBy(id, authUser.getName()).get());
+	model.addAttribute("message", message.handleSuccess("Saldo do cliente: " + saldo));
+	return BASE_PATH + "-editar";
+    }
+
     @PostMapping("/salvarAlteracao")
     public String salvarAlteracao(Model model, @ModelAttribute("cliente") Cliente cliente, Authentication authUser) {
 	try {
@@ -86,7 +94,7 @@ public class ClienteController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(Model model, @PathVariable("id") int id, Authentication authentication) {
+    public String excluir(Model model, @PathVariable("id") int id, Authentication authUser) {
 	try {
 	    // TODO AQUI TEM QUE TER CUIDADO.
 	    // verificar se nome já existe algum a receber para esse cliente.

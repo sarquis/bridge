@@ -14,6 +14,7 @@ import br.com.sqs.bridge.model.entity.Cliente;
 import br.com.sqs.bridge.repository.AReceberRepository;
 import br.com.sqs.bridge.repository.ClienteRepository;
 import br.com.sqs.bridge.repository.PagamentoRepository;
+import br.com.sqs.bridge.util.BigDecimalFormatter;
 import br.com.sqs.bridge.util.BridgeException;
 
 @Service
@@ -101,16 +102,17 @@ public class ClienteService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void recalcularSaldo(int id, String emailUsuario, boolean automatico) {
+    public String recalcularSaldo(int id, String emailUsuario, boolean automatico) {
 	Cliente cliente = findByIdAndCreatedBy(id, emailUsuario).get();
 	final LocalDateTime DATA_ATUAL = LocalDateTime.now();
 
 	if (automatico) {
+	    // Intervalo mínimo de 30 dias para o recalculo automático.
 	    final int QTD_DIAS_MINIMO = 30;
 	    if (cliente.getUltimaVerificacaoSaldo() != null) {
 		Duration duracao = Duration.between(cliente.getUltimaVerificacaoSaldo(), DATA_ATUAL);
 		if (duracao.toDays() < QTD_DIAS_MINIMO)
-		    return; // NÃO PRECISA REFAZER O CALCULO.
+		    return null; // NÃO PRECISA REFAZER O CALCULO.
 	    }
 	}
 
@@ -122,7 +124,7 @@ public class ClienteService {
 	BigDecimal totalPagamentos = pagamentoRepository.valorTotalDoCliente(cliente.getId());
 	totalPagamentos = (totalPagamentos == null ? BigDecimal.ZERO : totalPagamentos);
 
-	BigDecimal novoSaldo = totalPagamentos.subtract(totalAReceber);
+	BigDecimal novoSaldo = totalPagamentos.subtract(totalAReceber).setScale(2, RoundingMode.HALF_EVEN);
 	BigDecimal diferenca = novoSaldo.subtract(cliente.getSaldo()).setScale(2, RoundingMode.HALF_EVEN);
 
 	if (diferenca.compareTo(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_EVEN)) != 0) {
@@ -131,5 +133,6 @@ public class ClienteService {
 	}
 
 	repository.save(cliente);
+	return BigDecimalFormatter.bigDecimalToString(novoSaldo);
     }
 }

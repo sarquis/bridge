@@ -23,4 +23,8 @@ public class BigDecimalFormatter implements Formatter<BigDecimal> {
     public String print(BigDecimal object, Locale locale) {
 	return DECIMAL_FORMAT.format(object);
     }
+
+    public static String bigDecimalToString(BigDecimal object) {
+	return DECIMAL_FORMAT.format(object);
+    }
 }
