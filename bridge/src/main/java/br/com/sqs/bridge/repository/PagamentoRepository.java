@@ -33,13 +33,17 @@ public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
 
     @Query("  SELECT p FROM Pagamento p JOIN FETCH p.cliente "
 	   + " WHERE p.id = :id AND p.createdBy = :createdBy ")
-    Optional<Pagamento> findByIdAndCreatedByWithCliente(Long id, String createdBy);
+    Optional<Pagamento> findByIdAndCreatedByWithCliente(@Param("id") Long id, @Param("createdBy") String createdBy);
 
     @Query("  SELECT p FROM Pagamento p "
 	   + " WHERE p.id = :id AND p.createdBy = :createdBy ")
-    Optional<Pagamento> findByIdAndCreatedBy(Long id, String createdBy);
+    Optional<Pagamento> findByIdAndCreatedBy(@Param("id") Long id, @Param("createdBy") String createdBy);
 
     @Query(" SELECT SUM(p.valor) FROM Pagamento p "
 	   + " WHERE p.cliente.id = :clienteId ")
-    BigDecimal valorTotalDoCliente(Integer clienteId);
+    BigDecimal valorTotalDoCliente(@Param("clienteId") Integer clienteId);
+
+    @Query("  SELECT p FROM Pagamento p "
+	   + " WHERE p.cliente.id = :clienteId ")
+    List<Pagamento> findByClienteId(@Param("clienteId") Integer clienteId);
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,16 +92,14 @@ public class ClienteController {
 	}
     }
 
-    @GetMapping("/excluir/{id}")
-    public String excluir(Model model, @PathVariable("id") int id, Authentication authUser) {
+    @GetMapping("/excluir")
+    public String excluir(Model model, @RequestParam("id") int id, Authentication authUser) {
 	try {
-	    // TODO AQUI TEM QUE TER CUIDADO.
-	    // verificar se nome já existe algum a receber para esse cliente.
-	    // se não não permitir.
-	    // service.excluir(id, authentication.getName());
-	    return "redirect:../list";
+	    service.excluir(id, authUser.getName());
+	    return "redirect:../clientes/list";
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
+	    model.addAttribute("cliente", service.findByIdAndCreatedBy(id, authUser.getName()).get());
 	    return BASE_PATH + "-editar";
 	}
     }

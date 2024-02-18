@@ -19,9 +19,6 @@ Pensar em controles (sempre usar):
 FAZENDO:
 			
 		1. CRUD Clientes
-						
-			- Excluir: falta fazer tudo: verificar tabela de areceber e pagamentos.
-					   falta verificar tabela de pagamentos.
 					   
 			- colocar um botão para listar os pagamentos do ze
 			- colocar um botão para listar os a receber do ze
@@ -29,13 +26,30 @@ FAZENDO:
 			- mudar tela para usar o id em do cliente em vez do nome do cliente
 				na hora de salvar um pagamento.
 			
-		2. Graficos.
+		2. A receber e Pagamento
+		
+			- todo a receber deve ter um vencimento
+			- todo a receber deve ter uma flag para indicar que foi pago
+			- todo pagamento deve fazer uma referencia a um ou mais a receber
+			- a receber pode ser sido pago parcialmente
+			- o a receber pode ser parcelado ( é claro que a pessoa pode criar varios)
+			
+			- pensando nisso, vou ter que ter uma tela para mostrar os vencidos/em atrazo
+			- uma tela para mostrar os pagos em dia
+			
+			- pensar em como seria isso... se vou ter que vincular os pagamentos com recebimentos ou nao.
+			
+			
+		3. Graficos.
 			
 A FAZER:
 		
 		- Ver como instalar no celular. PWA
 	
 BACKLOG:
+	
+	- fazer uma tela onde todos podem deixar susgestoes de melhoria, e as sujestoes são ranqueadas
+		- por likes, não precisa mostrar o nome do usuario para os outros.
 	
 	- era bom poder colocar um search nos combo box? entende? ou não é besteira?
 	

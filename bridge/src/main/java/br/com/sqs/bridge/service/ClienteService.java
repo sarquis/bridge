@@ -135,4 +135,16 @@ public class ClienteService {
 	repository.save(cliente);
 	return BigDecimalFormatter.bigDecimalToString(novoSaldo);
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void excluir(int id, String emailUsuario) throws BridgeException {
+	Cliente cliente = findByIdAndCreatedBy(id, emailUsuario).get();
+
+	if (!aReceberRepository.findByClienteId(cliente.getId()).isEmpty() ||
+		!pagamentoRepository.findByClienteId(cliente.getId()).isEmpty())
+	    throw new BridgeException(
+		    "O cliente possui lançamentos em seu nome, portanto, não é possível realizar a exclusão.");
+
+	repository.delete(cliente);
+    }
 }
