@@ -17,6 +17,25 @@ Pensar em controles (sempre usar):
 ***********
 
 FAZENDO:
+
+	
+		Pensar em simplificar para poder finalizar logo.
+		Pq depois disso vou para os graficos
+		para as informaçoes da tela principal:
+			total a receber
+			total em atrazo
+		
+		grafico de clientes de maior divida para menor divida
+		
+		grafico que mostra percentual vencido compra percentual total do a receber
+			- titulos em atrazo / vencidos %
+			- titulos total %
+			do total a receber quanto esta vencido?
+		
+		grafico com percentual de clientes:
+			- devendo
+			- em dia
+			- sem divida
 			
 		1. CRUD Clientes
 					   
@@ -25,12 +44,21 @@ FAZENDO:
 			
 			- mudar tela para usar o id em do cliente em vez do nome do cliente
 				na hora de salvar um pagamento.
+		
+			- o cliente deveria ter dois saldos: saldo geral e saldo que ainda não foi usado para dar baixa em titulos.
 			
 		2. A receber e Pagamento
 		
 			- todo a receber deve ter um vencimento
 			- todo a receber deve ter uma flag para indicar que foi pago
-			- todo pagamento deve fazer uma referencia a um ou mais a receber
+			
+			- na hora de marcar como pago, tem que ver se o cliente tem saldo para pagar.
+			- é necessário fazer um metodo que verifique o seguinte, quantas já foram marcadas como pagas?
+			- bate com o valor que o cliente tem de "saldo a baixar"
+			- o cliente tem que ter um saldo a baixar.
+			
+			
+			? - todo pagamento deve fazer uma referencia a um ou mais a receber
 			- a receber pode ser sido pago parcialmente
 			- o a receber pode ser parcelado ( é claro que a pessoa pode criar varios)
 			

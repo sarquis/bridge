@@ -17,7 +17,7 @@ public class MailConfig {
 	mailSender.setPort(587);
 
 	mailSender.setUsername("bridge2receive@gmail.com");
-	mailSender.setPassword("jjdc zqxa volc time");
+	mailSender.setPassword("");
 
 	Properties props = mailSender.getJavaMailProperties();
 	props.put("mail.transport.protocol", "smtp");
