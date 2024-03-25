@@ -18,7 +18,8 @@ Pensar em controles (sempre usar):
 
 FAZENDO:
 
-	
+		TESTE GIT NOVO ECLIPSE
+		
 		Pensar em simplificar para poder finalizar logo.
 		Pq depois disso vou para os graficos
 		para as informaçoes da tela principal:
