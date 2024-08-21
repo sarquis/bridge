@@ -2,7 +2,7 @@
 create database db_bridge; 
 
 -- Creates the user.
-create user 'bridgeuser'@'%' identified by 'H*wF1=53szsMCBd?.FC&';
+create user 'bridgeuser'@'%' identified by 'password';
 
 -- Gives all privileges to the new user on the newly created database. 
 grant all on db_bridge.* to 'bridgeuser'@'%'; 
