@@ -13,7 +13,7 @@ spring:
     #
     url: jdbc:mysql://localhost:3306/db_bridge
     username: bridgeuser
-    password: H*wF1=53szsMCBd?.FC&
+    password: password
 
   jpa:
     # spring.jpa.open-in-view
