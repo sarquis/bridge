@@ -37,7 +37,7 @@ public class ClienteController {
     }
 
     @GetMapping("/listSearch")
-    public String listSearch(Model model, @RequestParam("searchValue") String searchValue,
+    public String listSearch(Model model, @RequestParam String searchValue,
 	    Authentication authUser) {
 	model.addAttribute("clientes", service
 		.findByNomeContainingAndCreatedByOrderByNomeAsc(searchValue, authUser.getName()));
@@ -54,14 +54,14 @@ public class ClienteController {
     }
 
     @GetMapping("/editar")
-    public String editar(Model model, @RequestParam("id") int id, Authentication authUser) {
+    public String editar(Model model, @RequestParam int id, Authentication authUser) {
 	service.recalcularSaldo(id, authUser.getName(), true);
 	model.addAttribute("cliente", service.findByIdAndCreatedBy(id, authUser.getName()).get());
 	return BASE_PATH + "-editar";
     }
 
     @GetMapping("/recalcularSaldo")
-    public String recalcularSaldo(Model model, @RequestParam("id") int id, Authentication authUser) {
+    public String recalcularSaldo(Model model, @RequestParam int id, Authentication authUser) {
 	String saldo = service.recalcularSaldo(id, authUser.getName(), false);
 	model.addAttribute("cliente", service.findByIdAndCreatedBy(id, authUser.getName()).get());
 	model.addAttribute("message", message.handleSuccess("Saldo do cliente: " + saldo));
@@ -69,7 +69,7 @@ public class ClienteController {
     }
 
     @PostMapping("/salvarAlteracao")
-    public String salvarAlteracao(Model model, @ModelAttribute("cliente") Cliente cliente, Authentication authUser) {
+    public String salvarAlteracao(Model model, @ModelAttribute Cliente cliente, Authentication authUser) {
 	try {
 	    service.salvarAlteracao(cliente, authUser.getName());
 	    return "redirect:../clientes/list";
@@ -81,7 +81,7 @@ public class ClienteController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Model model, @ModelAttribute("cliente") Cliente cliente, Authentication authUser) {
+    public String salvar(Model model, @ModelAttribute Cliente cliente, Authentication authUser) {
 	try {
 	    cliente.setSaldo(BigDecimal.ZERO);
 	    service.salvarNovoCliente(cliente, authUser.getName());
@@ -93,7 +93,7 @@ public class ClienteController {
     }
 
     @GetMapping("/excluir")
-    public String excluir(Model model, @RequestParam("id") int id, Authentication authUser) {
+    public String excluir(Model model, @RequestParam int id, Authentication authUser) {
 	try {
 	    service.excluir(id, authUser.getName());
 	    return "redirect:../clientes/list";

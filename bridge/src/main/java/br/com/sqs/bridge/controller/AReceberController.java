@@ -46,7 +46,7 @@ public class AReceberController {
     }
 
     @GetMapping("/listSearch")
-    public String listSearch(Model model, @RequestParam("searchValue") String searchValue, Authentication authUser) {
+    public String listSearch(Model model, @RequestParam String searchValue, Authentication authUser) {
 	model.addAttribute("aReceberLista", aReceberService
 		.findByCreatedByAndClienteNomeContainingWithCliente(searchValue, authUser.getName()));
 	model.addAttribute("searchValue", searchValue);
@@ -71,13 +71,13 @@ public class AReceberController {
     }
 
     @GetMapping("/editar")
-    public String editar(Model model, @RequestParam("id") long id, Authentication authUser) {
+    public String editar(Model model, @RequestParam long id, Authentication authUser) {
 	model.addAttribute("aReceber", aReceberService.findByIdAndCreatedByWithCliente(id, authUser.getName()).get());
 	return BASE_PATH + "-editar";
     }
 
     @PostMapping("/salvarObservacoes")
-    public String salvarObservacoes(Model model, @ModelAttribute("aReceber") AReceber aReceber,
+    public String salvarObservacoes(Model model, @ModelAttribute AReceber aReceber,
 	    Authentication authUser) {
 	try {
 	    aReceberService.salvarObservacoes(aReceber, authUser.getName());
@@ -90,7 +90,7 @@ public class AReceberController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Model model, @ModelAttribute("aReceber") AReceber aReceber, Authentication authUser) {
+    public String salvar(Model model, @ModelAttribute AReceber aReceber, Authentication authUser) {
 	try {
 
 	    if (semCliente(aReceber)) {
@@ -124,7 +124,7 @@ public class AReceberController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(Model model, @PathVariable("id") long id, Authentication authUser) {
+    public String excluir(Model model, @PathVariable long id, Authentication authUser) {
 	try {
 	    aReceberService.excluir(id, authUser.getName());
 	    return "redirect:../list";

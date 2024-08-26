@@ -33,7 +33,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/listSearch")
-    public String listSearch(Model model, @RequestParam("searchValue") String searchValue) {
+    public String listSearch(Model model, @RequestParam String searchValue) {
 	model.addAttribute("usuarios", service.findByEmailContaining(searchValue));
 	model.addAttribute("searchValue", searchValue);
 	return BASE_PATH + "-list";
@@ -52,7 +52,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Model model, @ModelAttribute("usuario") Usuario usuario) {
+    public String salvar(Model model, @ModelAttribute Usuario usuario) {
 	try {
 	    /*
 	     * ATENÇÃO: Não usei DTO, pois aqui temos um novo registro. É recomendado sempre
@@ -69,7 +69,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/ativarDesativar")
-    public String ativarDesativar(Model model, @ModelAttribute("usuario") Usuario usuario) {
+    public String ativarDesativar(Model model, @ModelAttribute Usuario usuario) {
 	Integer id = usuario.getId();
 	service.ativarDesativar(id);
 	model.addAttribute("usuario", service.findById(id).get());
