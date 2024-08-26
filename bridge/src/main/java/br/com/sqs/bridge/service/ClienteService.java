@@ -88,8 +88,10 @@ public class ClienteService {
 
     private void validarNome(String nomeNovo, String nomeOriginal, String emailUsuario) throws BridgeException {
 	if (nomeNovo == null || nomeNovo.isBlank())
-	    throw new BridgeException("Parece que você esqueceu de preencher o nome do cliente. "
-				      + "Por favor, preencha este campo para continuar.");
+	    throw new BridgeException("""
+                      Parece que você esqueceu de preencher o nome do cliente. \
+                      Por favor, preencha este campo para continuar.\
+                      """);
 
 	// Verificando se ocorreu mudança no nome.
 	if (!nomeNovo.equalsIgnoreCase(nomeOriginal))

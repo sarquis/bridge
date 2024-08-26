@@ -20,30 +20,42 @@ public interface AReceberRepository extends JpaRepository<AReceber, Long> {
      * * * É obrigatório. * * *
      */
 
-    @Query("  SELECT a FROM AReceber a JOIN FETCH a.cliente "
-	   + " WHERE a.createdBy = :createdBy "
-	   + " ORDER BY a.id DESC ")
+    @Query("""
+    	SELECT a FROM AReceber a JOIN FETCH a.cliente \
+    	WHERE a.createdBy = :createdBy \
+    	ORDER BY a.id DESC \
+    	""")
     List<AReceber> findByCreatedByWithCliente(@Param("createdBy") String createdBy);
 
-    @Query("  SELECT a FROM AReceber a JOIN FETCH a.cliente c "
-	   + " WHERE a.createdBy = :createdBy AND c.nome LIKE %:clienteNome% "
-	   + " ORDER BY c.nome ASC ")
+    @Query("""
+    	SELECT a FROM AReceber a JOIN FETCH a.cliente c \
+    	WHERE a.createdBy = :createdBy AND c.nome LIKE %:clienteNome% \
+    	ORDER BY c.nome ASC \
+    	""")
     List<AReceber> findByCreatedByAndClienteNomeContainingWithCliente(@Param("clienteNome") String clienteNome,
 	    @Param("createdBy") String createdBy);
 
-    @Query("  SELECT a FROM AReceber a JOIN FETCH a.cliente "
-	   + " WHERE a.id = :id AND a.createdBy = :createdBy ")
+    @Query("""
+    	SELECT a FROM AReceber a JOIN FETCH a.cliente \
+    	WHERE a.id = :id AND a.createdBy = :createdBy \
+    	""")
     Optional<AReceber> findByIdAndCreatedByWithCliente(@Param("id") Long id, @Param("createdBy") String createdBy);
 
-    @Query("  SELECT a FROM AReceber a "
-	   + " WHERE a.id = :id AND a.createdBy = :createdBy ")
+    @Query("""
+    	SELECT a FROM AReceber a \
+    	WHERE a.id = :id AND a.createdBy = :createdBy \
+    	""")
     Optional<AReceber> findByIdAndCreatedBy(@Param("id") Long id, @Param("createdBy") String createdBy);
 
-    @Query(" SELECT SUM(a.valor) FROM AReceber a "
-	   + " WHERE a.cliente.id = :clienteId ")
+    @Query("""
+    	SELECT SUM(a.valor) FROM AReceber a \
+    	WHERE a.cliente.id = :clienteId \
+    	""")
     BigDecimal valorTotalDoCliente(@Param("clienteId") Integer clienteId);
 
-    @Query(" SELECT a FROM AReceber a "
-	   + " WHERE a.cliente.id = :clienteId ")
+    @Query("""
+    	SELECT a FROM AReceber a \
+    	WHERE a.cliente.id = :clienteId \
+    	""")
     List<AReceber> findByClienteId(@Param("clienteId") Integer clienteId);
 }

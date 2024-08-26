@@ -31,7 +31,7 @@ public class BridgeMessage {
 	    type = Type.NOT_ALLOWED;
 	} else if (msg != null && msg.toUpperCase().contains("DUPLICATE ENTRY")) {
 	    type = Type.DB_CONSTRAINT_BLOCK;
-	    msg = String.format(DUPLICATE_ENTRY_MESSAGE, extrairValorDuplicadoDaMensagem(msg));
+	    msg = DUPLICATE_ENTRY_MESSAGE.formatted(extrairValorDuplicadoDaMensagem(msg));
 	} else {
 	    type = Type.ERROR;
 	    msg = SYSTEM_FAILURE_MESSAGE;

@@ -47,7 +47,7 @@ public class PagamentoController {
     }
 
     @GetMapping("/listSearch")
-    public String listSearch(Model model, @RequestParam("searchValue") String searchValue, Authentication authUser) {
+    public String listSearch(Model model, @RequestParam String searchValue, Authentication authUser) {
 	model.addAttribute("pagamentos", pagamentoService
 		.findByCreatedByAndClienteNomeContainingWithCliente(searchValue, authUser.getName()));
 	model.addAttribute("searchValue", searchValue);
@@ -62,9 +62,11 @@ public class PagamentoController {
 	if (clientes.isEmpty()) {
 	    model.addAttribute("pagamentos", pagamentoService.findByCreatedByWithCliente(authUser.getName()));
 	    model.addAttribute("searchValue", "");
-	    BridgeException exception = new BridgeException("Desculpe, não é possível realizar esta ação no momento, "
-							    + "pois não há clientes cadastrados para receber. "
-							    + "Por favor, cadastre pelo menos um cliente antes de prosseguir.");
+	    BridgeException exception = new BridgeException("""
+                                Desculpe, não é possível realizar esta ação no momento, \
+                                pois não há clientes cadastrados para receber. \
+                                Por favor, cadastre pelo menos um cliente antes de prosseguir.\
+                                """);
 	    model.addAttribute("message", message.handleExepection(exception));
 	    return BASE_PATH + "-list";
 	}
@@ -80,13 +82,13 @@ public class PagamentoController {
     }
 
     @GetMapping("/editar")
-    public String editar(Model model, @RequestParam("id") long id, Authentication authUser) {
+    public String editar(Model model, @RequestParam long id, Authentication authUser) {
 	model.addAttribute("pagamento", pagamentoService.findByIdAndCreatedByWithCliente(id, authUser.getName()).get());
 	return BASE_PATH + "-editar";
     }
 
     @PostMapping("/salvarObservacoes")
-    public String salvarObservacoes(Model model, @ModelAttribute("pagamento") Pagamento pagamento,
+    public String salvarObservacoes(Model model, @ModelAttribute Pagamento pagamento,
 	    Authentication authUser) {
 	try {
 	    pagamentoService.salvarObservacoes(pagamento, authUser.getName());
@@ -99,7 +101,7 @@ public class PagamentoController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Model model, @ModelAttribute("pagamento") Pagamento pagamento, Authentication authUser) {
+    public String salvar(Model model, @ModelAttribute Pagamento pagamento, Authentication authUser) {
 	try {
 	    pagamentoService.salvarNovo(pagamento, authUser.getName());
 	    return "redirect:../pagamentos/list";
@@ -115,7 +117,7 @@ public class PagamentoController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(Model model, @PathVariable("id") long id, Authentication authUser) {
+    public String excluir(Model model, @PathVariable long id, Authentication authUser) {
 	try {
 	    pagamentoService.excluir(id, authUser.getName());
 	    return "redirect:../list";

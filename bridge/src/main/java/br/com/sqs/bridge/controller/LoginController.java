@@ -39,10 +39,12 @@ public class LoginController {
     }
 
     @PostMapping("/criarNovaConta")
-    public String criarNovaConta(Model model, @ModelAttribute("usuario") Usuario usuario) {
-	String msgSucesso = "Conta criada com sucesso! "
-			    + "Em breve, você receberá no seu e-mail (@) a senha "
-			    + "para acessar o sistema.";
+    public String criarNovaConta(Model model, @ModelAttribute Usuario usuario) {
+	String msgSucesso = """
+                Conta criada com sucesso! \
+                Em breve, você receberá no seu e-mail (@) a senha \
+                para acessar o sistema.\
+                """;
 	try {
 	    service.salvarNovoUsuario(usuario, true);
 	    model.addAttribute("contaCriadaComSucesso", true);
@@ -54,11 +56,13 @@ public class LoginController {
     }
 
     @PostMapping("/obterNovaSenha")
-    public String obterNovaSenha(Model model, @ModelAttribute("usuario") Usuario usuario) {
-	String msgSucesso = "Solicitação realizada! Se o seu e-mail estiver associado a uma conta válida, "
-			    + "em breve você receberá um e-mail com uma nova senha. "
-			    + "Verifique sua caixa de entrada, incluindo a pasta de spam, "
-			    + "caso não receba a mensagem em alguns minutos.";
+    public String obterNovaSenha(Model model, @ModelAttribute Usuario usuario) {
+	String msgSucesso = """
+                Solicitação realizada! Se o seu e-mail estiver associado a uma conta válida, \
+                em breve você receberá um e-mail com uma nova senha. \
+                Verifique sua caixa de entrada, incluindo a pasta de spam, \
+                caso não receba a mensagem em alguns minutos.\
+                """;
 	try {
 	    service.solicitarEnvioDeNovaSenha(usuario, true);
 	    model.addAttribute("solicitacaoRealizada", true);

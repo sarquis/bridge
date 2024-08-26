@@ -19,13 +19,15 @@ public class SecurityConfig {
 	JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 	final String sqlUser = " SELECT email, senha, ativo FROM usuario WHERE email = ? ";
 	jdbcUserDetailsManager.setUsersByUsernameQuery(sqlUser);
-	final String sqlRole = "        SELECT u.email, f.nome 		"
-			       + "        FROM funcao f 		"
-			       + "  INNER JOIN usuario_funcao uf 	"
-			       + "          ON uf.funcao_id = f.id 	"
-			       + "  INNER JOIN usuario u 		"
-			       + "          ON u.id = uf.usuario_id 	"
-			       + "         AND u.email = ? 		";
+	final String sqlRole = """
+		     SELECT u.email, f.nome 		\
+		       FROM funcao f 			\
+		 INNER JOIN usuario_funcao uf 		\
+			 ON uf.funcao_id = f.id 	\
+		 INNER JOIN usuario u 			\
+		         ON u.id = uf.usuario_id 	\
+		        AND u.email = ? 		\
+		""";
 	jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(sqlRole);
 	return jdbcUserDetailsManager;
     }
@@ -33,8 +35,8 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	http.authorizeHttpRequests(configurer -> configurer
-		.requestMatchers("/js/**", "/css/**", "/html/**", "/img/**",
-			"/showRegisterPage", "/criarNovaConta", "/showEsqueceuSenha", "/obterNovaSenha")
+		.requestMatchers("/js/**", "/css/**", "/html/**", "/img/**", "/showRegisterPage",
+			"/criarNovaConta", "/showEsqueceuSenha", "/obterNovaSenha")
 		.permitAll()
 		.requestMatchers("/").hasRole("USUARIO")
 		.requestMatchers("/usuarios/**").hasRole("ADMIN")
