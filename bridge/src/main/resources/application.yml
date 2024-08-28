@@ -11,9 +11,9 @@ spring:
     #
     # JDBC connection properties:
     #
-    url: jdbc:mysql://localhost:3306/db_bridge
-    username: bridgeuser
-    password: password
+    url: ${DB_URL_BRIDGE}
+    username: ${DB_USER_BRIDGE}
+    password: ${DB_PASSWORD_BRIDGE}
 
   jpa:
     # spring.jpa.open-in-view
@@ -46,9 +46,9 @@ logging:
     org:
       springframework:
         jdbc:
-          core: TRACE
+          # core: TRACE
       hibernate:
-        SQL: DEBUG
+        # SQL: DEBUG
           
 # Spring Security bebug (very usefull):          
 #        security: debug
