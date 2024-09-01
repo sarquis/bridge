@@ -1,6 +1,9 @@
 
 # 橋 bridge properties
 
+application:
+  version: '@project.version@'
+  
 spring:
   
   # Turn off the Spring Boot banner.

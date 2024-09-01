@@ -9,19 +9,24 @@
 		<div th:replace="~{fragments/menu :: menu}"></div>
 
 		<div class="container mt-3">
-
-			<h2><i class="bi bi-house"></i> Home</h2>
+			<h2>
+				<i class="bi bi-house"></i> Home
+			</h2>
 			<hr>
 			<div class="card">
 				<div class="card-body">
 					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 					<a th:href="@{/aReceber/novo}" class="btn btn-light" role="button">
-						<i class="bi bi-hourglass-top"></i> Novo A Receber</a>
+						<i class="bi bi-hourglass-top"></i> Novo A Receber
+					</a>
 					<!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / /  -->
 				</div>
+				<div class="card-body" sec:authorize="hasRole('ADMIN')">
+					<p style="color: hsl(217, 10%, 50.8%)">
+						Versão da aplicação: <span th:text="${version}"></span>
+					</p>
+				</div>
 			</div>
-		</div>
-
 	</section>
 </body>
 
