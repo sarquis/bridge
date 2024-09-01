@@ -13,7 +13,7 @@
 	<artifactId>bridge</artifactId>
 	<version>1.0.1</version>
 	<name>bridge</name>
-	<description>Data Access Bridge</description>
+	<description>2Receive</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
