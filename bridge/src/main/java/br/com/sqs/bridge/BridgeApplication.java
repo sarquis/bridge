@@ -9,6 +9,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 public class BridgeApplication {
 
     public static void main(String[] args) {
+	System.out.println("TESTE");
 	// SpringApplication.run(BridgeApplication.class, args);
 	SpringApplication app = new SpringApplication(BridgeApplication.class);
 
