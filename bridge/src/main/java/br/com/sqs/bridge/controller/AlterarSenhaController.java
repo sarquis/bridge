@@ -32,7 +32,7 @@ public class AlterarSenhaController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Model model, @ModelAttribute SenhaDTO senhaDTO,
+    public String salvar(Model model, @ModelAttribute("senhaDTO") SenhaDTO senhaDTO,
 	    @AuthenticationPrincipal UserDetails userDetails) {
 	try {
 	    String userName = userDetails.getUsername();
