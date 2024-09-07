@@ -40,7 +40,20 @@ spring:
               # action: update # [create] or [update]
               # create-target: db_scripts/create.sql # [create] or [update]
               # create-target: db_scripts/update.sql # [create] or [update]
-      
+              
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${SMTP_USER}
+    password: ${SMTP_PASS}
+    properties:
+      mail:
+        #debug: true
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+               
 # Log JDBC SQL statements with bind values.
 # Se tirar o do 'springframework' perde o log do String Security.
 # Se tirar o do 'hibernate' perde o log do JpaRepository.       
@@ -56,8 +69,8 @@ logging:
 # Spring Security bebug (very usefull):          
 #        security: debug
 
-# Reduce logging level:
-    root: warn 
+# Reduce logging level: info (only in dev) warn (normal)
+    root: warn
 
 server:
   error:

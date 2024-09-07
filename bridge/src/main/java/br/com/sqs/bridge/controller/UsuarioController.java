@@ -81,11 +81,11 @@ public class UsuarioController {
 	try {
 	    service.enviarNovaSenha(service.findById(id).get(), false);
 	    model.addAttribute("senhaEnviadaComSucesso", true);
-	    model.addAttribute("usuario", service.findById(id).get()); // Nova consulta para obter auditoria atualizada.
 	    model.addAttribute("message", message.handleSuccess("Senha enviada por e-mail."));
 	} catch (Exception e) {
 	    model.addAttribute("message", message.handleExepection(e));
 	}
+	model.addAttribute("usuario", service.findById(id).get()); // Nova consulta para obter auditoria atualizada.
 	return BASE_PATH + "-editar";
     }
 }
