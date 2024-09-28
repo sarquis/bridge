@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.3</version>
+		<version>3.3.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.sqs.bridge</groupId>
 	<artifactId>bridge</artifactId>
-	<version>1.0.6</version>
+	<version>1.0.7</version>
 	<name>bridge</name>
 	<description>2Receive</description>
 	<properties>
