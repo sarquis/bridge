@@ -38,6 +38,18 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+    
+    - name: Remove old latest tag if exists
+      run: |
+        if docker images --format '{{.Repository}}:{{.Tag}}' | grep -q 'robertosarquis/bridge:latest'; then
+          docker rmi robertosarquis/bridge:latest || true
+        fi
 
     - name: Push Docker image
       run: docker push robertosarquis/bridge:${{ env.VERSION }}
+
+    - name: Tag and push Docker image as latest
+      run: |
+        docker tag robertosarquis/bridge:${{ env.VERSION }} robertosarquis/bridge:latest
+        docker push robertosarquis/bridge:latest
+        
